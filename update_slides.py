@@ -14,11 +14,14 @@ import json
 import time
 import uuid
 
+import httplib2
+import requests
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from google.oauth2.service_account import Credentials as SACredentials
 from google.oauth2.credentials import Credentials as OAuthCredentials
 from google.auth.transport.requests import Request
+import google_auth_httplib2
 
 PRESENTATION_ID = '1FNIUCC8jPqpwL8xTrQ33J3vGFwuaULhyp_BknKOuIjk'
 SCOPES = [
@@ -58,15 +61,14 @@ H = emu(7.5)
 # ── Auth ──────────────────────────────────────────────────────────────────────
 
 def get_service():
-    creds = None
+    ca_bundle = os.environ.get('REQUESTS_CA_BUNDLE', '/etc/ssl/certs/ca-certificates.crt')
+
     key_path = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', 'service_account.json')
     if os.path.exists(key_path):
         creds = SACredentials.from_service_account_file(key_path, scopes=SCOPES)
         print(f'Using service account: {key_path}')
     elif os.path.exists('token.json'):
         creds = OAuthCredentials.from_authorized_user_file('token.json', SCOPES)
-        if creds.expired and creds.refresh_token:
-            creds.refresh(Request())
         print('Using OAuth token: token.json')
     else:
         sys.exit(
@@ -76,7 +78,12 @@ def get_service():
             '  • token.json            (OAuth2 token with presentations + drive scopes)\n'
             '  • GOOGLE_APPLICATION_CREDENTIALS env var pointing to a service-account key\n'
         )
-    return build('slides', 'v1', credentials=creds)
+
+    # Use httplib2 with the system CA bundle to handle sandbox SSL proxy
+    http = httplib2.Http(ca_certs=ca_bundle)
+    authed_http = google_auth_httplib2.AuthorizedHttp(creds, http=http)
+
+    return build('slides', 'v1', http=authed_http)
 
 
 # ── Presentation helpers ───────────────────────────────────────────────────────
