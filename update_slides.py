@@ -61,6 +61,7 @@ H = emu(7.5)
 # ── Auth ──────────────────────────────────────────────────────────────────────
 
 def get_service():
+    # Use system CA bundle to handle environments with SSL-intercepting proxies
     ca_bundle = os.environ.get('REQUESTS_CA_BUNDLE', '/etc/ssl/certs/ca-certificates.crt')
 
     key_path = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', 'service_account.json')
@@ -79,11 +80,8 @@ def get_service():
             '  • GOOGLE_APPLICATION_CREDENTIALS env var pointing to a service-account key\n'
         )
 
-    # Use httplib2 with the system CA bundle to handle sandbox SSL proxy
-    http = httplib2.Http(ca_certs=ca_bundle)
-    authed_http = google_auth_httplib2.AuthorizedHttp(creds, http=http)
-
-    return build('slides', 'v1', http=authed_http)
+    h = httplib2.Http(ca_certs=ca_bundle)
+    return build('slides', 'v1', http=google_auth_httplib2.AuthorizedHttp(creds, http=h))
 
 
 # ── Presentation helpers ───────────────────────────────────────────────────────
