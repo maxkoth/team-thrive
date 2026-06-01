@@ -191,8 +191,10 @@
       <h1 class="card-title">Contact Us</h1>
       <p class="card-sub">Have a question or need help? Fill out the form and we'll get back to you shortly.</p>
 
-      <form id="contact-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
-        <input type="hidden" name="_subject" value="New TeamThrive Contact Form Submission" />
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="c6fd1c44-fe66-476f-9b7f-9735b5bc7853" />
+        <input type="hidden" name="subject" value="New TeamThrive Contact Form Submission" />
+        <input type="hidden" name="cc" value="aa@teamthrive.com" />
 
         <div class="field">
           <label for="name">Name</label>
