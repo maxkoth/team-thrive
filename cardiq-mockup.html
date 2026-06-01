@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CardIQ – Mobile App Mockup</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #E8E8F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    padding: 40px 20px;
+  }
+
+  .device-frame {
+    width: 375px;
+    min-height: 812px;
+    background: #fff;
+    border-radius: 44px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.08);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Status Bar */
+  .status-bar {
+    height: 44px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1a1a1a;
+    z-index: 10;
+  }
+  .status-bar .time { font-size: 15px; font-weight: 700; }
+  .status-icons { display: flex; gap: 6px; align-items: center; }
+  .status-icons svg { width: 16px; height: 16px; fill: #1a1a1a; }
+
+  /* Screen container */
+  .screen {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+  .screen.active { display: flex; }
+
+  .screen-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  .screen-body::-webkit-scrollbar { display: none; }
+
+  /* Bottom Nav */
+  .bottom-nav {
+    height: 83px;
+    background: #fff;
+    border-top: 1px solid #F0F0F0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px 20px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+  }
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: background 0.15s;
+    flex: 1;
+  }
+  .nav-item:hover { background: #F5F4FF; }
+  .nav-item svg { width: 22px; height: 22px; }
+  .nav-item span { font-size: 10px; font-weight: 500; color: #999; }
+  .nav-item.active span { color: #5B5BD6; }
+  .nav-item.active svg path, .nav-item.active svg rect, .nav-item.active svg circle { fill: #5B5BD6; }
+  .nav-item:not(.active) svg path, .nav-item:not(.active) svg rect, .nav-item:not(.active) svg circle { fill: #BBBBC8; }
+
+  .nav-fab {
+    width: 56px;
+    height: 56px;
+    background: #5B5BD6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(91,91,214,0.4);
+    flex-shrink: 0;
+    transition: transform 0.15s, box-shadow 0.15s;
+    margin-bottom: 8px;
+  }
+  .nav-fab:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(91,91,214,0.5); }
+  .nav-fab svg { width: 26px; height: 26px; }
+  .nav-fab svg path { fill: #fff; }
+
+  /* ===================== */
+  /* ONBOARDING SCREENS    */
+  /* ===================== */
+  .onboarding-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 40px;
+    overflow: hidden;
+  }
+  .slides-container {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    width: 100%;
+  }
+  .slide {
+    min-width: 375px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 32px 0;
+  }
+  .slide-illustration {
+    width: 260px;
+    height: 260px;
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide-illustration.purple-bg { background: linear-gradient(145deg, #EEEEff, #DDDDF8); }
+  .slide-illustration.green-bg { background: linear-gradient(145deg, #EDFAF4, #D4F2E4); }
+  .slide-illustration.orange-bg { background: linear-gradient(145deg, #FFF5EC, #FFE8CC); }
+
+  .slide h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 14px;
+    line-height: 1.25;
+  }
+  .slide p {
+    font-size: 15px;
+    color: #777;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .dots {
+    display: flex;
+    gap: 8px;
+    margin: 32px 0 28px;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #DDD;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .dot.active { background: #5B5BD6; width: 24px; border-radius: 4px; }
+
+  .btn-primary {
+    width: calc(100% - 64px);
+    height: 52px;
+    background: #5B5BD6;
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: #4a4ac4; transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-secondary {
+    background: transparent;
+    color: #5B5BD6;
+    border: 2px solid #5B5BD6;
+    width: calc(100% - 64px);
+    height: 52px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background 0.15s;
+  }
+  .btn-secondary:hover { background: #F5F4FF; }
+
+  /* ===================== */
+  /* AUTH SCREENS          */
+  /* ===================== */
+  .auth-header {
+    padding: 24px 24px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .back-btn {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: #F5F5F8;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .auth-body { padding: 8px 24px 32px; }
+  .auth-title { font-size: 28px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .auth-subtitle { font-size: 14px; color: #888; margin-bottom: 32px; }
+
+  .form-group { margin-bottom: 16px; }
+  .form-label { font-size: 13px; font-weight: 600; color: #555; margin-bottom: 6px; display: block; }
+  .form-input {
+    width: 100%;
+    height: 50px;
+    border: 1.5px solid #E8E8EE;
+    border-radius: 12px;
+    padding: 0 16px;
+    font-size: 15px;
+    color: #1a1a1a;
+    background: #FAFAFC;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { border-color: #5B5BD6; background: #fff; }
+
+  .auth-footer { margin-top: 24px; text-align: center; font-size: 14px; color: #888; }
+  .auth-footer a { color: #5B5BD6; font-weight: 600; cursor: pointer; }
+
+  /* ===================== */
+  /* HOME SCREEN           */
+  /* ===================== */
+  .home-header {
+    padding: 16px 24px 0;
+    background: #fff;
+  }
+  .greeting { font-size: 22px; font-weight: 700; color: #1a1a1a; }
+  .greeting span { color: #5B5BD6; }
+  .greeting-sub { font-size: 13px; color: #999; margin-top: 2px; }
+
+  .scan-banner {
+    margin: 16px 24px 0;
+    background: linear-gradient(135deg, #5B5BD6 0%, #7C7CE8 100%);
+    border-radius: 20px;
+    padding: 20px 20px 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .scan-banner:hover { transform: scale(1.01); }
+  .scan-banner-text h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .scan-banner-text p { font-size: 13px; color: rgba(255,255,255,0.8); }
+  .scan-banner-icon {
+    width: 52px; height: 52px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .scan-banner-icon svg { width: 28px; height: 28px; }
+  .scan-banner-icon svg path { fill: #fff; }
+
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    padding: 16px 24px 0;
+  }
+  .stat-card {
+    flex: 1;
+    background: #FAFAFC;
+    border: 1.5px solid #F0F0F5;
+    border-radius: 16px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .stat-value { font-size: 20px; font-weight: 700; color: #1a1a1a; }
+  .stat-value.purple { color: #5B5BD6; }
+  .stat-label { font-size: 10px; color: #999; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 12px;
+  }
+  .section-title { font-size: 17px; font-weight: 700; color: #1a1a1a; }
+  .section-link { font-size: 13px; color: #5B5BD6; font-weight: 600; cursor: pointer; }
+
+  .card-list-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    gap: 14px;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  .card-list-item:hover { background: #FAFAFC; }
+  .card-thumb {
+    width: 48px; height: 64px;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #EEEEff, #DDDDF8);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border: 1.5px solid #E8E8F5;
+  }
+  .card-info { flex: 1 }
+  .card-name { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+  .card-meta { font-size: 12px; color: #999; margin-top: 2px; }
+  .card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .card-value { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .badge-sell { background: #FFF0F0; color: #E53E3E; }
+  .badge-grade { background: #EEF2FF; color: #5B5BD6; }
+  .badge-hold { background: #F0FFF4; color: #2E7D32; }
+  .badge-bulk { background: #FFF8E1; color: #E65100; }
+
+  /* ===================== */
+  /* SCAN SCREEN           */
+  /* ===================== */
+  .scan-screen-body {
+    flex: 1;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .scan-overlay-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    display: flex;
+    align-items: flex-start;
+    padding: 16px 20px;
+  }
+  .scan-close {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+  }
+  .scan-close svg path { fill: #fff; }
+  .scan-title-wrap { flex: 1; text-align: center; padding-right: 36px; }
+  .scan-title-wrap h3 { font-size: 16px; font-weight: 600; color: #fff; }
+
+  .viewfinder {
+    width: 240px;
+    height: 320px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .vf-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(91,91,214,0.08);
+    border-radius: 12px;
+  }
+  .corner {
+    position: absolute;
+    width: 28px; height: 28px;
+    border-color: #5B5BD6;
+    border-style: solid;
+  }
+  .corner-tl { top: 0; left: 0; border-width: 3px 0 0 3px; border-radius: 6px 0 0 0; }
+  .corner-tr { top: 0; right: 0; border-width: 3px 3px 0 0; border-radius: 0 6px 0 0; }
+  .corner-bl { bottom: 0; left: 0; border-width: 0 0 3px 3px; border-radius: 0 0 0 6px; }
+  .corner-br { bottom: 0; right: 0; border-width: 0 3px 3px 0; border-radius: 0 0 6px 0; }
+
+  .scan-line {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #5B5BD6, transparent);
+    position: absolute;
+    animation: scanMove 2s ease-in-out infinite;
+    border-radius: 1px;
+  }
+  @keyframes scanMove {
+    0% { top: 20px; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 300px; opacity: 0; }
+  }
+
+  .scan-hint {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .pulse-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #5B5BD6;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .scan-overlay-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 32px;
+  }
+  .scan-shutter {
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    background: #5B5BD6;
+    border: 4px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 0 2px #5B5BD6;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .scan-shutter:hover { transform: scale(1.05); }
+  .scan-shutter:active { transform: scale(0.96); }
+
+  /* ===================== */
+  /* RESULTS SCREEN        */
+  /* ===================== */
+  .results-header {
+    background: linear-gradient(135deg, #5B5BD6, #7C7CE8);
+    padding: 20px 24px 32px;
+  }
+  .results-header-top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .results-card-img {
+    width: 80px;
+    height: 108px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-right: 16px;
+    flex-shrink: 0;
+  }
+  .results-card-info h2 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .results-card-info p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+  .results-badge { display: inline-flex; }
+  .badge-white { background: rgba(255,255,255,0.2); color: #fff; backdrop-filter: blur(4px); }
+
+  .results-value-row {
+    display: flex;
+    gap: 12px;
+  }
+  .results-value-chip {
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 10px 16px;
+    backdrop-filter: blur(4px);
+  }
+  .results-value-chip .v-label { font-size: 10px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+  .results-value-chip .v-val { font-size: 18px; font-weight: 700; color: #fff; margin-top: 2px; }
+
+  .results-body { padding: 0 24px 24px; }
+
+  .result-section { margin-top: 20px; }
+  .result-section-title { font-size: 13px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 12px; }
+
+  .comps-list { display: flex; flex-direction: column; gap: 8px; }
+  .comp-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: #FAFAFC;
+    border: 1.5px solid #F0F0F5;
+    border-radius: 12px;
+  }
+  .comp-left {}
+  .comp-title { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .comp-date { font-size: 11px; color: #999; margin-top: 2px; }
+  .comp-price { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .comp-condition {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: #EEF2FF;
+    color: #5B5BD6;
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  .action-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .btn-action {
+    flex: 1;
+    height: 48px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.1s, opacity 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .btn-action:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-save { background: #5B5BD6; color: #fff; }
+  .btn-sell { background: #FFF0F0; color: #E53E3E; border: 1.5px solid #FFDDDD; }
+  .btn-grade { background: #EEF2FF; color: #5B5BD6; border: 1.5px solid #DDDDF8; }
+
+  .rec-card {
+    background: #FAFAFC;
+    border: 1.5px solid #F0F0F5;
+    border-radius: 16px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .rec-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: #EEF2FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .rec-text h4 { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+  .rec-text p { font-size: 12px; color: #888; line-height: 1.4; }
+
+  /* ===================== */
+  /* COLLECTION SCREEN     */
+  /* ===================== */
+  .collection-header { padding: 16px 24px 12px; }
+  .collection-header h1 { font-size: 26px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; }
+
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .filter-row::-webkit-scrollbar { display: none; }
+  .filter-chip {
+    flex-shrink: 0;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1.5px solid #E8E8EE;
+    background: #fff;
+    color: #888;
+    transition: all 0.15s;
+  }
+  .filter-chip.active { background: #5B5BD6; color: #fff; border-color: #5B5BD6; }
+  .filter-chip:hover:not(.active) { border-color: #5B5BD6; color: #5B5BD6; }
+
+  .collection-stats-bar {
+    display: flex;
+    background: #FAFAFC;
+    border: 1.5px solid #F0F0F5;
+    border-radius: 16px;
+    margin: 12px 24px 0;
+    overflow: hidden;
+  }
+  .coll-stat {
+    flex: 1;
+    padding: 12px 0;
+    text-align: center;
+    border-right: 1.5px solid #F0F0F5;
+  }
+  .coll-stat:last-child { border-right: none; }
+  .coll-stat .cv { font-size: 17px; font-weight: 700; color: #1a1a1a; }
+  .coll-stat .cl { font-size: 10px; color: #999; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; margin-top: 1px; }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px 24px 24px;
+  }
+  .coll-card {
+    background: #FAFAFC;
+    border: 1.5px solid #F0F0F5;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .coll-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .coll-card-img {
+    height: 120px;
+    background: linear-gradient(145deg, #EEEEff, #DDDDF8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+  }
+  .coll-card-body { padding: 10px 12px 12px; }
+  .coll-card-name { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .coll-card-meta { font-size: 11px; color: #999; margin-bottom: 6px; }
+  .coll-card-footer { display: flex; align-items: center; justify-content: space-between; }
+  .coll-card-val { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+
+  /* ===================== */
+  /* PROFILE SCREEN        */
+  /* ===================== */
+  .profile-header {
+    background: linear-gradient(135deg, #5B5BD6, #7C7CE8);
+    padding: 20px 24px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .profile-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    border: 3px solid rgba(255,255,255,0.4);
+    margin-bottom: 12px;
+  }
+  .profile-name { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+  .profile-email { font-size: 13px; color: rgba(255,255,255,0.7); }
+
+  .profile-stats {
+    display: flex;
+    margin: -20px 24px 0;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    overflow: hidden;
+    border: 1.5px solid #F0F0F5;
+  }
+  .profile-stat {
+    flex: 1;
+    padding: 16px 0;
+    text-align: center;
+    border-right: 1.5px solid #F0F0F5;
+  }
+  .profile-stat:last-child { border-right: none; }
+  .profile-stat .pv { font-size: 20px; font-weight: 700; color: #1a1a1a; }
+  .profile-stat .pl { font-size: 10px; color: #999; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; margin-top: 2px; }
+
+  .settings-section { padding: 24px 24px 8px; }
+  .settings-section-title { font-size: 12px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; }
+
+  .settings-group {
+    background: #FAFAFC;
+    border: 1.5px solid #F0F0F5;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .settings-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    gap: 14px;
+    cursor: pointer;
+    transition: background 0.1s;
+    border-bottom: 1.5px solid #F0F0F5;
+  }
+  .settings-item:last-child { border-bottom: none; }
+  .settings-item:hover { background: #F0F0F8; }
+  .settings-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: #EEF2FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .settings-icon.red-bg { background: #FFF0F0; }
+  .settings-text { flex: 1; }
+  .settings-label { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+  .settings-desc { font-size: 12px; color: #999; margin-top: 1px; }
+  .settings-chevron { color: #CCC; font-size: 18px; }
+
+  /* ===================== */
+  /* MARKET SCREEN         */
+  /* ===================== */
+  .market-header { padding: 16px 24px 12px; }
+  .market-header h1 { font-size: 26px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .market-header p { font-size: 14px; color: #999; }
+
+  .search-bar {
+    margin: 12px 24px 0;
+    height: 44px;
+    background: #F5F5F8;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 8px;
+  }
+  .search-bar svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .search-bar svg path { fill: #BBB; }
+  .search-placeholder { font-size: 14px; color: #BBB; }
+
+  .trending-section { padding: 16px 24px 0; }
+  .trending-card {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    background: #FAFAFC;
+    border: 1.5px solid #F0F0F5;
+    border-radius: 14px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    gap: 14px;
+  }
+  .trending-rank {
+    width: 28px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #CCC;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .trending-rank.top { color: #5B5BD6; }
+  .trending-img {
+    width: 44px; height: 56px;
+    border-radius: 6px;
+    background: linear-gradient(145deg, #EEEEff, #DDDDF8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .trending-info { flex: 1; }
+  .trending-name { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+  .trending-meta { font-size: 11px; color: #999; margin-top: 2px; }
+  .trending-right { text-align: right; }
+  .trending-price { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .trending-change { font-size: 11px; font-weight: 600; margin-top: 2px; }
+  .trending-change.up { color: #2E7D32; }
+  .trending-change.down { color: #E53E3E; }
+
+  /* Divider */
+  .divider { height: 1px; background: #F0F0F5; margin: 0 24px; }
+
+  /* Card illustration SVGs */
+  .card-svg-wrap { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+
+<div class="device-frame">
+
+  <!-- STATUS BAR (shared, always visible in JS) -->
+  <div class="status-bar" id="statusBar">
+    <span class="time">9:41</span>
+    <div class="status-icons">
+      <svg viewBox="0 0 16 16"><rect x="1" y="5" width="2" height="8" rx="0.5"/><rect x="5" y="3" width="2" height="10" rx="0.5"/><rect x="9" y="1" width="2" height="12" rx="0.5"/><rect x="13" y="0" width="2" height="13" rx="0.5" opacity="0.3"/></svg>
+      <svg viewBox="0 0 16 16"><path d="M8 3a7 7 0 0 1 5.6 2.8l1.4-1.4A9 9 0 0 0 8 1a9 9 0 0 0-7 3.4L2.4 5.8A7 7 0 0 1 8 3z"/><path d="M8 7a3 3 0 0 1 2.1.9L11.5 6.5A5 5 0 0 0 8 5a5 5 0 0 0-3.5 1.5L5.9 7.9A3 3 0 0 1 8 7z"/><circle cx="8" cy="11" r="2"/></svg>
+      <svg viewBox="0 0 20 10"><rect x="0" y="1" width="17" height="8" rx="2" stroke="#1a1a1a" stroke-width="1.5" fill="none"/><rect x="17.5" y="3" width="2" height="4" rx="1" fill="#1a1a1a"/><rect x="1.5" y="2.5" width="11" height="5" rx="1" fill="#1a1a1a"/></svg>
+    </div>
+  </div>
+
+  <!-- ============================= -->
+  <!-- SCREEN: ONBOARDING           -->
+  <!-- ============================= -->
+  <div class="screen active" id="screen-onboarding">
+    <div class="screen-body">
+      <div class="onboarding-wrap">
+        <div style="width:100%; overflow:hidden; flex:1; display:flex; flex-direction:column;">
+          <div class="slides-container" id="slidesContainer">
+
+            <!-- Slide 1 -->
+            <div class="slide">
+              <div class="slide-illustration purple-bg">
+                <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
+                  <!-- Phone with card -->
+                  <rect x="40" y="20" width="80" height="120" rx="12" fill="white" opacity="0.8"/>
+                  <rect x="48" y="36" width="64" height="88" rx="8" fill="#EEEEff"/>
+                  <!-- Scan corners -->
+                  <path d="M52 44 L52 52 M52 44 L60 44" stroke="#5B5BD6" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M108 44 L100 44 M108 44 L108 52" stroke="#5B5BD6" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M52 116 L52 108 M52 116 L60 116" stroke="#5B5BD6" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M108 116 L100 116 M108 116 L108 108" stroke="#5B5BD6" stroke-width="3" stroke-linecap="round"/>
+                  <!-- Card inside -->
+                  <rect x="60" y="56" width="40" height="52" rx="4" fill="white" opacity="0.9"/>
+                  <rect x="64" y="60" width="32" height="20" rx="3" fill="#CCCCF0"/>
+                  <rect x="64" y="84" width="20" height="4" rx="2" fill="#BBBBEE"/>
+                  <rect x="64" y="92" width="14" height="4" rx="2" fill="#CCCCF5"/>
+                  <!-- Scan line -->
+                  <line x1="50" y1="80" x2="110" y2="80" stroke="#5B5BD6" stroke-width="2" stroke-dasharray="4 3" opacity="0.6"/>
+                  <!-- Stars/sparkles -->
+                  <circle cx="130" cy="35" r="4" fill="#5B5BD6" opacity="0.4"/>
+                  <circle cx="28" cy="90" r="3" fill="#7C7CE8" opacity="0.4"/>
+                  <circle cx="125" cy="110" r="3" fill="#5B5BD6" opacity="0.3"/>
+                </svg>
+              </div>
+              <h2>Scan your cards<br>in seconds</h2>
+              <p>Point your camera at any baseball card and CardIQ identifies it instantly — no typing required.</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+              <div class="slide-illustration green-bg">
+                <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
+                  <!-- Card -->
+                  <rect x="40" y="30" width="80" height="100" rx="10" fill="white" opacity="0.9" filter="url(#shadow)"/>
+                  <rect x="48" y="38" width="64" height="40" rx="6" fill="#D4F2E4"/>
+                  <!-- Dollar sign -->
+                  <text x="80" y="65" text-anchor="middle" fill="#2E7D32" font-size="24" font-weight="800" font-family="system-ui">$</text>
+                  <!-- Value bars -->
+                  <rect x="50" y="84" width="60" height="6" rx="3" fill="#EEE"/>
+                  <rect x="50" y="84" width="48" height="6" rx="3" fill="#2E7D32" opacity="0.7"/>
+                  <rect x="50" y="94" width="60" height="6" rx="3" fill="#EEE"/>
+                  <rect x="50" y="94" width="36" height="6" rx="3" fill="#52B788" opacity="0.7"/>
+                  <!-- Price tag -->
+                  <rect x="52" y="108" width="56" height="14" rx="7" fill="#2E7D32" opacity="0.15"/>
+                  <text x="80" y="119" text-anchor="middle" fill="#2E7D32" font-size="10" font-weight="700" font-family="system-ui">Est. Value: $247</text>
+                  <!-- Chart bars in background -->
+                  <rect x="105" y="58" width="10" height="30" rx="3" fill="#52B788" opacity="0.25"/>
+                  <rect x="118" y="48" width="10" height="40" rx="3" fill="#2E7D32" opacity="0.2"/>
+                  <rect x="32" y="70" width="10" height="18" rx="3" fill="#52B788" opacity="0.2"/>
+                  <rect x="20" y="62" width="10" height="26" rx="3" fill="#2E7D32" opacity="0.15"/>
+                </svg>
+              </div>
+              <h2>Know their real<br>market value</h2>
+              <p>Live eBay comps and market trends show you exactly what your cards are worth right now.</p>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+              <div class="slide-illustration orange-bg">
+                <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
+                  <!-- Three action cards -->
+                  <rect x="30" y="60" width="54" height="70" rx="8" fill="white" opacity="0.95" transform="rotate(-8 57 95)"/>
+                  <rect x="76" y="60" width="54" height="70" rx="8" fill="white" opacity="0.95" transform="rotate(6 103 95)"/>
+                  <!-- Center card (front) -->
+                  <rect x="53" y="45" width="54" height="70" rx="8" fill="white"/>
+                  <rect x="59" y="51" width="42" height="28" rx="5" fill="#FFE8CC"/>
+                  <!-- Sell badge -->
+                  <rect x="59" y="84" width="28" height="12" rx="6" fill="#E53E3E" opacity="0.15"/>
+                  <text x="73" y="93" text-anchor="middle" fill="#E53E3E" font-size="8" font-weight="700" font-family="system-ui">SELL</text>
+                  <!-- Grade badge -->
+                  <rect x="59" y="99" width="32" height="12" rx="6" fill="#5B5BD6" opacity="0.15"/>
+                  <text x="75" y="108" text-anchor="middle" fill="#5B5BD6" font-size="8" font-weight="700" font-family="system-ui">GRADE</text>
+                  <!-- Arrow/action -->
+                  <circle cx="118" cy="50" r="14" fill="#E65100" opacity="0.12"/>
+                  <text x="118" y="56" text-anchor="middle" font-size="14">💡</text>
+                  <circle cx="38" cy="120" r="12" fill="#E65100" opacity="0.1"/>
+                  <text x="38" y="126" text-anchor="middle" font-size="12">📦</text>
+                </svg>
+              </div>
+              <h2>Know exactly what<br>to do with them</h2>
+              <p>CardIQ recommends whether to sell, grade, hold, or bulk each card based on real market data.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dots">
+          <div class="dot active" id="dot0" onclick="goToSlide(0)"></div>
+          <div class="dot" id="dot1" onclick="goToSlide(1)"></div>
+          <div class="dot" id="dot2" onclick="goToSlide(2)"></div>
+        </div>
+
+        <button class="btn-primary" id="onboardingNextBtn" onclick="onboardingNext()">Continue</button>
+        <div style="margin-top: 16px; font-size: 13px; color: #999;">
+          Already have an account? <a style="color:#5B5BD6; font-weight:600; cursor:pointer" onclick="showScreen('screen-login')">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= -->
+  <!-- SCREEN: SIGN UP              -->
+  <!-- ============================= -->
+  <div class="screen" id="screen-signup">
+    <div class="screen-body">
+      <div class="auth-header">
+        <button class="back-btn" onclick="showScreen('screen-onboarding')">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9L11 14" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="auth-body">
+        <div style="font-size: 36px; margin-bottom: 16px;">⚾</div>
+        <div class="auth-title">Create account</div>
+        <div class="auth-subtitle">Start building your card collection</div>
+        <div class="form-group">
+          <label class="form-label">Full name</label>
+          <input class="form-input" type="text" placeholder="Mike Trout" value="Alex Johnson" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email address</label>
+          <input class="form-input" type="email" placeholder="you@example.com" value="alex@example.com" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" placeholder="8+ characters" value="••••••••" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm password</label>
+          <input class="form-input" type="password" placeholder="Repeat password" value="••••••••" readonly>
+        </div>
+        <div style="margin-top: 8px; margin-bottom: 24px; font-size: 12px; color: #999; line-height: 1.5;">
+          By signing up you agree to our <a style="color:#5B5BD6">Terms of Service</a> and <a style="color:#5B5BD6">Privacy Policy</a>.
+        </div>
+        <button class="btn-primary" style="width:100%" onclick="showScreen('screen-home')">Create Account</button>
+        <div class="auth-footer" style="margin-top: 20px;">Already have an account? <a onclick="showScreen('screen-login')">Sign in</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= -->
+  <!-- SCREEN: LOGIN                -->
+  <!-- ============================= -->
+  <div class="screen" id="screen-login">
+    <div class="screen-body">
+      <div class="auth-header">
+        <button class="back-btn" onclick="showScreen('screen-onboarding')">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9L11 14" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="auth-body">
+        <div style="font-size: 36px; margin-bottom: 16px;">⚾</div>
+        <div class="auth-title">Welcome back</div>
+        <div class="auth-subtitle">Sign in to your CardIQ account</div>
+        <div class="form-group">
+          <label class="form-label">Email address</label>
+          <input class="form-input" type="email" value="alex@example.com" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" value="••••••••" readonly>
+        </div>
+        <div style="text-align: right; margin-bottom: 24px; margin-top: 4px;">
+          <a style="font-size: 13px; color: #5B5BD6; font-weight: 600; cursor:pointer">Forgot password?</a>
+        </div>
+        <button class="btn-primary" style="width:100%" onclick="showScreen('screen-home')">Sign In</button>
+        <div class="auth-footer" style="margin-top: 20px;">Don't have an account? <a onclick="showScreen('screen-signup')">Sign up</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= -->
+  <!-- SCREEN: HOME                 -->
+  <!-- ============================= -->
+  <div class="screen" id="screen-home">
+    <div class="screen-body">
+      <div class="home-header">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div>
+            <div class="greeting">Hey, <span>Alex</span> 👋</div>
+            <div class="greeting-sub">Sunday, June 1 · Your collection is hot 🔥</div>
+          </div>
+          <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#5B5BD6,#7C7CE8);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:16px;">A</div>
+        </div>
+      </div>
+
+      <div class="scan-banner" onclick="showScreen('screen-scan')">
+        <div class="scan-banner-text">
+          <h3>Scan a card</h3>
+          <p>Point camera &amp; get instant value</p>
+        </div>
+        <div class="scan-banner-icon">
+          <svg viewBox="0 0 28 28" fill="none"><path d="M4 9V6a2 2 0 0 1 2-2h3M4 19v3a2 2 0 0 0 2 2h3M21 4h3a2 2 0 0 1 2 2v3M21 24h3a2 2 0 0 0 2-2v-3" stroke="white" stroke-width="2" stroke-linecap="round"/><rect x="9" y="9" width="10" height="10" rx="2" stroke="white" stroke-width="2"/></svg>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-value">142</div>
+          <div class="stat-label">Total Cards</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value purple">$3,840</div>
+          <div class="stat-label">Est. Value</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">18</div>
+          <div class="stat-label">To Sell</div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <span class="section-title">Recent Scans</span>
+        <span class="section-link" onclick="showScreen('screen-collection')">See all</span>
+      </div>
+
+      <div class="card-list-item" onclick="showScreen('screen-results')">
+        <div class="card-thumb">⚾</div>
+        <div class="card-info">
+          <div class="card-name">Mike Trout</div>
+          <div class="card-meta">2011 Topps Update · RC #US175</div>
+        </div>
+        <div class="card-right">
+          <div class="card-value">$380</div>
+          <span class="badge badge-sell">Sell</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="card-list-item">
+        <div class="card-thumb">🏆</div>
+        <div class="card-info">
+          <div class="card-name">Shohei Ohtani</div>
+          <div class="card-meta">2018 Topps · #700 RC</div>
+        </div>
+        <div class="card-right">
+          <div class="card-value">$245</div>
+          <span class="badge badge-grade">Grade</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="card-list-item">
+        <div class="card-thumb">⭐</div>
+        <div class="card-info">
+          <div class="card-name">Ronald Acuña Jr.</div>
+          <div class="card-meta">2018 Bowman Chrome · #BCP-10</div>
+        </div>
+        <div class="card-right">
+          <div class="card-value">$112</div>
+          <span class="badge badge-hold">Hold</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="card-list-item">
+        <div class="card-thumb">🎯</div>
+        <div class="card-info">
+          <div class="card-name">Wander Franco</div>
+          <div class="card-meta">2021 Topps · #US328</div>
+        </div>
+        <div class="card-right">
+          <div class="card-value">$8</div>
+          <span class="badge badge-bulk">Bulk</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="card-list-item">
+        <div class="card-thumb">🔥</div>
+        <div class="card-info">
+          <div class="card-name">Julio Rodríguez</div>
+          <div class="card-meta">2022 Topps · #660 RC</div>
+        </div>
+        <div class="card-right">
+          <div class="card-value">$64</div>
+          <span class="badge badge-grade">Grade</span>
+        </div>
+      </div>
+      <div style="height:8px"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item active" onclick="showScreen('screen-home')">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22" style="fill:#5B5BD6"/></svg>
+        <span>Home</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-collection')">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><line x1="9" y1="9" x2="15" y2="9" style="stroke:#BBBBC8;stroke-width:2"/><line x1="9" y1="13" x2="15" y2="13" style="stroke:#BBBBC8;stroke-width:2"/></svg>
+        <span>Collection</span>
+      </div>
+      <div class="nav-fab" onclick="showScreen('screen-scan')">
+        <svg viewBox="0 0 26 26" fill="none"><path d="M4 8V6a2 2 0 0 1 2-2h2M4 18v2a2 2 0 0 0 2 2h2M18 4h2a2 2 0 0 1 2 2v2M18 22h2a2 2 0 0 0 2-2v-2" stroke="white" stroke-width="2.2" stroke-linecap="round"/><rect x="9" y="9" width="8" height="8" rx="1.5" stroke="white" stroke-width="2"/></svg>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-market')">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>Market</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-profile')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= -->
+  <!-- SCREEN: SCAN                 -->
+  <!-- ============================= -->
+  <div class="screen" id="screen-scan">
+    <!-- Dark status bar override -->
+    <div class="scan-screen-body">
+      <div class="scan-overlay-top">
+        <button class="scan-close" onclick="showScreen('screen-home')">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 4L14 14M14 4L4 14" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="scan-title-wrap"><h3>Scan Card</h3></div>
+      </div>
+
+      <!-- Camera feed simulation -->
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); opacity:0.95;"></div>
+
+      <!-- Grid overlay -->
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(91,91,214,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(91,91,214,0.06) 1px, transparent 1px);background-size:30px 30px;"></div>
+
+      <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;">
+        <div class="viewfinder">
+          <div class="vf-bg"></div>
+          <div class="corner corner-tl"></div>
+          <div class="corner corner-tr"></div>
+          <div class="corner corner-bl"></div>
+          <div class="corner corner-br"></div>
+          <div class="scan-line"></div>
+          <!-- Card placeholder inside -->
+          <div style="width:190px;height:260px;border-radius:8px;background:rgba(255,255,255,0.04);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
+            <div style="font-size:52px;opacity:0.3;">⚾</div>
+          </div>
+        </div>
+        <div class="scan-hint">
+          <div class="pulse-dot"></div>
+          Scanning... Hold steady
+        </div>
+      </div>
+
+      <div class="scan-overlay-bottom">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+          <div style="display:flex;gap:24px;margin-bottom:4px;">
+            <button style="background:rgba(255,255,255,0.15);border:none;color:white;padding:8px 20px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;">⚡ Auto</button>
+            <button style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);padding:8px 20px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;">📁 Upload</button>
+          </div>
+          <div class="scan-shutter" onclick="showScreen('screen-results')"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= -->
+  <!-- SCREEN: RESULTS              -->
+  <!-- ============================= -->
+  <div class="screen" id="screen-results">
+    <div class="screen-body">
+      <div class="results-header">
+        <div class="results-header-top">
+          <button class="back-btn" style="background:rgba(255,255,255,0.2);border:none;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-right:12px;" onclick="showScreen('screen-scan')">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9L11 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="results-card-img">⚾</div>
+          <div class="results-card-info">
+            <h2>Mike Trout</h2>
+            <p>2011 Topps Update · RC #US175<br>PSA Ungraded · Raw</p>
+            <span class="badge badge-white badge">🔴 Sell Now</span>
+          </div>
+        </div>
+        <div class="results-value-row">
+          <div class="results-value-chip">
+            <div class="v-label">Est. Value</div>
+            <div class="v-val">$380</div>
+          </div>
+          <div class="results-value-chip">
+            <div class="v-label">30d Low</div>
+            <div class="v-val">$310</div>
+          </div>
+          <div class="results-value-chip">
+            <div class="v-label">30d High</div>
+            <div class="v-val">$440</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="results-body">
+        <div class="result-section">
+          <div class="result-section-title">Our Recommendation</div>
+          <div class="rec-card">
+            <div class="rec-icon">📈</div>
+            <div class="rec-text">
+              <h4>Sell Now — Market is Hot</h4>
+              <p>Recent comps trending up 12% this month. Raw copies moving fast. Strike while price is high.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-section">
+          <div class="result-section-title">Recent eBay Sales</div>
+          <div class="comps-list">
+            <div class="comp-item">
+              <div class="comp-left">
+                <div class="comp-title">2011 Topps Update RC #US175</div>
+                <div class="comp-date">May 29, 2026 · BIN</div>
+              </div>
+              <div style="text-align:right">
+                <div class="comp-price">$395</div>
+                <div class="comp-condition">Raw</div>
+              </div>
+            </div>
+            <div class="comp-item">
+              <div class="comp-left">
+                <div class="comp-title">2011 Topps Update RC #US175</div>
+                <div class="comp-date">May 27, 2026 · Auction</div>
+              </div>
+              <div style="text-align:right">
+                <div class="comp-price">$362</div>
+                <div class="comp-condition">Raw</div>
+              </div>
+            </div>
+            <div class="comp-item">
+              <div class="comp-left">
+                <div class="comp-title">2011 Topps Update RC PSA 9</div>
+                <div class="comp-date">May 25, 2026 · BIN</div>
+              </div>
+              <div style="text-align:right">
+                <div class="comp-price">$1,200</div>
+                <div class="comp-condition">PSA 9</div>
+              </div>
+            </div>
+            <div class="comp-item">
+              <div class="comp-left">
+                <div class="comp-title">2011 Topps Update RC #US175</div>
+                <div class="comp-date">May 22, 2026 · BIN</div>
+              </div>
+              <div style="text-align:right">
+                <div class="comp-price">$340</div>
+                <div class="comp-condition">Raw</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-action btn-save" onclick="showScreen('screen-collection')">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="white"><path d="M2 2h10l2 2v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2z"/><rect x="4" y="8" width="8" height="6" rx="0.5" fill="rgba(255,255,255,0.3)"/></svg>
+            Save
+          </button>
+          <button class="btn-action btn-sell">🏷️ Sell</button>
+          <button class="btn-action btn-grade">🏆 Grade</button>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('screen-home')">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>Home</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-collection')">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
+        <span>Collection</span>
+      </div>
+      <div class="nav-fab" onclick="showScreen('screen-scan')">
+        <svg viewBox="0 0 26 26" fill="none"><path d="M4 8V6a2 2 0 0 1 2-2h2M4 18v2a2 2 0 0 0 2 2h2M18 4h2a2 2 0 0 1 2 2v2M18 22h2a2 2 0 0 0 2-2v-2" stroke="white" stroke-width="2.2" stroke-linecap="round"/><rect x="9" y="9" width="8" height="8" rx="1.5" stroke="white" stroke-width="2"/></svg>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-market')">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>Market</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-profile')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= -->
+  <!-- SCREEN: COLLECTION           -->
+  <!-- ============================= -->
+  <div class="screen" id="screen-collection">
+    <div class="screen-body">
+      <div class="collection-header">
+        <h1>My Collection</h1>
+        <div class="filter-row">
+          <div class="filter-chip active" onclick="setFilter(this)">All (142)</div>
+          <div class="filter-chip" onclick="setFilter(this)">🔴 Sell (18)</div>
+          <div class="filter-chip" onclick="setFilter(this)">🏆 Grade (24)</div>
+          <div class="filter-chip" onclick="setFilter(this)">🟢 Hold (67)</div>
+          <div class="filter-chip" onclick="setFilter(this)">📦 Bulk (33)</div>
+        </div>
+      </div>
+
+      <div class="collection-stats-bar">
+        <div class="coll-stat">
+          <div class="cv">142</div>
+          <div class="cl">Cards</div>
+        </div>
+        <div class="coll-stat">
+          <div class="cv" style="color:#5B5BD6">$3,840</div>
+          <div class="cl">Value</div>
+        </div>
+        <div class="coll-stat">
+          <div class="cv">18</div>
+          <div class="cl">To Sell</div>
+        </div>
+      </div>
+
+      <div class="collection-grid">
+        <div class="coll-card" onclick="showScreen('screen-results')">
+          <div class="coll-card-img">⚾</div>
+          <div class="coll-card-body">
+            <div class="coll-card-name">Mike Trout</div>
+            <div class="coll-card-meta">2011 Topps Update</div>
+            <div class="coll-card-footer">
+              <span class="coll-card-val">$380</span>
+              <span class="badge badge-sell" style="font-size:10px;padding:2px 8px">Sell</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="coll-card">
+          <div class="coll-card-img" style="background:linear-gradient(145deg,#FFF5EC,#FFE8CC);">🏆</div>
+          <div class="coll-card-body">
+            <div class="coll-card-name">Shohei Ohtani</div>
+            <div class="coll-card-meta">2018 Topps RC</div>
+            <div class="coll-card-footer">
+              <span class="coll-card-val">$245</span>
+              <span class="badge badge-grade" style="font-size:10px;padding:2px 8px">Grade</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="coll-card">
+          <div class="coll-card-img" style="background:linear-gradient(145deg,#EDFAF4,#D4F2E4);">⭐</div>
+          <div class="coll-card-body">
+            <div class="coll-card-name">R. Acuña Jr.</div>
+            <div class="coll-card-meta">2018 Bowman Chrome</div>
+            <div class="coll-card-footer">
+              <span class="coll-card-val">$112</span>
+              <span class="badge badge-hold" style="font-size:10px;padding:2px 8px">Hold</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="coll-card">
+          <div class="coll-card-img" style="background:linear-gradient(145deg,#FFF0F0,#FFE0E0);">🔥</div>
+          <div class="coll-card-body">
+            <div class="coll-card-name">Julio Rodríguez</div>
+            <div class="coll-card-meta">2022 Topps RC</div>
+            <div class="coll-card-footer">
+              <span class="coll-card-val">$64</span>
+              <span class="badge badge-grade" style="font-size:10px;padding:2px 8px">Grade</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="coll-card">
+          <div class="coll-card-img" style="background:linear-gradient(145deg,#F0F4FF,#E0E8FF);">💎</div>
+          <div class="coll-card-body">
+            <div class="coll-card-name">Fernando Tatis Jr.</div>
+            <div class="coll-card-meta">2019 Topps RC</div>
+            <div class="coll-card-footer">
+              <span class="coll-card-val">$95</span>
+              <span class="badge badge-hold" style="font-size:10px;padding:2px 8px">Hold</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="coll-card">
+          <div class="coll-card-img" style="background:linear-gradient(145deg,#FFF8E1,#FFECB3);">🎯</div>
+          <div class="coll-card-body">
+            <div class="coll-card-name">Wander Franco</div>
+            <div class="coll-card-meta">2021 Topps</div>
+            <div class="coll-card-footer">
+              <span class="coll-card-val">$8</span>
+              <span class="badge badge-bulk" style="font-size:10px;padding:2px 8px">Bulk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="height:8px"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('screen-home')">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>Home</span>
+      </div>
+      <div class="nav-item active" onclick="showScreen('screen-collection')">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><line x1="9" y1="9" x2="15" y2="9" style="stroke:#5B5BD6;stroke-width:2"/><line x1="9" y1="13" x2="15" y2="13" style="stroke:#5B5BD6;stroke-width:2"/></svg>
+        <span>Collection</span>
+      </div>
+      <div class="nav-fab" onclick="showScreen('screen-scan')">
+        <svg viewBox="0 0 26 26" fill="none"><path d="M4 8V6a2 2 0 0 1 2-2h2M4 18v2a2 2 0 0 0 2 2h2M18 4h2a2 2 0 0 1 2 2v2M18 22h2a2 2 0 0 0 2-2v-2" stroke="white" stroke-width="2.2" stroke-linecap="round"/><rect x="9" y="9" width="8" height="8" rx="1.5" stroke="white" stroke-width="2"/></svg>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-market')">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>Market</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-profile')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= -->
+  <!-- SCREEN: MARKET               -->
+  <!-- ============================= -->
+  <div class="screen" id="screen-market">
+    <div class="screen-body">
+      <div class="market-header">
+        <h1>Market</h1>
+        <p>Live comps &amp; trending cards</p>
+      </div>
+
+      <div class="search-bar">
+        <svg viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#BBB" stroke-width="1.8"/><path d="M13 13l3 3" stroke="#BBB" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="search-placeholder">Search players, sets, years...</span>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-value purple">↑ 8%</div>
+          <div class="stat-label">Market Today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">$1.2M</div>
+          <div class="stat-label">24h Volume</div>
+        </div>
+      </div>
+
+      <div class="trending-section">
+        <div class="section-header" style="padding: 16px 0 12px;">
+          <span class="section-title">🔥 Trending Now</span>
+          <span class="section-link">View all</span>
+        </div>
+
+        <div class="trending-card" onclick="showScreen('screen-results')">
+          <div class="trending-rank top">1</div>
+          <div class="trending-img">⚾</div>
+          <div class="trending-info">
+            <div class="trending-name">Mike Trout 2011 Topps Update RC</div>
+            <div class="trending-meta">PSA Raw · 47 sales this week</div>
+          </div>
+          <div class="trending-right">
+            <div class="trending-price">$380</div>
+            <div class="trending-change up">↑ 12.4%</div>
+          </div>
+        </div>
+
+        <div class="trending-card">
+          <div class="trending-rank top">2</div>
+          <div class="trending-img" style="background:linear-gradient(145deg,#FFF5EC,#FFE8CC);">🏆</div>
+          <div class="trending-info">
+            <div class="trending-name">Shohei Ohtani 2018 Topps RC</div>
+            <div class="trending-meta">Raw · 31 sales this week</div>
+          </div>
+          <div class="trending-right">
+            <div class="trending-price">$245</div>
+            <div class="trending-change up">↑ 6.2%</div>
+          </div>
+        </div>
+
+        <div class="trending-card">
+          <div class="trending-rank top">3</div>
+          <div class="trending-img" style="background:linear-gradient(145deg,#EDFAF4,#D4F2E4);">⭐</div>
+          <div class="trending-info">
+            <div class="trending-name">Gunnar Henderson 2023 Topps RC</div>
+            <div class="trending-meta">Raw · 28 sales this week</div>
+          </div>
+          <div class="trending-right">
+            <div class="trending-price">$88</div>
+            <div class="trending-change up">↑ 19.8%</div>
+          </div>
+        </div>
+
+        <div class="trending-card">
+          <div class="trending-rank">4</div>
+          <div class="trending-img" style="background:linear-gradient(145deg,#FFF0F0,#FFE0E0);">🎯</div>
+          <div class="trending-info">
+            <div class="trending-name">Corbin Carroll 2023 Topps RC</div>
+            <div class="trending-meta">Raw · 22 sales this week</div>
+          </div>
+          <div class="trending-right">
+            <div class="trending-price">$42</div>
+            <div class="trending-change down">↓ 3.1%</div>
+          </div>
+        </div>
+
+        <div class="trending-card">
+          <div class="trending-rank">5</div>
+          <div class="trending-img" style="background:linear-gradient(145deg,#F0F4FF,#E0E8FF);">💎</div>
+          <div class="trending-info">
+            <div class="trending-name">Jackson Holliday 2024 Topps RC</div>
+            <div class="trending-meta">Raw · 19 sales this week</div>
+          </div>
+          <div class="trending-right">
+            <div class="trending-price">$156</div>
+            <div class="trending-change up">↑ 44.2%</div>
+          </div>
+        </div>
+      </div>
+      <div style="height:8px"></div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('screen-home')">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>Home</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-collection')">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
+        <span>Collection</span>
+      </div>
+      <div class="nav-fab" onclick="showScreen('screen-scan')">
+        <svg viewBox="0 0 26 26" fill="none"><path d="M4 8V6a2 2 0 0 1 2-2h2M4 18v2a2 2 0 0 0 2 2h2M18 4h2a2 2 0 0 1 2 2v2M18 22h2a2 2 0 0 0 2-2v-2" stroke="white" stroke-width="2.2" stroke-linecap="round"/><rect x="9" y="9" width="8" height="8" rx="1.5" stroke="white" stroke-width="2"/></svg>
+      </div>
+      <div class="nav-item active" onclick="showScreen('screen-market')">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2" style="stroke:#5B5BD6;stroke-width:2;fill:none"/></svg>
+        <span>Market</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-profile')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= -->
+  <!-- SCREEN: PROFILE              -->
+  <!-- ============================= -->
+  <div class="screen" id="screen-profile">
+    <div class="screen-body">
+      <div class="profile-header">
+        <div style="display:flex;align-items:center;justify-content:flex-end;width:100%;margin-bottom:16px;">
+          <button style="background:rgba(255,255,255,0.2);border:none;color:white;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;">⚙ Settings</button>
+        </div>
+        <div class="profile-avatar">A</div>
+        <div class="profile-name">Alex Johnson</div>
+        <div class="profile-email">alex@example.com · Member since 2025</div>
+      </div>
+
+      <div class="profile-stats">
+        <div class="profile-stat">
+          <div class="pv">142</div>
+          <div class="pl">Cards</div>
+        </div>
+        <div class="profile-stat">
+          <div class="pv" style="color:#5B5BD6">$3,840</div>
+          <div class="pl">Value</div>
+        </div>
+        <div class="profile-stat">
+          <div class="pv">847</div>
+          <div class="pl">Scans</div>
+        </div>
+      </div>
+
+      <div class="settings-section" style="margin-top: 20px;">
+        <div class="settings-section-title">Account</div>
+        <div class="settings-group">
+          <div class="settings-item">
+            <div class="settings-icon">👤</div>
+            <div class="settings-text">
+              <div class="settings-label">Edit Profile</div>
+              <div class="settings-desc">Name, photo, username</div>
+            </div>
+            <div class="settings-chevron">›</div>
+          </div>
+          <div class="settings-item">
+            <div class="settings-icon">🔔</div>
+            <div class="settings-text">
+              <div class="settings-label">Notifications</div>
+              <div class="settings-desc">Price alerts, market changes</div>
+            </div>
+            <div class="settings-chevron">›</div>
+          </div>
+          <div class="settings-item">
+            <div class="settings-icon">🔒</div>
+            <div class="settings-text">
+              <div class="settings-label">Privacy & Security</div>
+              <div class="settings-desc">Password, 2FA</div>
+            </div>
+            <div class="settings-chevron">›</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-title">Collection</div>
+        <div class="settings-group">
+          <div class="settings-item">
+            <div class="settings-icon">📤</div>
+            <div class="settings-text">
+              <div class="settings-label">Export Collection</div>
+              <div class="settings-desc">CSV, PDF, or share link</div>
+            </div>
+            <div class="settings-chevron">›</div>
+          </div>
+          <div class="settings-item">
+            <div class="settings-icon">🔄</div>
+            <div class="settings-text">
+              <div class="settings-label">Sync Preferences</div>
+              <div class="settings-desc">Auto-scan, auto-save settings</div>
+            </div>
+            <div class="settings-chevron">›</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-title">Support</div>
+        <div class="settings-group">
+          <div class="settings-item">
+            <div class="settings-icon">❓</div>
+            <div class="settings-text">
+              <div class="settings-label">Help Center</div>
+              <div class="settings-desc">FAQs and guides</div>
+            </div>
+            <div class="settings-chevron">›</div>
+          </div>
+          <div class="settings-item">
+            <div class="settings-icon">⭐</div>
+            <div class="settings-text">
+              <div class="settings-label">Rate CardIQ</div>
+              <div class="settings-desc">Leave a review on the App Store</div>
+            </div>
+            <div class="settings-chevron">›</div>
+          </div>
+          <div class="settings-item">
+            <div class="settings-icon red-bg">🚪</div>
+            <div class="settings-text">
+              <div class="settings-label" style="color:#E53E3E">Sign Out</div>
+              <div class="settings-desc">alex@example.com</div>
+            </div>
+            <div class="settings-chevron">›</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; padding: 20px; font-size: 12px; color: #CCC;">
+        CardIQ v1.0.0 · Made with ❤️ for collectors
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('screen-home')">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span>Home</span>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-collection')">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
+        <span>Collection</span>
+      </div>
+      <div class="nav-fab" onclick="showScreen('screen-scan')">
+        <svg viewBox="0 0 26 26" fill="none"><path d="M4 8V6a2 2 0 0 1 2-2h2M4 18v2a2 2 0 0 0 2 2h2M18 4h2a2 2 0 0 1 2 2v2M18 22h2a2 2 0 0 0 2-2v-2" stroke="white" stroke-width="2.2" stroke-linecap="round"/><rect x="9" y="9" width="8" height="8" rx="1.5" stroke="white" stroke-width="2"/></svg>
+      </div>
+      <div class="nav-item" onclick="showScreen('screen-market')">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>Market</span>
+      </div>
+      <div class="nav-item active" onclick="showScreen('screen-profile')">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end device-frame -->
+
+<!-- Navigation guide outside frame -->
+<div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.75);color:white;padding:10px 20px;border-radius:30px;font-size:12px;font-family:system-ui;backdrop-filter:blur(8px);pointer-events:none;white-space:nowrap;">
+  Click anywhere to navigate · 9 screens total
+</div>
+
+<script>
+let currentSlide = 0;
+const totalSlides = 3;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+    // Reset scroll
+    const body = target.querySelector('.screen-body');
+    if (body) body.scrollTop = 0;
+  }
+
+  // Status bar color based on screen
+  const sb = document.getElementById('statusBar');
+  if (id === 'screen-scan') {
+    sb.style.background = '#0a0a0a';
+    sb.style.color = '#fff';
+    sb.querySelectorAll('svg path, svg rect, svg circle').forEach(el => {
+      el.style.fill = '#fff';
+      if (el.getAttribute('stroke')) el.style.stroke = '#fff';
+    });
+  } else {
+    sb.style.background = '#fff';
+    sb.style.color = '#1a1a1a';
+    sb.querySelectorAll('svg path, svg rect, svg circle').forEach(el => {
+      el.style.fill = '';
+      if (el.getAttribute('stroke')) el.style.stroke = '';
+    });
+  }
+}
+
+function goToSlide(n) {
+  currentSlide = n;
+  document.getElementById('slidesContainer').style.transform = `translateX(-${n * 375}px)`;
+  for (let i = 0; i < totalSlides; i++) {
+    document.getElementById('dot' + i).classList.toggle('active', i === n);
+  }
+  const btn = document.getElementById('onboardingNextBtn');
+  btn.textContent = n === totalSlides - 1 ? 'Get Started' : 'Continue';
+}
+
+function onboardingNext() {
+  if (currentSlide < totalSlides - 1) {
+    goToSlide(currentSlide + 1);
+  } else {
+    showScreen('screen-signup');
+  }
+}
+
+function setFilter(el) {
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Swipe support for onboarding
+let touchStartX = 0;
+document.getElementById('slidesContainer').addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+});
+document.getElementById('slidesContainer').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (dx < -40 && currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+  if (dx > 40 && currentSlide > 0) goToSlide(currentSlide - 1);
+});
+</script>
+</body>
+</html>
