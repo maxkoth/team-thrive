@@ -1,0 +1,102 @@
+SAUNAZEN — EMAIL MARKETING SEQUENCE
+====================================
+
+
+EMAIL 1 — WELCOME (Send immediately after signup)
+--------------------------------------------------
+SUBJECT: "Welcome to SaunaZen — your detox protocol is inside"
+PREVIEW: The 45-minute ritual that changes everything
+
+Hello [First Name],
+
+Welcome to SaunaZen. You just made a decision your future self will thank you for.
+
+To help you get the most out of your first sessions, I've prepared your SaunaZen Starter Protocol:
+
+📋 THE 3-PHASE DETOX PROTOCOL:
+Week 1: 30-min sessions at 140°F, 3x/week (acclimation phase)
+Week 2: Increase to 45 min at 155°F, 4x/week
+Week 3+: 45–60 min at 160–170°F daily if desired
+
+🥤 THE HYDRATION STACK:
+Before: 16oz water with a pinch of sea salt (electrolyte prep)
+During: Keep 16oz water nearby
+After: 16oz coconut water or electrolyte drink (don't skip this)
+
+📊 WHAT TO EXPECT:
+Days 1–7: Increased sweating, possible light fatigue (detox response — normal)
+Days 8–21: Improved sleep quality, reduced muscle soreness
+Days 22–45: Noticeable skin clarity, stress resilience, and sustained energy
+
+[DOWNLOAD YOUR FULL PROTOCOL GUIDE →]
+
+Your blanket ships within 24 hours. I'll send your tracking number separately.
+
+To better days,
+The SaunaZen Team
+
+
+EMAIL 2 — ABANDONED CART (1 hour after abandonment)
+-----------------------------------------------------
+SUBJECT: "Your SaunaZen blanket is waiting (+ a question)"
+PREVIEW: What stopped you? We want to know.
+
+Hi [First Name],
+
+You made it to checkout — and then something stopped you.
+
+I don't take that personally. Big purchases deserve big consideration.
+
+Can I answer the most common question that keeps people on the fence?
+
+"Is this actually different from a cheap heated blanket?"
+
+The short answer: fundamentally, yes.
+
+A heated blanket uses convective heat — hot coils warming the air around you. The heat transfer is surface-level and you feel warmth from the outside.
+
+SaunaZen uses far-infrared emitters (4–14µm wavelength range) that the human body absorbs directly. Think of it like a microwave vs. a conventional oven — same goal, completely different mechanism.
+
+The therapeutic benefits documented in 40+ clinical studies are specific to FIR wavelengths, not general heat.
+
+And if it still doesn't work for you? 45-day full refund. No conditions.
+
+[Complete Your Order — Free Carry Bag Still Included →]
+
+The SaunaZen Team
+P.S. This week's carry bag offer expires Sunday.
+
+
+EMAIL 3 — POST-PURCHASE UPSELL (3 days after purchase)
+-------------------------------------------------------
+SUBJECT: "Your blanket is on its way 🎉 + maximize your first session"
+PREVIEW: These 3 add-ons triple your results
+
+Hi [First Name],
+
+Your SaunaZen blanket has shipped!
+
+Tracking: [TRACKING_NUMBER]
+Estimated delivery: [DELIVERY_DATE]
+
+[TRACK MY ORDER →]
+
+While you're counting down, let me tell you about the two things that most SaunaZen users wish they'd ordered from day one:
+
+1. THE INFRARED BOOST SUPPLEMENT ($29 — add-on)
+A proprietary blend of activated charcoal, chlorella, and N-acetyl cysteine — formulated to bind and flush the toxins mobilized during your FIR sessions. Use within 30 minutes after each session.
+
+2. THE SAUNAZEN TOWEL LINER PACK ($19 — 3-pack)
+Absorbent, antimicrobial towel liners that sit inside the blanket. Keeps your blanket pristine, easier to clean, and more hygienic for daily use. Most customers reorder monthly.
+
+As a new SaunaZen owner, you can add either for a special one-time price:
+
+[ADD SUPPLEMENT + LINER PACK FOR $39 (SAVE $9) →]
+
+Can't wait for you to experience your first session.
+
+— The SaunaZen Team
+
+---
+You're receiving this because you purchased from SaunaZen.
+Unsubscribe | Privacy Policy | saunazen.com

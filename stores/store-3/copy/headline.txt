@@ -1,0 +1,29 @@
+LINGUAFLOW — A/B TEST HEADLINE VARIANTS
+========================================
+
+VARIANT A (Functional Proof — Tech Audience)
+--------------------------------------------
+Headline: "Real-Time AI Translation in 0.2 Seconds. 144 Languages. Works Offline."
+Subheadline: "LinguaFlow's AI earbuds eliminate the language barrier in real time — at conversation speed, with no internet required for 40 core languages. Travelers, professionals, and medical workers rely on it every day."
+Hook: For the feature-driven, left-brain buyer. Numbers do the persuasion (0.2s, 144, 40). Best for Google search ads, tech audiences, and people actively searching for translation devices.
+
+VARIANT B (Transformation/Emotional — Travel Audience)
+------------------------------------------------------
+Headline: "Imagine Never Feeling Like a Stranger in a Foreign Country Again."
+Subheadline: "LinguaFlow translates any conversation in real time — street vendor in Bangkok, business lunch in Tokyo, village homestay in Colombia. Just listen, speak, connect."
+Hook: Opens with an emotionally resonant identity outcome (belonging). Best for travel bloggers, Instagram/Pinterest retargeting, and people inspired by travel content.
+
+VARIANT C (Cost Comparison — Business Audience)
+-----------------------------------------------
+Headline: "Professional Interpreters Cost $800/Day. LinguaFlow Costs $59. Once."
+Subheadline: "Real-time AI translation for business meetings, client dinners, and international negotiations. 144 languages, 0.2-second latency, 12 professional vocabulary domains. One-time purchase."
+Hook: Direct financial argument that justifies the purchase as an ROI decision, not a gadget purchase. Best for LinkedIn, B2B Facebook targeting, frequent business travelers.
+
+
+TESTING NOTES:
+- Start with A vs B to find: feature-driven vs. emotional buyer
+- A performs strongly in Google Shopping and search
+- B performs well on Instagram and TikTok travel audiences
+- C is best reserved for LinkedIn and business traveler targeting
+- Target CPC goal: < $1.00 | CTR goal: > 3.0%
+- Primary audience: Adults 25–55, travel enthusiasts, business travelers, language learners, expats

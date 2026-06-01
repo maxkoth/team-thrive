@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlowLab Pro LED Mask — 7-Wavelength Light Therapy | GlowLab</title>
+  <meta name="description" content="Buy the GlowLab Pro LED Face Mask. 7 clinically-studied wavelengths, 136 LED chips. Clear acne, boost collagen, fade dark spots. 60-day guarantee." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .product-page { padding: 3rem 0; }
+    .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .gallery { position: sticky; top: 80px; }
+    .gallery-main { height: 480px; background: linear-gradient(135deg, var(--blush), rgba(201,149,108,0.15)); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 7rem; margin-bottom: 1rem; }
+    .gallery-thumbs { display: flex; gap: 0.75rem; }
+    .gallery-thumb { width: 80px; height: 80px; background: var(--blush); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s; }
+    .gallery-thumb.active { border-color: var(--primary); }
+    .gallery-thumb:hover { border-color: var(--accent); }
+    .product-details h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.25rem; }
+    .rating-row { display: flex; align-items: center; gap: 0.75rem; margin: 0.5rem 0 1.25rem; }
+    .rating-row a { color: var(--primary); font-size: 0.88rem; font-weight: 600; text-decoration: underline; }
+    .variant-label { font-weight: 700; font-size: 0.9rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; margin-top: 1.25rem; }
+    .variant-options { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .variant-btn { padding: 0.5rem 1.1rem; border-radius: 8px; border: 2px solid rgba(45,27,105,0.2); background: white; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.15s; color: var(--text); }
+    .variant-btn.selected { border-color: var(--primary); background: var(--primary); color: white; }
+    .variant-btn:hover:not(.selected) { border-color: var(--accent); }
+    .qty-row { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
+    .qty-selector { display: flex; align-items: center; border: 2px solid rgba(45,27,105,0.15); border-radius: 10px; overflow: hidden; }
+    .qty-btn { width: 40px; height: 40px; background: var(--blush); border: none; font-size: 1.2rem; cursor: pointer; font-weight: 700; color: var(--primary); transition: background 0.15s; }
+    .qty-btn:hover { background: rgba(45,27,105,0.1); }
+    .qty-num { width: 48px; text-align: center; font-weight: 700; font-size: 1rem; border: none; outline: none; padding: 0; }
+    .atc-full { flex: 1; }
+    .guarantee-strip { display: flex; gap: 1.25rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(45,27,105,0.08); flex-wrap: wrap; }
+    .guarantee-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 600; color: var(--muted); }
+    .specs-section { margin-top: 2.5rem; }
+    .specs-section h3 { margin-bottom: 1rem; color: var(--primary); }
+    .spec-table { width: 100%; border-collapse: collapse; }
+    .spec-table tr { border-bottom: 1px solid rgba(45,27,105,0.07); }
+    .spec-table td { padding: 0.7rem 0.25rem; font-size: 0.9rem; }
+    .spec-table td:first-child { font-weight: 600; color: var(--primary); width: 45%; }
+    .bundle-upsell { background: linear-gradient(135deg, var(--blush), #FFF); border: 2px solid rgba(201,149,108,0.3); border-radius: var(--radius); padding: 1.5rem; margin-top: 1.5rem; }
+    .bundle-upsell h4 { color: var(--primary); margin-bottom: 0.25rem; }
+    .bundle-upsell p { font-size: 0.9rem; margin-bottom: 0.75rem; }
+    .bundle-checkbox { display: flex; align-items: center; gap: 0.6rem; font-size: 0.92rem; font-weight: 500; cursor: pointer; }
+    .bundle-checkbox input { width: 18px; height: 18px; accent-color: var(--primary); }
+    @media (max-width: 768px) {
+      .product-layout { grid-template-columns: 1fr; }
+      .gallery { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="urgency-bar">
+    ⏰ Only <strong id="stock-count">47</strong> units left — Order within <span id="countdown">3:47:22</span> for same-day dispatch
+  </div>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">Glow<span>Lab</span></a>
+      <a href="product.html" class="nav-cta">Shop Now →</a>
+    </div>
+  </nav>
+
+  <div class="container product-page">
+    <div class="product-layout">
+
+      <!-- GALLERY -->
+      <div class="gallery">
+        <div class="gallery-main" id="main-img" aria-label="Product main view">😌</div>
+        <div class="gallery-thumbs">
+          <div class="gallery-thumb active" onclick="setImg(this, '😌')">😌</div>
+          <div class="gallery-thumb" onclick="setImg(this, '✨')">✨</div>
+          <div class="gallery-thumb" onclick="setImg(this, '💜')">💜</div>
+          <div class="gallery-thumb" onclick="setImg(this, '🔴')">🔴</div>
+        </div>
+      </div>
+
+      <!-- DETAILS -->
+      <div class="product-details">
+        <span class="hero-badge" style="background:rgba(45,27,105,0.08);color:var(--primary);border-color:rgba(45,27,105,0.2);">Best Seller · 2,400+ Reviews</span>
+        <h1>GlowLab Pro LED Face Mask</h1>
+        <div class="rating-row">
+          <span class="stars">★★★★★</span>
+          <span style="font-weight:700;color:var(--primary);">4.9</span>
+          <a href="#reviews">See all 2,400+ reviews</a>
+        </div>
+
+        <div class="price-block">
+          <span class="price-current">$97</span>
+          <span class="price-original">$156</span>
+          <span class="price-save">SAVE $59</span>
+        </div>
+        <p style="font-size:0.88rem;color:var(--success);font-weight:600;margin-top:0.25rem;">✓ In Stock — ships within 24 hours</p>
+
+        <!-- BUNDLE UPSELL -->
+        <div class="bundle-upsell">
+          <h4>💡 Boost Your Results — Add the Glow Serum Bundle</h4>
+          <p>Our hyaluronic + vitamin C serum was formulated to be absorbed post-LED session. 3x better absorption than without light therapy.</p>
+          <label class="bundle-checkbox">
+            <input type="checkbox" id="bundle-check" onchange="updatePrice(this)" />
+            Add GlowLab Radiance Serum (30ml) — only <strong>+$18</strong> (reg. $36)
+          </label>
+        </div>
+
+        <div class="variant-label">Color</div>
+        <div class="variant-options">
+          <button class="variant-btn selected">Pearl White</button>
+          <button class="variant-btn" onclick="selectVariant(this)">Midnight Black</button>
+          <button class="variant-btn" onclick="selectVariant(this)">Rose Gold</button>
+        </div>
+
+        <div class="qty-row">
+          <div>
+            <div class="variant-label">Quantity</div>
+            <div class="qty-selector">
+              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <span class="qty-num" id="qty">1</span>
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+          <button class="atc-btn atc-full" id="atc-button" onclick="addToCart()">
+            Add to Cart — $97 →
+          </button>
+        </div>
+
+        <div class="guarantee-strip">
+          <span class="guarantee-item">🔒 256-bit SSL Secure</span>
+          <span class="guarantee-item">↩️ 60-Day Money Back</span>
+          <span class="guarantee-item">📦 Free Shipping</span>
+          <span class="guarantee-item">🏆 Dermatologist Approved</span>
+        </div>
+
+        <!-- SPECS -->
+        <div class="specs-section">
+          <h3>Technical Specifications</h3>
+          <table class="spec-table">
+            <tr><td>LED Chips</td><td>136 medical-grade SMD chips</td></tr>
+            <tr><td>Wavelengths</td><td>415nm, 520nm, 590nm, 630nm, 660nm, 850nm, White Full</td></tr>
+            <tr><td>Power</td><td>USB-C rechargeable, 2100mAh battery</td></tr>
+            <tr><td>Session Time</td><td>Auto-shutoff at 10 minutes</td></tr>
+            <tr><td>Intensity</td><td>3 adjustable levels (20mW–85mW/cm²)</td></tr>
+            <tr><td>Fit</td><td>Adjustable silicone strap, universal fit</td></tr>
+            <tr><td>Certifications</td><td>FDA-cleared, CE, RoHS</td></tr>
+            <tr><td>In the Box</td><td>Mask, USB-C cable, goggles, user guide, GlowLab serum sample</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section class="section reviews" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Our Customers Say</h2>
+        <p>2,400+ verified reviews. Average 4.9 stars.</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-header">
+            <div><div class="reviewer">Sarah M. — Austin, TX</div><span class="stars">★★★★★</span></div>
+            <span class="verified">✔ Verified</span>
+          </div>
+          <p class="review-text">"Week 3 and my forehead texture has completely transformed. I was spending $180/month on facials. Now I literally just lie down for 10 minutes. My esthetician asked me what I was doing differently 😂"</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div><div class="reviewer">Devon L. — Toronto, CA</div><span class="stars">★★★★★</span></div>
+            <span class="verified">✔ Verified</span>
+          </div>
+          <p class="review-text">"I have PCOS and hormonal acne around my jaw. I've tried everything. Two months with GlowLab and my skin looks better than it did at 20. The blue mode genuinely works — I don't get the deep cystic ones anymore."</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div><div class="reviewer">Anika W. — London, UK</div><span class="stars">★★★★★</span></div>
+            <span class="verified">✔ Verified</span>
+          </div>
+          <p class="review-text">"Arrived well packaged, easy to use, and I can actually see the difference after 5 weeks. The serum sample that came with it is incredible too — I've already ordered a full bottle. Great brand overall."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">Glow<span>Lab</span></a>
+          <p class="footer-tagline">Science-backed skincare tools that actually work.</p>
+        </div>
+        <div>
+          <h4>Shop</h4>
+          <ul><li><a href="product.html">LED Face Mask</a></li><li><a href="#">Bundles</a></li></ul>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <ul><li><a href="#">Shipping Policy</a></li><li><a href="#">Returns</a></li><li><a href="#">Contact</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 GlowLab. All rights reserved.</p>
+        <p>Results may vary. Not FDA-evaluated for disease treatment.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="checkout-redirect.js"></script>
+  <script>
+    let qty = 1;
+    let hasBundle = false;
+    const basePrice = 97;
+    const bundlePrice = 18;
+
+    function changeQty(delta) {
+      qty = Math.max(1, qty + delta);
+      document.getElementById('qty').textContent = qty;
+      updateButtonPrice();
+    }
+
+    function updatePrice(checkbox) {
+      hasBundle = checkbox.checked;
+      updateButtonPrice();
+    }
+
+    function updateButtonPrice() {
+      const total = (basePrice + (hasBundle ? bundlePrice : 0)) * qty;
+      document.getElementById('atc-button').textContent = `Add to Cart — $${total} →`;
+    }
+
+    function selectVariant(btn) {
+      document.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    function setImg(thumb, emoji) {
+      document.getElementById('main-img').textContent = emoji;
+      document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    }
+
+    // Countdown timer
+    let secs = 13642;
+    setInterval(() => {
+      secs = Math.max(0, secs - 1);
+      const h = Math.floor(secs / 3600);
+      const m = Math.floor((secs % 3600) / 60);
+      const s = secs % 60;
+      const el = document.getElementById('countdown');
+      if (el) el.textContent = `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    }, 1000);
+  </script>
+</body>
+</html>

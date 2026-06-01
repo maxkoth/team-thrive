@@ -1,0 +1,106 @@
+LINGUAFLOW — EMAIL MARKETING SEQUENCE
+======================================
+
+
+EMAIL 1 — WELCOME (Send immediately after signup)
+--------------------------------------------------
+SUBJECT: "Welcome to LinguaFlow — your language barrier is officially over"
+PREVIEW: 144 languages. 0.2 seconds. Starting now.
+
+Hey [First Name],
+
+Welcome to LinguaFlow.
+
+Whether you're preparing for a trip, closing deals internationally, or simply tired of feeling like an outsider in conversations — you just made the right call.
+
+Here's everything you need to get started the moment your earbuds arrive:
+
+⚡ QUICK START CHECKLIST:
+□ Download the LinguaFlow app (iOS / Android) before your earbuds arrive
+□ Pair via Bluetooth 5.3 — takes under 30 seconds
+□ Download your top 3 offline language packs (stored directly on the earbuds)
+□ Do a 2-minute test conversation to calibrate your voice profile
+
+🌍 TOP SETTINGS FOR TRAVELERS:
+- Set "Primary Language" to your native language
+- Enable "Offline Priority Mode" so it defaults to stored packs without Wi-Fi
+- Turn on "Accent Calibration" for your destination region
+
+💼 FOR BUSINESS USE:
+- Navigate to Settings → Vocabulary → Business Mode
+- Select your industry (Legal, Medical, Finance, Engineering, Hospitality, etc.)
+- Enable "Transcript Save" to review conversation logs after meetings
+
+[DOWNLOAD THE APP NOW →]
+
+Your earbuds ship within 24 hours. Tracking info coming from shipping@linguaflow.com.
+
+Go somewhere great,
+The LinguaFlow Team
+
+
+EMAIL 2 — ABANDONED CART (45 minutes after abandonment)
+--------------------------------------------------------
+SUBJECT: "You left something behind, [First Name]"
+PREVIEW: And so did the free travel case offer.
+
+Hi [First Name],
+
+Your LinguaFlow Pro earbuds are still in your cart — and so is the free travel case.
+
+I get it. $59 is a meaningful purchase. Let me make the decision simple:
+
+THE RISK IS ZERO.
+
+Our 30-day guarantee is unconditional. Buy the earbuds. Use them. If they don't translate as fast, as accurately, or as seamlessly as we've described — send them back for a full refund. You even keep the travel case.
+
+That's how confident we are.
+
+And here's what it costs you to wait:
+
+→ The $20 summer discount expires when the countdown hits zero
+→ The free travel case disappears with it (normally $29)
+→ Your next trip, meeting, or conversation without translation happens as-is
+
+[Complete My Order + Claim Free Case →]
+
+Still have a question? Reply to this email — we respond within 2 hours.
+
+The LinguaFlow Team
+
+
+EMAIL 3 — POST-PURCHASE UPSELL (2 days after purchase)
+-------------------------------------------------------
+SUBJECT: "Your earbuds shipped 🎧 — 3 accessories that make them 10x better"
+PREVIEW: Don't forget to download your offline language packs
+
+Hey [First Name],
+
+Your LinguaFlow Pro earbuds are on their way!
+
+Tracking: [TRACKING_NUMBER]
+Estimated arrival: [DELIVERY_DATE]
+
+[TRACK MY ORDER →]
+
+While you wait, here are the 3 things most LinguaFlow users wish they'd added:
+
+1. LINGUAFLOW PREMIUM LANGUAGE PACK — $12
+Includes 20 additional offline language packs with regional dialect specificity (Mexican Spanish, Cantonese, Brazilian Portuguese, Taiwanese Mandarin, etc.). Pushed directly to your earbuds via the app. Essential for anyone traveling to specific regions.
+
+2. LINGUAFLOW SPORT HOOKS — $9
+Secure over-ear hooks that keep the earbuds in place during active travel — hiking, cycling, crowded markets, or working out. Works with any standard earbud.
+
+3. LINGUAFLOW ANNUAL PREMIUM SUBSCRIPTION — $29/year
+Unlocks cloud-based translation for all 144 languages without Wi-Fi via our LTE relay, AI conversation memory (it learns your vocabulary over time), and priority voice update access.
+
+As a new customer, add any of these in the next 48 hours at our new-customer price:
+
+[ADD ACCESSORIES TO MY ORDER →]
+
+You're about to have conversations you never thought possible.
+
+— The LinguaFlow Team
+
+---
+Unsubscribe | Privacy Policy | linguaflow.com

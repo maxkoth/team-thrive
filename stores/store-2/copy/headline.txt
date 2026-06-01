@@ -1,0 +1,28 @@
+SAUNAZEN — A/B TEST HEADLINE VARIANTS
+======================================
+
+VARIANT A (Value / ROI — Cold Traffic)
+---------------------------------------
+Headline: "Your Local Infrared Sauna Studio Charges $80/Session. SaunaZen Costs $169. Once."
+Subheadline: "Far-infrared heat therapy that penetrates 1.5 inches into your tissue — the same technology wellness studios charge $80/hour for, in a blanket that fits under your bed."
+Hook: Frames the purchase as a financial no-brainer. Immediate math does the persuasion. Best for financially-minded buyers and those already familiar with infrared sauna concepts.
+
+VARIANT B (Problem/Pain — Stress, Sleep, Recovery)
+----------------------------------------------------
+Headline: "You're Burned Out. Your Body Has Been Asking for This."
+Subheadline: "45 minutes in SaunaZen's far-infrared blanket lowers cortisol by 23%, accelerates muscle recovery by 40%, and resets your nervous system — without leaving your home."
+Hook: Opens with emotional validation (burnout is universal). Transitions to specific, credible benefits. Best for wellness-aware audiences who know they need recovery solutions.
+
+VARIANT C (Identity/Aspiration — Biohacking/Wellness Community)
+---------------------------------------------------------------
+Headline: "Every Elite Athlete. Every Longevity Expert. They All Use Infrared. Now You Can Too."
+Subheadline: "Far-infrared therapy has been the best-kept secret of performance coaches and longevity clinics for 20 years. SaunaZen brings it home for $169."
+Hook: Social proof via authority (athletes, longevity experts). Creates aspirational identity alignment — buyer sees themselves as someone who performs at this level. Best for biohacking, fitness, and wellness lifestyle audiences.
+
+
+TESTING NOTES:
+- Run A vs B to identify: value-conscious vs. pain-driven buyer
+- Pinterest and wellness Facebook audiences tend to respond to B and C
+- Finance/productivity audiences respond strongly to A
+- Target CPC goal: < $1.50 | Target ROAS: > 3.0x
+- Primary audience: Adults 28–50, interests: infrared sauna, biohacking, yoga, wellness, recovery, chronic pain

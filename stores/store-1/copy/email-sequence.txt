@@ -1,0 +1,107 @@
+GLOWLAB — EMAIL MARKETING SEQUENCE
+===================================
+Platform: Klaviyo / Mailchimp compatible
+From Name: GlowLab Team
+Reply-to: hello@glowlab.com
+
+
+EMAIL 1 — WELCOME / POST-SIGNUP (Send immediately)
+---------------------------------------------------
+SUBJECT LINE A: "Welcome to GlowLab ✨ (your free glow guide inside)"
+SUBJECT LINE B: "Here's your first step to clearer skin, [First Name]"
+PREVIEW TEXT: The 7-light protocol that dermatologists swear by
+
+Hi [First Name],
+
+Welcome to GlowLab — we're genuinely excited you're here.
+
+You just joined 2,400+ people who decided to stop spending hundreds on appointments and start getting clinic-level results from home.
+
+To get you started, here's your FREE GlowLab Glow Guide:
+
+📖 The 7-Light Protocol: which wavelength to use for YOUR skin concern
+⏰ The Optimal Routine: morning vs. evening sessions, what products to layer after
+📊 Week-by-Week Progress Tracker: when to expect what results (and how to document them)
+
+[DOWNLOAD YOUR FREE GLOW GUIDE →]
+
+One quick tip while you wait for your mask:
+Start with the Blue Light mode first — it's the fastest-acting and most people see visible changes within the first week of use.
+
+Talk soon,
+The GlowLab Team
+
+P.S. Your mask ships within 24 hours. Watch for your tracking email — it comes from shipping@glowlab.com.
+
+
+EMAIL 2 — ABANDONED CART (Send 1 hour after cart abandonment)
+-------------------------------------------------------------
+SUBJECT LINE A: "Your GlowLab mask is still waiting, [First Name]"
+SUBJECT LINE B: "38% off — but only 47 left 👀"
+PREVIEW TEXT: You were this close to better skin.
+
+Hi [First Name],
+
+You got close. Really close.
+
+Your GlowLab Pro LED Mask is still in your cart — and so is the 38% discount.
+
+I just want to make sure you saw this part:
+
+We offer a 60-day full money-back guarantee.
+
+That means you can use the mask every night for 8 full weeks. If you don't see a visible difference in your skin, email us and we'll refund you completely. No forms, no hassle, no judgment.
+
+So the real question is: what do you have to lose?
+
+[COMPLETE YOUR ORDER — SAVE $59 →]
+
+Still on the fence? Here's what Jade R. said:
+
+"I was skeptical too. Tried it for 6 weeks. My fine lines around my eyes are genuinely softer. I bought one for my mom immediately."
+
+Only 47 masks left at this price.
+
+The GlowLab Team
+
+
+EMAIL 3 — POST-PURCHASE UPSELL (Send 2 days after purchase)
+------------------------------------------------------------
+SUBJECT LINE: "Your mask is on its way! Here's how to 3x your results"
+PREVIEW TEXT: This $18 serum was made for post-LED skin
+
+Hi [First Name],
+
+Great news — your GlowLab mask has shipped! 🎉
+
+Tracking: [TRACKING_NUMBER] | [TRACK MY ORDER →]
+
+Estimated arrival: [DELIVERY_DATE]
+
+While you wait, I want to share the one product that takes your results from great to transformative:
+
+THE GLOWLAB RADIANCE SERUM
+
+Here's the thing most people don't know: LED therapy temporarily "opens" your skin's absorption channels. For the 60–90 minutes after a session, your skin absorbs active ingredients up to 3x more effectively than normal.
+
+That's why we formulated a post-LED serum with:
+• 2% Niacinamide (fades hyperpigmentation)
+• Hyaluronic Acid (deep hydration)
+• Vitamin C (brightens, boosts collagen)
+• Bakuchiol (natural retinol alternative)
+
+Our customers who use the mask + serum see results in half the time.
+
+As a new GlowLab customer, you get it for $18 (retail: $36) — one time offer.
+
+[ADD GLOWLAB RADIANCE SERUM FOR $18 →]
+
+Your skin is about to change. I can't wait for you to experience it.
+
+Welcome to the GlowLab family,
+[Founder Name]
+GlowLab
+
+---
+You're receiving this because you purchased from GlowLab.
+Unsubscribe | Privacy Policy | glowlab.com

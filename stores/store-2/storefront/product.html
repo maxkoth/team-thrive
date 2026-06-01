@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SaunaZen Infrared Blanket | Far-Infrared Sauna at Home | $169</title>
+  <meta name="description" content="Buy the SaunaZen far-infrared sauna blanket. 6 heat zones, EMF-safe, waterproof. Detox, recover, and destress in 45 minutes. Free carry bag + 45-day guarantee." />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .product-page { padding: 3rem 0 5rem; }
+    .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .gallery { position: sticky; top: 80px; }
+    .gallery-main { height: 500px; background: linear-gradient(135deg, var(--ivory), rgba(200,169,81,0.1)); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 7rem; margin-bottom: 1rem; border: 1px solid rgba(27,58,45,0.1); }
+    .gallery-thumbs { display: flex; gap: 0.75rem; }
+    .gallery-thumb { width: 80px; height: 80px; background: var(--ivory); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s; }
+    .gallery-thumb.active, .gallery-thumb:hover { border-color: var(--accent); }
+    .product-details h1 { font-size: clamp(1.5rem, 2.8vw, 2rem); margin-bottom: 0.25rem; }
+    .rating-row { display: flex; align-items: center; gap: 0.75rem; margin: 0.6rem 0 1.25rem; font-family: 'Inter', sans-serif; }
+    .rating-row a { color: var(--primary); font-size: 0.88rem; font-weight: 600; text-decoration: underline; }
+    .variant-label { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; margin-top: 1.25rem; }
+    .color-options { display: flex; gap: 0.6rem; margin-bottom: 0.5rem; }
+    .color-swatch { width: 34px; height: 34px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: border-color 0.15s; }
+    .color-swatch.active { border-color: var(--primary); }
+    .qty-row { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
+    .qty-selector { display: flex; align-items: center; border: 1.5px solid rgba(27,58,45,0.2); border-radius: 6px; overflow: hidden; }
+    .qty-btn { width: 40px; height: 40px; background: var(--ivory); border: none; font-size: 1.2rem; cursor: pointer; font-weight: 700; color: var(--primary); transition: background 0.15s; }
+    .qty-btn:hover { background: rgba(27,58,45,0.08); }
+    .qty-num { width: 48px; text-align: center; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; border: none; outline: none; }
+    .atc-full { flex: 1; }
+    .guarantee-strip { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(27,58,45,0.08); }
+    .guarantee-item { display: flex; align-items: center; gap: 0.4rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+    .bonus-box { background: linear-gradient(135deg, rgba(200,169,81,0.1), rgba(200,169,81,0.05)); border: 1.5px solid rgba(200,169,81,0.35); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 1.5rem; }
+    .bonus-box h4 { color: var(--primary); font-family: 'Inter', sans-serif; font-size: 0.92rem; margin-bottom: 0.4rem; }
+    .bonus-box p { font-size: 0.88rem; }
+    @media (max-width: 768px) { .product-layout { grid-template-columns: 1fr; } .gallery { position: static; } }
+  </style>
+</head>
+<body>
+
+  <div class="urgency-bar">
+    Free Carry Bag ($49 value) included — Order before Sunday to claim yours
+  </div>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">Sauna<span>Zen</span></a>
+      <a href="product.html" class="nav-cta">Shop Now</a>
+    </div>
+  </nav>
+
+  <div class="container product-page">
+    <div class="product-layout">
+      <div class="gallery">
+        <div class="gallery-main" id="main-img">🧖</div>
+        <div class="gallery-thumbs">
+          <div class="gallery-thumb active" onclick="setImg(this,'🧖')">🧖</div>
+          <div class="gallery-thumb" onclick="setImg(this,'🌡️')">🌡️</div>
+          <div class="gallery-thumb" onclick="setImg(this,'💧')">💧</div>
+          <div class="gallery-thumb" onclick="setImg(this,'🎒')">🎒</div>
+        </div>
+      </div>
+
+      <div class="product-details">
+        <p class="hero-eyebrow" style="color:var(--accent);">Best Seller · 1,800+ Reviews</p>
+        <h1>SaunaZen Signature<br />Infrared Sauna Blanket</h1>
+        <div class="rating-row">
+          <span class="stars">★★★★★</span>
+          <strong style="color:var(--primary);">4.8</strong>
+          <a href="#reviews">View all 1,800+ reviews</a>
+        </div>
+
+        <div class="price-block">
+          <span class="price-current">$169</span>
+          <span class="price-original">$249</span>
+          <span class="price-save">SAVE $80</span>
+        </div>
+        <p style="font-family:'Inter',sans-serif;font-size:0.88rem;color:var(--success);font-weight:600;margin-top:0.25rem;">✓ In Stock — ships within 24 hours</p>
+
+        <div class="bonus-box">
+          <h4>🎁 Limited Offer: Free Premium Carry Bag Included</h4>
+          <p>Every order this week ships with our waxed-canvas carry bag ($49 value) — perfect for travel or gym use. No code needed, applied automatically.</p>
+        </div>
+
+        <div class="variant-label">Color</div>
+        <div class="color-options">
+          <div class="color-swatch active" style="background:#1B3A2D;" title="Forest Green" onclick="selectSwatch(this, 'Forest Green')"></div>
+          <div class="color-swatch" style="background:#2C2C2C;" title="Midnight Black" onclick="selectSwatch(this, 'Midnight Black')"></div>
+          <div class="color-swatch" style="background:#8B3A3A;" title="Burgundy" onclick="selectSwatch(this, 'Burgundy')"></div>
+        </div>
+        <p id="selected-color" style="font-family:'Inter',sans-serif;font-size:0.82rem;color:var(--muted);margin-top:0.25rem;">Selected: Forest Green</p>
+
+        <div class="qty-row">
+          <div>
+            <div class="variant-label">Qty</div>
+            <div class="qty-selector">
+              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <span class="qty-num" id="qty">1</span>
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+          <button class="atc-btn atc-full" id="atc-button" onclick="addToCart()">Add to Cart — $169</button>
+        </div>
+
+        <div class="guarantee-strip">
+          <span class="guarantee-item">🔒 SSL Secure</span>
+          <span class="guarantee-item">↩️ 45-Day Guarantee</span>
+          <span class="guarantee-item">🚚 Free Shipping</span>
+          <span class="guarantee-item">🌱 Eco-Certified</span>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <div class="variant-label">Technical Specs</div>
+          <table style="width:100%;border-collapse:collapse;font-family:'Inter',sans-serif;font-size:0.88rem;margin-top:0.5rem;">
+            <tr style="border-bottom:1px solid rgba(27,58,45,0.07);"><td style="padding:0.6rem 0;font-weight:600;color:var(--primary);width:45%;">Infrared Type</td><td>Far-infrared (4–14µm)</td></tr>
+            <tr style="border-bottom:1px solid rgba(27,58,45,0.07);"><td style="padding:0.6rem 0;font-weight:600;color:var(--primary);">Heat Zones</td><td>6 independent zones</td></tr>
+            <tr style="border-bottom:1px solid rgba(27,58,45,0.07);"><td style="padding:0.6rem 0;font-weight:600;color:var(--primary);">Temperature Range</td><td>77°F – 176°F (25°C – 80°C)</td></tr>
+            <tr style="border-bottom:1px solid rgba(27,58,45,0.07);"><td style="padding:0.6rem 0;font-weight:600;color:var(--primary);">EMF Level</td><td>&lt;3 milligauss (international safe)</td></tr>
+            <tr style="border-bottom:1px solid rgba(27,58,45,0.07);"><td style="padding:0.6rem 0;font-weight:600;color:var(--primary);">Material</td><td>Waterproof PU outer, food-grade silicone inner</td></tr>
+            <tr style="border-bottom:1px solid rgba(27,58,45,0.07);"><td style="padding:0.6rem 0;font-weight:600;color:var(--primary);">Auto Shut-off</td><td>60 minutes</td></tr>
+            <tr style="border-bottom:1px solid rgba(27,58,45,0.07);"><td style="padding:0.6rem 0;font-weight:600;color:var(--primary);">Dimensions</td><td>71" x 32" (fits up to 6'4")</td></tr>
+            <tr><td style="padding:0.6rem 0;font-weight:600;color:var(--primary);">In the Box</td><td>Blanket, carry bag, remote, towel liner, protocol guide</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section reviews" id="reviews">
+    <div class="container">
+      <div class="section-header"><h2>What SaunaZen Users Say</h2></div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+            <div><div class="reviewer">Sophie D. — San Francisco</div><span class="stars">★★★★★</span></div>
+            <span class="verified">✔ Verified</span>
+          </div>
+          <p class="review-text">"I was paying $80/month for monthly infrared sauna sessions at a wellness studio. SaunaZen paid for itself in 2 sessions. The heat penetration is noticeably different from a steam sauna — much more effective."</p>
+        </div>
+        <div class="review-card">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+            <div><div class="reviewer">James K. — Austin</div><span class="stars">★★★★★</span></div>
+            <span class="verified">✔ Verified</span>
+          </div>
+          <p class="review-text">"My lower back has been an issue for 5 years post-injury. Nothing has helped the way this has. 3 sessions a week for a month and I'm off anti-inflammatories. My physio is honestly baffled."</p>
+        </div>
+        <div class="review-card">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+            <div><div class="reviewer">Nadia W. — London</div><span class="stars">★★★★★</span></div>
+            <span class="verified">✔ Verified</span>
+          </div>
+          <p class="review-text">"The build quality is exceptional. I was expecting something cheap — this is genuinely premium. The silicone interior is easy to wipe clean and the carry bag is beautiful. Worth every penny."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo" style="color:var(--white);">Sauna<span>Zen</span></a>
+          <p style="margin-top:0.5rem;font-family:'Inter',sans-serif;font-size:0.88rem;">Clinical wellness technology for the modern home.</p>
+        </div>
+        <div><h4>Shop</h4><ul><li><a href="product.html">Sauna Blanket</a></li></ul></div>
+        <div><h4>Support</h4><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 SaunaZen.</p><p>Consult a physician before beginning heat therapy.</p></div>
+    </div>
+  </footer>
+
+  <script src="checkout-redirect.js"></script>
+  <script>
+    let qty = 1;
+    function changeQty(d) { qty = Math.max(1, qty + d); document.getElementById('qty').textContent = qty; document.getElementById('atc-button').textContent = `Add to Cart — $${169 * qty}`; }
+    function selectSwatch(el, name) { document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active')); el.classList.add('active'); document.getElementById('selected-color').textContent = 'Selected: ' + name; }
+    function setImg(thumb, e) { document.getElementById('main-img').textContent = e; document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active')); thumb.classList.add('active'); }
+  </script>
+</body>
+</html>

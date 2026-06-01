@@ -1,0 +1,27 @@
+GLOWLAB — A/B TEST HEADLINE VARIANTS
+=====================================
+
+VARIANT A (Outcome-Led — for cold traffic Facebook/TikTok audiences)
+----------------------------------------------------------------------
+Headline: "Clear Acne. Boost Collagen. Fade Dark Spots. All in 10 Minutes a Day."
+Subheadline: "The same LED light therapy used in $300 dermatology sessions — now at home for under $100. 2,400+ women already glowing."
+Hook: Leads with the triple benefit, then justifies with authority + social proof. Best for skeptical buyers who've "tried everything."
+
+VARIANT B (Curiosity/Desire — for warm retargeting audiences)
+-------------------------------------------------------------
+Headline: "Why Are Dermatologists Suddenly Recommending THIS $97 Mask Instead of Office Visits?"
+Subheadline: "GlowLab's 7-wavelength LED technology replicates $300 clinic sessions from your bathroom. No appointment, no waiting room, no co-pay."
+Hook: Positions dermatologists as the credibility vehicle. Creates curiosity gap. Best for retargeting people who visited but didn't convert.
+
+VARIANT C (Transformation/Before-After — for TikTok & UGC-style ads)
+---------------------------------------------------------------------
+Headline: "I Spent $800 on Facials. Then I Found This."
+Subheadline: "Mia T. cleared her cystic acne in 4 weeks and never looked back. Now 2,400+ women are getting the same results — for a one-time $97."
+Hook: Leads with a relatable anti-hero moment (wasted money), then delivers the solution. Best for story-format TikTok and Instagram Reels. Strong UGC voice that builds trust with Gen Z + Millennial buyers.
+
+
+TESTING NOTES:
+- Run A vs B first to identify intent (benefit vs. authority)
+- Once winner found, test winner vs C to check social proof angle
+- Target CPC goal: < $1.20 | CTR goal: > 2.5%
+- Primary audience: Women 25–44, interests: skincare, K-beauty, dermatology, acne treatment

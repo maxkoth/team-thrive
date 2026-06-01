@@ -1,0 +1,39 @@
+GLOWLAB — SEO META DATA & KEYWORD STRATEGY
+===========================================
+
+HOMEPAGE
+--------
+Title Tag (60 chars): GlowLab | LED Light Therapy Face Mask — Clinic Results at Home
+Meta Description (155 chars): GlowLab's 7-wavelength LED face mask clears acne, boosts collagen & fades dark spots in 10 min/day. FDA-cleared. 2,400+ reviews. 60-day guarantee. Shop now.
+Canonical: https://glowlab.com/
+OG Title: GlowLab LED Face Mask — Clear Acne & Boost Collagen at Home
+OG Description: 7-wavelength LED therapy used by dermatologists — now at home for under $100. Clinically proven results. Free shipping + 60-day guarantee.
+
+PRODUCT PAGE
+------------
+Title Tag (60 chars): GlowLab Pro LED Face Mask | 7-Wavelength Light Therapy | $97
+Meta Description (155 chars): Buy the GlowLab Pro LED Face Mask. 136 LED chips, 7 wavelengths. Clinically proven to clear acne, reduce fine lines & fade dark spots. Free shipping. 60-day guarantee.
+Canonical: https://glowlab.com/products/led-face-mask
+Schema Markup Type: Product (include price, rating, availability)
+
+TARGET KEYWORDS — VOLUME & INTENT
+----------------------------------
+Primary (High Intent — Buyer):
+1. led face mask for acne                    | ~18,000/mo | Medium competition
+2. led light therapy mask at home            | ~12,000/mo | Medium competition
+3. best led face mask 2026                   | ~8,500/mo  | Medium competition
+4. glowlab led mask                          | ~2,200/mo  | Low competition (branded)
+5. red light therapy face mask               | ~22,000/mo | High competition
+
+Secondary (Research Phase):
+6. does led light therapy work for acne      | ~5,400/mo  | Low competition
+7. blue light therapy for acne at home       | ~4,100/mo  | Low competition
+8. led face mask before and after            | ~6,800/mo  | Medium competition
+9. led therapy for fine lines and wrinkles   | ~3,200/mo  | Low competition
+10. led mask vs dermatology office           | ~1,800/mo  | Very low competition
+
+CONTENT STRATEGY:
+- Write a blog post targeting: "Does LED Light Therapy Really Work? (Before & After Evidence)"
+- Target featured snippet for: "how to use led face mask" (answer-format H2 section)
+- Build backlinks from beauty/skincare publications (Byrdie, Allure, Into The Gloss)
+- Optimize images with alt text: "glowlab-led-face-mask-blue-light-acne-treatment.jpg"

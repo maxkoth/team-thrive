@@ -1,0 +1,38 @@
+LINGUAFLOW — SEO META DATA & KEYWORD STRATEGY
+==============================================
+
+HOMEPAGE
+--------
+Title Tag: LinguaFlow | AI Translation Earbuds — 144 Languages, Real-Time, Offline
+Meta Description: LinguaFlow earbuds translate 144 languages in real-time (0.2s latency). Works offline. 8-hour battery, 4-mic noise cancellation. Perfect for travel & business. Shop $59.
+Canonical: https://linguaflow.com/
+
+PRODUCT PAGE
+------------
+Title Tag: LinguaFlow Pro Earbuds | Real-Time AI Translation | 144 Languages | $59
+Meta Description: Buy LinguaFlow Pro AI translation earbuds. 144 languages, 0.2-second latency, 40 offline languages, IPX5 waterproof, 8-hr battery. Free travel case + 30-day guarantee.
+Canonical: https://linguaflow.com/products/translation-earbuds
+
+TARGET KEYWORDS
+---------------
+Primary (High Buyer Intent):
+1. ai translation earbuds                    | ~14,000/mo | Medium competition
+2. real-time translation earbuds             | ~11,000/mo | Medium competition
+3. best translation earbuds 2026             | ~7,200/mo  | Low-medium competition
+4. linguaflow earbuds                        | ~2,400/mo  | Low (branded)
+5. instant translation earpiece             | ~8,800/mo  | Medium competition
+
+Secondary (Research Intent):
+6. how do translation earbuds work           | ~3,200/mo  | Low competition
+7. translation earbuds offline              | ~4,500/mo  | Low competition
+8. translation earbuds for travel           | ~5,100/mo  | Low competition
+9. translation earbuds for business         | ~2,800/mo  | Very low competition
+10. translation earbuds vs google translate  | ~1,900/mo  | Very low competition
+
+CONTENT STRATEGY:
+- Cornerstone article: "AI Translation Earbuds: Do They Actually Work? (Real-World Test Results)"
+- Comparison article: "LinguaFlow vs. [Competitor]: Translation Earbuds Compared for 2026 Travelers"
+- Target featured snippet: "best translation earbuds for travel" with structured H2 comparison
+- YouTube: "LinguaFlow earbuds review" and "translation earbuds in [country]" destination content
+- Reddit: Engage genuinely in r/travel, r/solotravel, r/languagelearning with helpful posts
+- Influencer strategy: Travel YouTubers (100K–500K subscribers) — gifted review outreach

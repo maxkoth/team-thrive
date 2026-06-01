@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinguaFlow Pro Earbuds | 144 Languages, Real-Time AI Translation | $59</title>
+  <meta name="description" content="Buy LinguaFlow Pro translation earbuds. 144 languages, 0.2s latency, 40 offline languages, 8-hour battery, 4-mic noise cancellation. Free travel case + 30-day guarantee." />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .product-page { padding: 3rem 0 5rem; }
+    .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .gallery { position: sticky; top: 80px; }
+    .gallery-main { height: 480px; background: linear-gradient(135deg, var(--bg-light), rgba(0,87,255,0.06)); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 7rem; margin-bottom: 1rem; border: 1px solid rgba(0,87,255,0.08); }
+    .gallery-thumbs { display: flex; gap: 0.75rem; }
+    .gallery-thumb { width: 80px; height: 80px; background: var(--bg-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s; }
+    .gallery-thumb.active, .gallery-thumb:hover { border-color: var(--primary); }
+    .product-details h1 { font-size: clamp(1.6rem, 2.8vw, 2.1rem); }
+    .rating-row { display: flex; align-items: center; gap: 0.75rem; margin: 0.6rem 0 1.25rem; }
+    .rating-row a { color: var(--primary); font-size: 0.88rem; font-weight: 600; text-decoration: underline; }
+    .variant-label { font-weight: 700; font-size: 0.85rem; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; margin-top: 1.25rem; }
+    .variant-options { display: flex; gap: 0.5rem; }
+    .variant-btn { padding: 0.45rem 1rem; border-radius: 8px; border: 2px solid rgba(0,87,255,0.2); background: var(--white); font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.15s; color: var(--text); }
+    .variant-btn.selected { border-color: var(--primary); background: var(--primary); color: var(--white); }
+    .qty-row { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
+    .qty-selector { display: flex; align-items: center; border: 2px solid rgba(0,87,255,0.15); border-radius: 10px; overflow: hidden; }
+    .qty-btn { width: 40px; height: 40px; background: var(--bg-light); border: none; font-size: 1.2rem; cursor: pointer; font-weight: 700; color: var(--primary); transition: background 0.15s; }
+    .qty-btn:hover { background: rgba(0,87,255,0.08); }
+    .qty-num { width: 48px; text-align: center; font-weight: 700; font-size: 1rem; border: none; outline: none; }
+    .atc-full { flex: 1; }
+    .guarantee-strip { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(0,87,255,0.07); }
+    .guarantee-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+    .use-case-tabs { margin-top: 1.5rem; }
+    .tab-buttons { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .tab-btn { padding: 0.4rem 0.9rem; border-radius: 50px; border: 1.5px solid rgba(0,87,255,0.2); background: none; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.15s; color: var(--muted); }
+    .tab-btn.active { border-color: var(--primary); background: var(--primary); color: var(--white); }
+    .tab-content { background: var(--bg-light); border-radius: var(--radius); padding: 1.25rem; font-size: 0.9rem; display: none; }
+    .tab-content.active { display: block; }
+    @media (max-width: 768px) { .product-layout { grid-template-columns: 1fr; } .gallery { position: static; } }
+  </style>
+</head>
+<body>
+
+  <div class="urgency-bar">⏰ Summer Travel Special ends in <span id="countdown">71:47:22</span> — Free travel case with every order</div>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">Lingua<span>Flow</span></a>
+      <div class="nav-links"><a href="index.html#features">Features</a><a href="index.html#languages">Languages</a></div>
+      <a href="product.html" class="nav-cta">Shop Now</a>
+    </div>
+  </nav>
+
+  <div class="container product-page">
+    <div class="product-layout">
+      <div class="gallery">
+        <div class="gallery-main" id="main-img">🎧</div>
+        <div class="gallery-thumbs">
+          <div class="gallery-thumb active" onclick="setImg(this,'🎧')">🎧</div>
+          <div class="gallery-thumb" onclick="setImg(this,'🌍')">🌍</div>
+          <div class="gallery-thumb" onclick="setImg(this,'💼')">💼</div>
+          <div class="gallery-thumb" onclick="setImg(this,'✈️')">✈️</div>
+        </div>
+      </div>
+
+      <div class="product-details">
+        <span class="hero-badge" style="color:var(--primary);background:rgba(0,87,255,0.08);border-color:rgba(0,87,255,0.2);margin-bottom:0.75rem;display:inline-flex;">Best Seller · 3,100+ Reviews</span>
+        <h1>LinguaFlow Pro<br />AI Translation Earbuds</h1>
+        <div class="rating-row">
+          <span class="stars">★★★★★</span>
+          <strong style="color:var(--navy);">4.8</strong>
+          <a href="#reviews">See all 3,100+ reviews</a>
+        </div>
+
+        <div style="margin:1.25rem 0;">
+          <span class="price-current">$59</span>
+          <span class="price-original">$79</span>
+          <span class="price-save">SAVE $20</span>
+        </div>
+        <p style="font-size:0.88rem;color:var(--success);font-weight:600;">✓ In Stock — ships within 24 hours</p>
+
+        <!-- USE CASES -->
+        <div class="use-case-tabs">
+          <div class="variant-label">Perfect For</div>
+          <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab(this,'travel')">✈️ Travel</button>
+            <button class="tab-btn" onclick="switchTab(this,'business')">💼 Business</button>
+            <button class="tab-btn" onclick="switchTab(this,'medical')">🏥 Medical</button>
+            <button class="tab-btn" onclick="switchTab(this,'daily')">🏠 Daily Life</button>
+          </div>
+          <div id="tab-travel" class="tab-content active">Break through language barriers in restaurants, transportation, hotels, and local experiences. 40 offline languages mean no roaming charges required.</div>
+          <div id="tab-business" class="tab-content">Negotiate, present, and build relationships across 12 professional vocabulary domains. No interpreter budget required for routine meetings.</div>
+          <div id="tab-medical" class="tab-content">Medical vocabulary mode for patient intake, follow-up appointments, and pharmacy visits. Bridges communication gaps where it matters most.</div>
+          <div id="tab-daily" class="tab-content">Connect with immigrant neighbors, assist multilingual customers, or simply learn a language through immersive real-time use.</div>
+        </div>
+
+        <div class="variant-label" style="margin-top:1.25rem;">Color</div>
+        <div class="variant-options">
+          <button class="variant-btn selected">Midnight Black</button>
+          <button class="variant-btn" onclick="selectVariant(this)">Pearl White</button>
+          <button class="variant-btn" onclick="selectVariant(this)">Navy Blue</button>
+        </div>
+
+        <div class="qty-row">
+          <div>
+            <div class="variant-label">Qty</div>
+            <div class="qty-selector">
+              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <span class="qty-num" id="qty">1</span>
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+          <button class="atc-btn atc-full" id="atc-button" onclick="addToCart()">Add to Cart — $59 →</button>
+        </div>
+
+        <div class="guarantee-strip">
+          <span class="guarantee-item">🔒 SSL Secure</span>
+          <span class="guarantee-item">↩️ 30-Day Guarantee</span>
+          <span class="guarantee-item">🚚 Free Shipping</span>
+          <span class="guarantee-item">🎁 Free Travel Case</span>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <div class="variant-label">Technical Specs</div>
+          <table style="width:100%;border-collapse:collapse;font-size:0.88rem;margin-top:0.5rem;">
+            <tr style="border-bottom:1px solid rgba(0,87,255,0.07);"><td style="padding:0.6rem 0;font-weight:700;color:var(--navy);width:45%;">Languages</td><td>144 total (40 offline)</td></tr>
+            <tr style="border-bottom:1px solid rgba(0,87,255,0.07);"><td style="padding:0.6rem 0;font-weight:700;color:var(--navy);">Translation Latency</td><td>0.2 seconds</td></tr>
+            <tr style="border-bottom:1px solid rgba(0,87,255,0.07);"><td style="padding:0.6rem 0;font-weight:700;color:var(--navy);">Accuracy</td><td>98% (top 50 languages)</td></tr>
+            <tr style="border-bottom:1px solid rgba(0,87,255,0.07);"><td style="padding:0.6rem 0;font-weight:700;color:var(--navy);">Battery</td><td>8 hrs + 32-hr case total</td></tr>
+            <tr style="border-bottom:1px solid rgba(0,87,255,0.07);"><td style="padding:0.6rem 0;font-weight:700;color:var(--navy);">Microphones</td><td>4-mic array, ANC</td></tr>
+            <tr style="border-bottom:1px solid rgba(0,87,255,0.07);"><td style="padding:0.6rem 0;font-weight:700;color:var(--navy);">Water Resistance</td><td>IPX5 (sweat & rain)</td></tr>
+            <tr style="border-bottom:1px solid rgba(0,87,255,0.07);"><td style="padding:0.6rem 0;font-weight:700;color:var(--navy);">Connectivity</td><td>Bluetooth 5.3 + offline AI chip</td></tr>
+            <tr><td style="padding:0.6rem 0;font-weight:700;color:var(--navy);">In the Box</td><td>2 earbuds, charging case, travel case, 3 ear tip sizes, USB-C cable</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section reviews" id="reviews">
+    <div class="container">
+      <div class="section-header"><h2>What 3,100+ Customers Say</h2></div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+            <div><div class="reviewer">James K. — Tokyo, Japan</div><span class="stars">★★★★★</span></div>
+            <span class="verified">✔ Verified</span>
+          </div>
+          <p class="review-text">"I was genuinely amazed. The latency is so low you forget you're using a translator. My Japanese business partners were equally impressed. One of them actually asked where to buy one."</p>
+        </div>
+        <div class="review-card">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+            <div><div class="reviewer">Sofia R. — Traveling Nurse</div><span class="stars">★★★★★</span></div>
+            <span class="verified">✔ Verified</span>
+          </div>
+          <p class="review-text">"Used these in Spain, Mexico, and Portugal on travel assignments. Each country's accent recognition is noticeably distinct. I've recommended these to every traveler I know."</p>
+        </div>
+        <div class="review-card">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+            <div><div class="reviewer">Wei C. — San Francisco</div><span class="stars">★★★★★</span></div>
+            <span class="verified">✔ Verified</span>
+          </div>
+          <p class="review-text">"My parents speak Cantonese and my in-laws speak Mandarin. These earbuds have transformed family dinners. No more me playing interpreter for everyone. Genuinely life-changing."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><a href="index.html" class="logo">Lingua<span>Flow</span></a><p style="margin-top:0.6rem;font-size:0.88rem;">Breaking language barriers with AI technology.</p></div>
+        <div><h4>Product</h4><ul><li><a href="product.html">Earbuds</a></li><li><a href="index.html#languages">Languages</a></li></ul></div>
+        <div><h4>Support</h4><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 LinguaFlow.</p><p>Accuracy varies by language and context.</p></div>
+    </div>
+  </footer>
+
+  <script src="checkout-redirect.js"></script>
+  <script>
+    let qty = 1;
+    function changeQty(d) { qty = Math.max(1, qty + d); document.getElementById('qty').textContent = qty; document.getElementById('atc-button').textContent = `Add to Cart — $${59 * qty} →`; }
+    function selectVariant(btn) { document.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); }
+    function setImg(thumb, e) { document.getElementById('main-img').textContent = e; document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active')); thumb.classList.add('active'); }
+    function switchTab(btn, id) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + id).classList.add('active');
+    }
+    let secs = 258442;
+    setInterval(() => {
+      secs = Math.max(0, secs - 1);
+      const h = Math.floor(secs / 3600), m = Math.floor((secs % 3600) / 60), s = secs % 60;
+      const el = document.getElementById('countdown');
+      if (el) el.textContent = `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    }, 1000);
+  </script>
+</body>
+</html>

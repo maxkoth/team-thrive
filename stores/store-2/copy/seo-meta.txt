@@ -1,0 +1,36 @@
+SAUNAZEN — SEO META DATA & KEYWORD STRATEGY
+============================================
+
+HOMEPAGE
+--------
+Title Tag: SaunaZen | Far-Infrared Sauna Blanket — Detox & Recovery at Home
+Meta Description: SaunaZen's far-infrared blanket delivers deep detox, muscle recovery & stress relief in 45 min. EMF-safe, 6 heat zones, 45-day guarantee. Free shipping.
+Canonical: https://saunazen.com/
+
+PRODUCT PAGE
+------------
+Title Tag: SaunaZen Infrared Sauna Blanket | 6 Zones, EMF-Safe | $169
+Meta Description: Buy SaunaZen infrared sauna blanket. Far-infrared 4–14µm, 6 heat zones, 77–176°F, EMF under 3mG. Free carry bag, free shipping, 45-day guarantee. Shop now.
+Canonical: https://saunazen.com/products/infrared-sauna-blanket
+
+TARGET KEYWORDS
+---------------
+Primary (Buyer Intent):
+1. infrared sauna blanket                   | ~27,000/mo | Medium competition
+2. far infrared sauna blanket at home       | ~9,500/mo  | Medium competition
+3. best infrared sauna blanket 2026         | ~5,200/mo  | Low-medium competition
+4. saunazen blanket                         | ~1,400/mo  | Low (branded)
+5. portable infrared sauna                  | ~18,000/mo | Medium-high competition
+
+Secondary (Research Intent):
+6. does infrared sauna blanket work         | ~3,800/mo  | Low competition
+7. infrared sauna blanket benefits          | ~4,100/mo  | Low competition
+8. infrared sauna blanket vs steam sauna    | ~2,200/mo  | Very low competition
+9. far infrared therapy at home             | ~3,600/mo  | Low competition
+10. infrared blanket for muscle recovery    | ~2,800/mo  | Very low competition
+
+CONTENT STRATEGY:
+- Cornerstone article: "Infrared Sauna Blanket vs. Traditional Sauna: What the Science Actually Says"
+- Target featured snippet: "how does infrared sauna blanket work" with concise H2 answer
+- Link-building: pitch wellness publications (MindBodyGreen, Well+Good, Healthline)
+- YouTube SEO: "SaunaZen review" and "infrared sauna blanket before and after" video content
