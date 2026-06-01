@@ -1,0 +1,99 @@
+{
+  "generated_at": "2026-06-01T19:08:08.825Z",
+  "dry_run": true,
+  "activity": [
+    {
+      "wallet": "WALLET_ALPHA_1",
+      "type": "buy",
+      "symbol": "PUNCH",
+      "amount_usd": 47000,
+      "token_amount": 12000000,
+      "price_per_token": 0.00000391,
+      "chain": "Solana",
+      "tx_hash": "TXHASH_001",
+      "timestamp": "2026-06-01T19:01:08.824Z",
+      "wallet_label": "Solana Smart Money #1",
+      "above_threshold": true,
+      "recommendation": {
+        "action": "MIRROR_BUY",
+        "symbol": "PUNCH",
+        "chain": "Solana",
+        "mirror_size_usd": 50,
+        "tokens_to_buy": 12787724,
+        "entry_price": 0.00000391,
+        "stop_loss": 0.0000032061999999999995,
+        "take_profit_1": 0.000005474,
+        "take_profit_2": 0.000008602,
+        "whale_amount_usd": 47000,
+        "whale_label": "Solana Smart Money #1",
+        "rationale": "Solana Smart Money #1 bought $47,000 — mirror at 0.5% portfolio"
+      },
+      "processed_at": "2026-06-01T19:08:08.824Z"
+    },
+    {
+      "wallet": "WALLET_ALPHA_2",
+      "type": "buy",
+      "symbol": "COINCOIN",
+      "amount_usd": 8000,
+      "token_amount": 5000000,
+      "price_per_token": 0.0000016,
+      "chain": "Base",
+      "tx_hash": "TXHASH_002",
+      "timestamp": "2026-06-01T19:05:08.824Z",
+      "wallet_label": "Base Degen Whale",
+      "above_threshold": false,
+      "recommendation": null,
+      "processed_at": "2026-06-01T19:08:08.824Z"
+    },
+    {
+      "wallet": "WALLET_ALPHA_3",
+      "type": "sell",
+      "symbol": "FRENS",
+      "amount_usd": 23000,
+      "token_amount": 8000000,
+      "price_per_token": 0.000002875,
+      "chain": "Solana",
+      "tx_hash": "TXHASH_003",
+      "timestamp": "2026-06-01T19:07:08.824Z",
+      "wallet_label": "Known Meme Trader",
+      "above_threshold": true,
+      "recommendation": {
+        "action": "ALERT_WHALE_SELL",
+        "symbol": "FRENS",
+        "chain": "Solana",
+        "whale_label": "Known Meme Trader",
+        "whale_amount_usd": 23000,
+        "rationale": "Known Meme Trader SOLD $23,000 — consider reducing exposure"
+      },
+      "processed_at": "2026-06-01T19:08:08.825Z"
+    },
+    {
+      "wallet": "WALLET_ALPHA_1",
+      "type": "buy",
+      "symbol": "GOATSEUS",
+      "amount_usd": 18500,
+      "token_amount": 950000,
+      "price_per_token": 0.01947,
+      "chain": "Solana",
+      "tx_hash": "TXHASH_004",
+      "timestamp": "2026-06-01T19:07:38.824Z",
+      "wallet_label": "Solana Smart Money #1",
+      "above_threshold": true,
+      "recommendation": {
+        "action": "MIRROR_BUY",
+        "symbol": "GOATSEUS",
+        "chain": "Solana",
+        "mirror_size_usd": 50,
+        "tokens_to_buy": 2568,
+        "entry_price": 0.01947,
+        "stop_loss": 0.0159654,
+        "take_profit_1": 0.027258,
+        "take_profit_2": 0.042834000000000004,
+        "whale_amount_usd": 18500,
+        "whale_label": "Solana Smart Money #1",
+        "rationale": "Solana Smart Money #1 bought $18,500 — mirror at 0.5% portfolio"
+      },
+      "processed_at": "2026-06-01T19:08:08.825Z"
+    }
+  ]
+}

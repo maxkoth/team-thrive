@@ -1,0 +1,118 @@
+{
+  "generated_at": "2026-06-01T19:08:05.070Z",
+  "dry_run": true,
+  "signals": [
+    {
+      "symbol": "FRENS",
+      "chain": "Solana",
+      "contract_address": "PLACEHOLDER_FRENS_SOL",
+      "market_cap": "4500000",
+      "generated_at": "2026-06-01T19:08:05.070Z",
+      "signal": "WATCH",
+      "confidence": 85,
+      "entry_strategy": "Buy on first green 15m candle with volume confirmation above 20-period MA",
+      "take_profit_targets": [
+        "+25%",
+        "+60%",
+        "+120%"
+      ],
+      "stop_loss": "-18% below entry",
+      "hold_duration": "swing (days)",
+      "catalysts": [
+        "social momentum",
+        "low float",
+        "upcoming CEX listing rumour"
+      ],
+      "risks": [
+        "thin liquidity",
+        "whale concentration",
+        "market sentiment reversal"
+      ],
+      "reasoning": "[DRY RUN] FRENS shows new_launch pattern on Solana. Social score 72 with MEDIUM rug risk. Entry timing favourable given current market conditions."
+    },
+    {
+      "symbol": "COINCOIN",
+      "chain": "Base",
+      "contract_address": "PLACEHOLDER_COINCOIN_BASE",
+      "market_cap": "2100000",
+      "generated_at": "2026-06-01T19:08:05.070Z",
+      "signal": "AVOID",
+      "confidence": 82,
+      "entry_strategy": "Buy on first green 15m candle with volume confirmation above 20-period MA",
+      "take_profit_targets": [
+        "+25%",
+        "+60%",
+        "+120%"
+      ],
+      "stop_loss": "-18% below entry",
+      "hold_duration": "swing (days)",
+      "catalysts": [
+        "social momentum",
+        "low float",
+        "upcoming CEX listing rumour"
+      ],
+      "risks": [
+        "thin liquidity",
+        "whale concentration",
+        "market sentiment reversal"
+      ],
+      "reasoning": "[DRY RUN] COINCOIN shows new_launch pattern on Base. Social score 65 with HIGH rug risk. Entry timing favourable given current market conditions."
+    },
+    {
+      "symbol": "GOATSEUS",
+      "chain": "Solana",
+      "contract_address": "PLACEHOLDER_GOATSEUS_SOL",
+      "market_cap": "18000000",
+      "generated_at": "2026-06-01T19:08:05.070Z",
+      "signal": "AVOID",
+      "confidence": 86,
+      "entry_strategy": "Buy on first green 15m candle with volume confirmation above 20-period MA",
+      "take_profit_targets": [
+        "+25%",
+        "+60%",
+        "+120%"
+      ],
+      "stop_loss": "-18% below entry",
+      "hold_duration": "swing (days)",
+      "catalysts": [
+        "social momentum",
+        "low float",
+        "upcoming CEX listing rumour"
+      ],
+      "risks": [
+        "thin liquidity",
+        "whale concentration",
+        "market sentiment reversal"
+      ],
+      "reasoning": "[DRY RUN] GOATSEUS shows volume_spike pattern on Solana. Social score 81 with MEDIUM rug risk. Entry timing favourable given current market conditions."
+    },
+    {
+      "symbol": "BONK",
+      "chain": "Solana",
+      "contract_address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "market_cap": "2100000000",
+      "generated_at": "2026-06-01T19:08:05.070Z",
+      "signal": "WATCH",
+      "confidence": 81,
+      "entry_strategy": "Buy on first green 15m candle with volume confirmation above 20-period MA",
+      "take_profit_targets": [
+        "+25%",
+        "+60%",
+        "+120%"
+      ],
+      "stop_loss": "-18% below entry",
+      "hold_duration": "swing (days)",
+      "catalysts": [
+        "social momentum",
+        "low float",
+        "upcoming CEX listing rumour"
+      ],
+      "risks": [
+        "thin liquidity",
+        "whale concentration",
+        "market sentiment reversal"
+      ],
+      "reasoning": "[DRY RUN] BONK shows whale_accumulation pattern on Solana. Social score 93 with LOW rug risk. Entry timing favourable given current market conditions."
+    }
+  ]
+}

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧠 Crypto Signal Command Center</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0a0c0f;
+      --panel: #111318;
+      --border: #1e2430;
+      --green: #00ff88;
+      --red: #ff3355;
+      --yellow: #ffd700;
+      --blue: #4488ff;
+      --purple: #aa66ff;
+      --dim: #4a5568;
+      --text: #c8d0e0;
+      --mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 12px;
+      min-height: 100vh;
+    }
+
+    /* ── Top Bar ── */
+    header {
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header .logo {
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--green);
+      letter-spacing: 2px;
+    }
+
+    header .status-bar {
+      display: flex;
+      gap: 20px;
+      font-size: 11px;
+    }
+
+    .stat-pill {
+      background: #1a1f2e;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 10px;
+    }
+
+    .stat-pill span { color: var(--green); font-weight: bold; }
+    .stat-pill.warn span { color: var(--yellow); }
+    .stat-pill.danger span { color: var(--red); }
+
+    .pulse {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+      margin-right: 6px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--green); }
+      50% { opacity: 0.4; box-shadow: none; }
+    }
+
+    /* ── Layout ── */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 12px;
+      padding: 12px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+    }
+
+    .panel h2 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--dim);
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .panel h2 .icon { margin-right: 6px; }
+
+    /* ── Signals Feed ── */
+    .signals-panel { grid-column: 1 / 3; }
+
+    .signal-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .signal-row:last-child { border-bottom: none; }
+
+    .signal-badge {
+      font-size: 10px;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 3px;
+      min-width: 90px;
+      text-align: center;
+    }
+
+    .STRONG_BUY { background: rgba(0,255,136,0.2); color: var(--green); border: 1px solid var(--green); }
+    .BUY        { background: rgba(68,136,255,0.2); color: var(--blue);  border: 1px solid var(--blue); }
+    .WATCH      { background: rgba(255,215,0,0.15); color: var(--yellow);border: 1px solid var(--yellow); }
+    .AVOID      { background: rgba(255,51,85,0.2);  color: var(--red);   border: 1px solid var(--red); }
+
+    .signal-symbol { color: #fff; font-weight: bold; min-width: 80px; }
+    .signal-chain  { color: var(--purple); min-width: 60px; }
+    .signal-conf   { color: var(--dim); min-width: 50px; }
+    .signal-hold   { color: var(--blue); min-width: 80px; }
+    .signal-tp     { color: var(--green); flex: 1; }
+    .signal-stop   { color: var(--red); min-width: 70px; }
+    .signal-time   { color: var(--dim); font-size: 10px; }
+
+    /* ── Portfolio Chart ── */
+    .chart-panel { grid-column: 3 / 4; grid-row: 1 / 3; }
+
+    /* ── Risk Alerts ── */
+    .alert-item {
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      border-radius: 4px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .alert-HIGH   { background: rgba(255,51,85,0.1);   border-left: 3px solid var(--red); }
+    .alert-MEDIUM { background: rgba(255,215,0,0.08);  border-left: 3px solid var(--yellow); }
+    .alert-LOW    { background: rgba(68,136,255,0.08); border-left: 3px solid var(--blue); }
+
+    .alert-badge {
+      font-size: 9px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    /* ── Whale Tracker ── */
+    .whale-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .whale-row:last-child { border-bottom: none; }
+    .whale-buy  { color: var(--green); }
+    .whale-sell { color: var(--red); }
+
+    /* ── Sentiment Heatmap ── */
+    .heatmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      gap: 6px;
+    }
+
+    .heatmap-cell {
+      border-radius: 4px;
+      padding: 8px 6px;
+      text-align: center;
+      cursor: default;
+    }
+
+    .heatmap-cell .ticker { font-weight: bold; font-size: 11px; }
+    .heatmap-cell .score  { font-size: 10px; margin-top: 2px; }
+
+    /* ── Positions Table ── */
+    .positions-panel { grid-column: 1 / 3; }
+
+    table { width: 100%; border-collapse: collapse; }
+
+    th {
+      text-align: left;
+      color: var(--dim);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td { padding: 6px 8px; border-bottom: 1px solid #141820; }
+    tr:hover td { background: #141820; }
+
+    .pnl-pos { color: var(--green); }
+    .pnl-neg { color: var(--red); }
+
+    /* ── News Feed ── */
+    .news-item {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+
+    .news-item:last-child { border-bottom: none; }
+    .news-item .news-tag {
+      color: var(--purple);
+      font-size: 10px;
+      margin-right: 6px;
+    }
+
+    .news-item .news-time { color: var(--dim); font-size: 10px; float: right; }
+
+    /* ── Countdown ── */
+    .refresh-bar {
+      background: var(--border);
+      height: 2px;
+      margin-top: 8px;
+      border-radius: 1px;
+      overflow: hidden;
+    }
+
+    .refresh-fill {
+      height: 100%;
+      background: var(--green);
+      width: 100%;
+      transition: width linear;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--dim);
+      padding: 8px;
+      font-size: 10px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span class="pulse"></span>CRYPTO SIGNAL COMMAND CENTER</div>
+  <div class="status-bar">
+    <div class="stat-pill">Capital <span id="h-capital">$10,000</span></div>
+    <div class="stat-pill">Deployed <span id="h-deployed">$0</span></div>
+    <div class="stat-pill">Open <span id="h-open">0</span>/5</div>
+    <div class="stat-pill">Win Rate <span id="h-winrate">—</span></div>
+    <div class="stat-pill" id="halt-pill" style="display:none">🚨 <span>HALTED</span></div>
+    <div class="stat-pill">Refresh in <span id="countdown">60</span>s</div>
+  </div>
+</header>
+
+<div class="grid">
+
+  <!-- ── 1. Live Signals Feed ── -->
+  <div class="panel signals-panel">
+    <h2><span class="icon">🔴</span>LIVE SIGNALS <span style="color:var(--dim);font-size:9px" id="signals-ts"></span></h2>
+    <div id="signals-feed"></div>
+    <div class="refresh-bar"><div class="refresh-fill" id="refresh-fill"></div></div>
+  </div>
+
+  <!-- ── 2. Risk Alerts ── -->
+  <div class="panel">
+    <h2><span class="icon">🚨</span>RISK ALERTS</h2>
+    <div id="alerts-panel"></div>
+  </div>
+
+  <!-- ── 3. Portfolio Chart (spans 2 rows) ── -->
+  <div class="panel chart-panel">
+    <h2><span class="icon">📊</span>PORTFOLIO PERFORMANCE</h2>
+    <canvas id="pnlChart" height="300"></canvas>
+    <div style="margin-top:12px">
+      <canvas id="allocationChart" height="160"></canvas>
+    </div>
+  </div>
+
+  <!-- ── 4. Whale Tracker ── -->
+  <div class="panel">
+    <h2><span class="icon">🐋</span>WHALE ACTIVITY</h2>
+    <div id="whale-feed"></div>
+  </div>
+
+  <!-- ── 5. Sentiment Heatmap ── -->
+  <div class="panel">
+    <h2><span class="icon">💬</span>SENTIMENT HEATMAP</h2>
+    <div class="heatmap-grid" id="heatmap"></div>
+  </div>
+
+  <!-- ── 6. Open Positions ── -->
+  <div class="panel positions-panel">
+    <h2><span class="icon">📋</span>OPEN POSITIONS — LIVE PnL</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th><th>Chain</th><th>Entry</th><th>Current</th>
+          <th>Size USD</th><th>PnL %</th><th>PnL $</th><th>Stop</th><th>TP1</th>
+        </tr>
+      </thead>
+      <tbody id="positions-table"></tbody>
+    </table>
+  </div>
+
+  <!-- ── 7. News Feed ── -->
+  <div class="panel">
+    <h2><span class="icon">📰</span>CRYPTO NEWS</h2>
+    <div id="news-feed"></div>
+  </div>
+
+</div>
+
+<footer>
+  Research &amp; paper trading system only — no real money execution &nbsp;|&nbsp;
+  Data refreshes every 60 seconds &nbsp;|&nbsp;
+  Load <code>/data/*.json</code> files to populate with live pipeline output
+</footer>
+
+<script>
+// ============================================================
+// DATA LOADER — reads JSON files produced by the pipeline
+// Falls back to rich mock data if files aren't available yet
+// ============================================================
+
+async function loadJSON(path) {
+  try {
+    const r = await fetch(path);
+    if (!r.ok) throw new Error();
+    return await r.json();
+  } catch {
+    return null;
+  }
+}
+
+// ── Mock generators ──────────────────────────────────────────
+function mockSignals() {
+  const coins = [
+    { symbol: "PUNCH",      chain: "Solana", signal: "STRONG_BUY", conf: 84, hold: "swing (days)", tp: ["+35%","+80%","+160%"], stop: "-18%", time: "just now" },
+    { symbol: "GOATSEUS",   chain: "Solana", signal: "BUY",        conf: 71, hold: "swing (days)", tp: ["+25%","+55%","+110%"], stop: "-15%", time: "2m ago"  },
+    { symbol: "FRENS",      chain: "Solana", signal: "BUY",        conf: 63, hold: "scalp (mins)", tp: ["+20%","+40%","+80%"],  stop: "-20%", time: "5m ago"  },
+    { symbol: "BONK",       chain: "Solana", signal: "WATCH",      conf: 55, hold: "hold (weeks)", tp: ["+15%","+30%","+60%"],  stop: "-12%", time: "11m ago" },
+    { symbol: "COINCOIN",   chain: "Base",   signal: "AVOID",      conf: 22, hold: "—",            tp: ["—","—","—"],           stop: "—",    time: "15m ago" },
+    { symbol: "DEGENINME",  chain: "Base",   signal: "AVOID",      conf: 18, hold: "—",            tp: ["—","—","—"],           stop: "—",    time: "18m ago" },
+    { symbol: "SOLIDLAUNCH",chain: "Base",   signal: "BUY",        conf: 67, hold: "swing (days)", tp: ["+30%","+65%","+120%"], stop: "-16%", time: "22m ago" },
+    { symbol: "TRUMP",      chain: "Solana", signal: "WATCH",      conf: 48, hold: "hold (weeks)", tp: ["+10%","+22%","+45%"],  stop: "-10%", time: "30m ago" },
+  ];
+  return { signals: coins, generated_at: new Date().toISOString() };
+}
+
+function mockPortfolio() {
+  return {
+    total_capital: 10843.20,
+    deployed: 2140.55,
+    cash_reserve: 8702.65,
+    open_positions: [
+      { symbol: "PUNCH", chain: "Solana", entry_price: 0.00000391, current_price: 0.00000523, position_size_usd: 1200, take_profit_1: 0.0000055, stop_loss: 0.0000032 },
+      { symbol: "GOATSEUS", chain: "Solana", entry_price: 0.01947, current_price: 0.01822, position_size_usd: 940, take_profit_1: 0.027, stop_loss: 0.016 },
+    ],
+    closed_trades: [
+      { symbol: "FRENS", pnl_pct: 42.3, pnl_usd: 423, closed_at: "2026-05-30" },
+      { symbol: "BONK",  pnl_pct: -8.1, pnl_usd: -81, closed_at: "2026-05-29" },
+      { symbol: "PUNCH", pnl_pct: 91.2, pnl_usd: 912, closed_at: "2026-05-28" },
+      { symbol: "COINCOIN", pnl_pct: -18.5, pnl_usd: -185, closed_at: "2026-05-27" },
+      { symbol: "GOATSEUS", pnl_pct: 34.7, pnl_usd: 347, closed_at: "2026-05-26" },
+    ],
+    win_rate: "60%",
+    avg_return_per_trade: "28.3%",
+    halted: false,
+  };
+}
+
+function mockWhales() {
+  return [
+    { type: "buy",  symbol: "PUNCH",   amount: 47000, label: "Solana Smart Money #1", time: "7m ago" },
+    { type: "buy",  symbol: "GOATSEUS",amount: 18500, label: "Solana Smart Money #1", time: "12m ago" },
+    { type: "sell", symbol: "FRENS",   amount: 23000, label: "Known Meme Trader",     time: "20m ago" },
+    { type: "buy",  symbol: "BONK",    amount: 152000,label: "Whale Cluster #7",      time: "34m ago" },
+  ];
+}
+
+function mockSentiment() {
+  return [
+    { ticker: "PUNCH",   score: 72  },
+    { ticker: "GOATSEUS",score: 58  },
+    { ticker: "FRENS",   score: 41  },
+    { ticker: "BONK",    score: 85  },
+    { ticker: "TRUMP",   score: 33  },
+    { ticker: "COINCOIN",score: -21 },
+    { ticker: "DEGEN",   score: -48 },
+    { ticker: "SOLIDL",  score: 64  },
+  ];
+}
+
+function mockNews() {
+  return [
+    { tag: "BONK",    headline: "BONK whale accumulation accelerates ahead of Q2 end", time: "4m ago" },
+    { tag: "MARKET",  headline: "Total crypto market cap holds above $3.2T despite BTC consolidation", time: "9m ago" },
+    { tag: "SOLANA",  headline: "Solana DEX volume breaks $2.57B daily ATH", time: "18m ago" },
+    { tag: "PUNCH",   headline: "PUNCH community vote passes 2% burn proposal", time: "25m ago" },
+    { tag: "BASE",    headline: "Base TVL reaches $12B as meme season intensifies", time: "41m ago" },
+    { tag: "ALERT",   headline: "SEC crypto guidance update expected this week — watch meme coin volatility", time: "1h ago" },
+  ];
+}
+
+function mockAlerts() {
+  return [
+    { level: "HIGH",   msg: "COINCOIN: mint authority still active — position blocked" },
+    { level: "MEDIUM", msg: "DEGENINME: deployer wallet < 7 days old — elevated rug risk" },
+    { level: "MEDIUM", msg: "Portfolio 60% deployed — approaching max exposure" },
+    { level: "LOW",    msg: "FRENS: whale sold $23k — monitor for further distribution" },
+    { level: "LOW",    msg: "Scheduler: last run 3 minutes ago — all systems nominal" },
+  ];
+}
+
+// ============================================================
+// RENDER FUNCTIONS
+// ============================================================
+
+function renderSignals(data) {
+  const feed = document.getElementById("signals-feed");
+  const ts   = document.getElementById("signals-ts");
+  if (!data) return;
+  ts.textContent = new Date(data.generated_at || Date.now()).toLocaleTimeString();
+  feed.innerHTML = data.signals.map(s => `
+    <div class="signal-row">
+      <div class="signal-badge ${s.signal}">${s.signal.replace("_"," ")}</div>
+      <div class="signal-symbol">$${s.symbol}</div>
+      <div class="signal-chain">${s.chain}</div>
+      <div class="signal-conf">${s.conf || s.confidence || "—"}%</div>
+      <div class="signal-hold">${s.hold || s.hold_duration || "—"}</div>
+      <div class="signal-tp">${Array.isArray(s.tp || s.take_profit_targets) ? (s.tp||s.take_profit_targets).join(" / ") : "—"}</div>
+      <div class="signal-stop">${s.stop || s.stop_loss || "—"}</div>
+      <div class="signal-time">${s.time || ""}</div>
+    </div>`).join("");
+}
+
+function renderAlerts(alerts) {
+  const el = document.getElementById("alerts-panel");
+  el.innerHTML = alerts.map(a => `
+    <div class="alert-item alert-${a.level}">
+      <span class="alert-badge" style="background:${a.level==="HIGH"?"var(--red)":a.level==="MEDIUM"?"var(--yellow)":"var(--blue)"}20;color:${a.level==="HIGH"?"var(--red)":a.level==="MEDIUM"?"var(--yellow)":"var(--blue)"}">${a.level}</span>
+      <span>${a.msg}</span>
+    </div>`).join("");
+}
+
+function renderWhales(whales) {
+  const el = document.getElementById("whale-feed");
+  el.innerHTML = whales.map(w => `
+    <div class="whale-row">
+      <span class="whale-${w.type}">${w.type === "buy" ? "▲" : "▼"}</span>
+      <span style="color:#fff;min-width:80px">$${w.symbol}</span>
+      <span class="whale-${w.type}">$${(w.amount||w.amount_usd||0).toLocaleString()}</span>
+      <span style="color:var(--dim);flex:1">${w.label}</span>
+      <span style="color:var(--dim);font-size:10px">${w.time}</span>
+    </div>`).join("");
+}
+
+function renderHeatmap(items) {
+  const el = document.getElementById("heatmap");
+  el.innerHTML = items.map(item => {
+    const s = item.score || item.sentiment_score || 0;
+    const green = Math.max(0, Math.round((s / 100) * 200));
+    const red   = Math.max(0, Math.round((-s / 100) * 200));
+    const bg    = s >= 0 ? `rgba(0,${green+55},80,0.25)` : `rgba(${red+55},0,50,0.25)`;
+    const border= s >= 0 ? `rgba(0,${green+55},80,0.6)` : `rgba(${red+55},0,50,0.6)`;
+    return `
+      <div class="heatmap-cell" style="background:${bg};border:1px solid ${border}">
+        <div class="ticker">$${item.ticker}</div>
+        <div class="score" style="color:${s>=0?"var(--green)":"var(--red)"}">${s>0?"+":""}${s}</div>
+      </div>`;
+  }).join("");
+}
+
+function renderPositions(portfolio) {
+  const tbody = document.getElementById("positions-table");
+  const header = document.getElementById("h-capital");
+  const hDep   = document.getElementById("h-deployed");
+  const hOpen  = document.getElementById("h-open");
+  const hWin   = document.getElementById("h-winrate");
+  const hHalt  = document.getElementById("halt-pill");
+
+  if (!portfolio) return;
+
+  header.textContent  = "$" + (portfolio.total_capital||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+  hDep.textContent    = "$" + (portfolio.deployed||0).toFixed(2);
+  hOpen.textContent   = (portfolio.open_positions||[]).length;
+  hWin.textContent    = portfolio.win_rate || "—";
+
+  if (portfolio.halted) hHalt.style.display = "";
+  else hHalt.style.display = "none";
+
+  const positions = portfolio.open_positions || [];
+  if (!positions.length) {
+    tbody.innerHTML = `<tr><td colspan="9" style="color:var(--dim);text-align:center;padding:16px">No open positions</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = positions.map(p => {
+    const cp = p.current_price || p.entry_price;
+    const pnlPct = ((cp - p.entry_price) / p.entry_price * 100).toFixed(1);
+    const pnlUsd = ((cp - p.entry_price) * (p.position_size_usd / p.entry_price)).toFixed(2);
+    const cls = parseFloat(pnlPct) >= 0 ? "pnl-pos" : "pnl-neg";
+    return `
+      <tr>
+        <td style="color:#fff;font-weight:bold">$${p.symbol}</td>
+        <td style="color:var(--purple)">${p.chain}</td>
+        <td>$${p.entry_price}</td>
+        <td>$${cp}</td>
+        <td>$${(p.position_size_usd||0).toFixed(2)}</td>
+        <td class="${cls}">${pnlPct >= 0 ? "+" : ""}${pnlPct}%</td>
+        <td class="${cls}">${pnlUsd >= 0 ? "+" : ""}$${pnlUsd}</td>
+        <td style="color:var(--red)">$${p.stop_loss}</td>
+        <td style="color:var(--green)">$${p.take_profit_1}</td>
+      </tr>`;
+  }).join("");
+}
+
+function renderNews(news) {
+  const el = document.getElementById("news-feed");
+  el.innerHTML = news.map(n => `
+    <div class="news-item">
+      <span class="news-tag">[${n.tag}]</span>${n.headline}
+      <span class="news-time">${n.time}</span>
+    </div>`).join("");
+}
+
+// ============================================================
+// CHARTS
+// ============================================================
+let pnlChart, allocChart;
+
+function initCharts(portfolio) {
+  const pnlCtx = document.getElementById("pnlChart").getContext("2d");
+  const allocCtx = document.getElementById("allocationChart").getContext("2d");
+
+  // Build cumulative PnL curve from closed trades
+  const trades = (portfolio?.closed_trades || []).slice().sort(
+    (a,b) => new Date(a.closed_at) - new Date(b.closed_at)
+  );
+
+  let running = 10000;
+  const labels = ["Start"];
+  const values = [running];
+  trades.forEach(t => {
+    running += (t.pnl_usd || 0);
+    labels.push(t.symbol);
+    values.push(parseFloat(running.toFixed(2)));
+  });
+  if (portfolio?.deployed > 0) {
+    labels.push("Now");
+    values.push(parseFloat((running + (portfolio.deployed||0)).toFixed(2)));
+  }
+
+  const gradient = pnlCtx.createLinearGradient(0, 0, 0, 300);
+  gradient.addColorStop(0, "rgba(0,255,136,0.3)");
+  gradient.addColorStop(1, "rgba(0,255,136,0)");
+
+  pnlChart = new Chart(pnlCtx, {
+    type: "line",
+    data: {
+      labels,
+      datasets: [{
+        label: "Portfolio Value ($)",
+        data: values,
+        borderColor: "#00ff88",
+        backgroundColor: gradient,
+        borderWidth: 2,
+        pointRadius: 3,
+        pointBackgroundColor: "#00ff88",
+        tension: 0.4,
+        fill: true,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { labels: { color: "#c8d0e0", font: { family: "monospace" } } }
+      },
+      scales: {
+        x: { ticks: { color: "#4a5568" }, grid: { color: "#1e2430" } },
+        y: { ticks: { color: "#4a5568", callback: v => "$" + v.toLocaleString() }, grid: { color: "#1e2430" } }
+      }
+    }
+  });
+
+  // Allocation donut
+  const cashPct = ((portfolio?.cash_reserve || 10000) / (portfolio?.total_capital || 10000) * 100).toFixed(1);
+  const deployedPct = (100 - cashPct).toFixed(1);
+
+  allocChart = new Chart(allocCtx, {
+    type: "doughnut",
+    data: {
+      labels: ["Cash Reserve", "Deployed"],
+      datasets: [{
+        data: [cashPct, deployedPct],
+        backgroundColor: ["rgba(68,136,255,0.6)", "rgba(0,255,136,0.6)"],
+        borderColor: ["#4488ff", "#00ff88"],
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      responsive: true,
+      cutout: "65%",
+      plugins: {
+        legend: { labels: { color: "#c8d0e0", font: { family: "monospace", size: 10 } } }
+      }
+    }
+  });
+}
+
+// ============================================================
+// REFRESH LOOP
+// ============================================================
+let countdown = 60;
+let fillInterval;
+
+function startCountdown() {
+  countdown = 60;
+  const fill = document.getElementById("refresh-fill");
+  fill.style.transition = "none";
+  fill.style.width = "100%";
+  setTimeout(() => {
+    fill.style.transition = `width ${60}s linear`;
+    fill.style.width = "0%";
+  }, 50);
+}
+
+async function refresh() {
+  const [signalsData, portfolioData] = await Promise.all([
+    loadJSON("../data/signals.json"),
+    loadJSON("../data/portfolio-tracker.json"),
+  ]);
+
+  const signals   = signalsData   || mockSignals();
+  const portfolio = portfolioData || mockPortfolio();
+
+  renderSignals(signals);
+  renderAlerts(mockAlerts());
+  renderWhales(mockWhales());
+  renderHeatmap(mockSentiment());
+  renderPositions(portfolio);
+  renderNews(mockNews());
+
+  if (pnlChart) { pnlChart.destroy(); allocChart.destroy(); }
+  initCharts(portfolio);
+
+  document.getElementById("signals-ts").textContent = new Date().toLocaleTimeString();
+  startCountdown();
+}
+
+// Countdown ticker
+setInterval(() => {
+  countdown--;
+  document.getElementById("countdown").textContent = Math.max(0, countdown);
+  if (countdown <= 0) {
+    countdown = 60;
+    refresh();
+  }
+}, 1000);
+
+// Initial load
+refresh();
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+{
+  "generated_at": "2026-06-01T00:00:00Z",
+  "source_note": "Populated via Phase 1 web intelligence scan. In live mode, scheduler.js refreshes this every 15 minutes.",
+  "coins": [
+    {
+      "symbol": "PUNCH",
+      "chain": "Solana",
+      "contract_address": "PLACEHOLDER_PUNCH_SOL",
+      "market_cap": "30000000",
+      "24h_volume": "7800000",
+      "liquidity_usd": "1200000",
+      "holder_count": "8400",
+      "age_days": "12",
+      "social_score": "87",
+      "rug_risk_level": "MEDIUM",
+      "opportunity_type": "volume_spike",
+      "source_links": [
+        "https://dexscreener.com",
+        "https://www.dextools.io/news/solana-meme-coins-trending-weekly-report-2026"
+      ]
+    },
+    {
+      "symbol": "FRENS",
+      "chain": "Solana",
+      "contract_address": "PLACEHOLDER_FRENS_SOL",
+      "market_cap": "4500000",
+      "24h_volume": "2100000",
+      "liquidity_usd": "340000",
+      "holder_count": "3200",
+      "age_days": "6",
+      "social_score": "72",
+      "rug_risk_level": "MEDIUM",
+      "opportunity_type": "new_launch",
+      "source_links": [
+        "https://www.bitrue.com/blog/top-memecoins-on-dexscreener"
+      ]
+    },
+    {
+      "symbol": "COINCOIN",
+      "chain": "Base",
+      "contract_address": "PLACEHOLDER_COINCOIN_BASE",
+      "market_cap": "2100000",
+      "24h_volume": "980000",
+      "liquidity_usd": "180000",
+      "holder_count": "1900",
+      "age_days": "3",
+      "social_score": "65",
+      "rug_risk_level": "HIGH",
+      "opportunity_type": "new_launch",
+      "source_links": [
+        "https://www.bitrue.com/blog/top-memecoins-on-dexscreener"
+      ]
+    },
+    {
+      "symbol": "DEGENINME",
+      "chain": "Base",
+      "contract_address": "PLACEHOLDER_DEGENINME_BASE",
+      "market_cap": "1300000",
+      "24h_volume": "620000",
+      "liquidity_usd": "95000",
+      "holder_count": "1100",
+      "age_days": "8",
+      "social_score": "58",
+      "rug_risk_level": "HIGH",
+      "opportunity_type": "volume_spike",
+      "source_links": [
+        "https://www.bitrue.com/blog/top-memecoins-on-dexscreener"
+      ]
+    },
+    {
+      "symbol": "GOATSEUS",
+      "chain": "Solana",
+      "contract_address": "PLACEHOLDER_GOATSEUS_SOL",
+      "market_cap": "18000000",
+      "24h_volume": "4300000",
+      "liquidity_usd": "820000",
+      "holder_count": "6700",
+      "age_days": "21",
+      "social_score": "81",
+      "rug_risk_level": "MEDIUM",
+      "opportunity_type": "volume_spike",
+      "source_links": [
+        "https://99bitcoins.com/cryptocurrency/best-solana-meme-coins/"
+      ]
+    },
+    {
+      "symbol": "BONK",
+      "chain": "Solana",
+      "contract_address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "market_cap": "2100000000",
+      "24h_volume": "380000000",
+      "liquidity_usd": "45000000",
+      "holder_count": "920000",
+      "age_days": "550",
+      "social_score": "93",
+      "rug_risk_level": "LOW",
+      "opportunity_type": "whale_accumulation",
+      "source_links": [
+        "https://www.coingecko.com/en/categories/solana-meme-coins"
+      ]
+    },
+    {
+      "symbol": "TRUMP",
+      "chain": "Solana",
+      "contract_address": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "market_cap": "1800000000",
+      "24h_volume": "310000000",
+      "liquidity_usd": "38000000",
+      "holder_count": "740000",
+      "age_days": "490",
+      "social_score": "88",
+      "rug_risk_level": "MEDIUM",
+      "opportunity_type": "whale_accumulation",
+      "source_links": [
+        "https://coindcx.com/blog/crypto-highlights/top-memes-coins/"
+      ]
+    }
+  ]
+}

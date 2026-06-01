@@ -1,0 +1,25 @@
+{
+  "name": "crypto-signal-system",
+  "version": "1.0.0",
+  "description": "AI-powered crypto meme coin research and paper trading system",
+  "type": "module",
+  "scripts": {
+    "screen":     "node screener/rugcheck.js --dry-run",
+    "signals":    "node signals/engine.js --dry-run",
+    "sentiment":  "node signals/sentiment.js --ticker BONK --dry-run",
+    "momentum":   "node strategies/momentum.js --dry-run",
+    "sniper":     "node strategies/new-launch-sniper.js --dry-run",
+    "cex":        "node strategies/cex-listing-play.js --dry-run",
+    "whale":      "node strategies/whale-follow.js --dry-run",
+    "risk":       "node risk/manager.js --dry-run",
+    "paper":      "node automation/paper-trader.js --dry-run",
+    "report":     "node automation/paper-trader.js --report --dry-run",
+    "alerts":     "node automation/alert-bot.js all --dry-run",
+    "schedule":   "node automation/scheduler.js --once --dry-run",
+    "run-all":    "node automation/scheduler.js --once --dry-run",
+    "dashboard":  "echo 'Open dashboard/index.html in your browser'"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "total_capital": 10000,
+  "deployed": 0,
+  "cash_reserve": 10000,
+  "open_positions": [],
+  "closed_trades": [],
+  "win_rate": null,
+  "avg_return_per_trade": null,
+  "best_trade": null,
+  "worst_trade": null,
+  "halted": false,
+  "halt_reason": null,
+  "last_updated": "2026-06-01T00:00:00Z"
+}

@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-06-01T19:08:08.408Z",
+  "dry_run": true,
+  "strategies": [
+    {
+      "announcement_id": "ANN_001",
+      "symbol": "NEWTOKEN",
+      "exchange": "Binance",
+      "listing_date": "2026-06-04T19:08:08.407Z",
+      "days_until_listing": "3.0",
+      "current_price": 0.0045,
+      "historical_model": {
+        "median_pump_listing_day_pct": 85,
+        "median_dump_day3_pct": -35,
+        "median_recovery_week2_pct": 25,
+        "note": "Strong immediate pump, sharp correction, partial recovery"
+      },
+      "strategy": {
+        "phase_1_accumulation": {
+          "action": "BUY",
+          "entry_range": [
+            0.00441,
+            0.004725
+          ],
+          "rationale": "Pre-listing accumulation — expect 34% run-up before listing day",
+          "position_size_pct": 1.5
+        },
+        "phase_2_listing_day": {
+          "action": "SELL_50_PCT",
+          "target_price": 0.008324999999999999,
+          "rationale": "Sell half on listing day at ~85% gain"
+        },
+        "phase_3_correction": {
+          "action": "BUY_BACK_DIP",
+          "target_price": 0.005411249999999999,
+          "rationale": "Expected 35% dip days 2-4 post-listing"
+        },
+        "phase_4_recovery": {
+          "action": "HOLD_TO_RECOVERY",
+          "target_price": 0.005625,
+          "rationale": "Partial recovery target week 2"
+        },
+        "stop_loss": 0.0036899999999999997,
+        "max_loss_pct": -18
+      },
+      "generated_at": "2026-06-01T19:08:08.407Z"
+    },
+    {
+      "announcement_id": "ANN_002",
+      "symbol": "MEMEBLAST",
+      "exchange": "Coinbase",
+      "listing_date": "2026-06-08T19:08:08.407Z",
+      "days_until_listing": "7.0",
+      "current_price": 0.00012,
+      "historical_model": {
+        "median_pump_listing_day_pct": 40,
+        "median_dump_day3_pct": -20,
+        "median_recovery_week2_pct": 15,
+        "note": "Moderate pump, gentler correction (Coinbase effect is weakening)"
+      },
+      "strategy": {
+        "phase_1_accumulation": {
+          "action": "BUY",
+          "entry_range": [
+            0.0001176,
+            0.000126
+          ],
+          "rationale": "Pre-listing accumulation — expect 16% run-up before listing day",
+          "position_size_pct": 1.5
+        },
+        "phase_2_listing_day": {
+          "action": "SELL_50_PCT",
+          "target_price": 0.000168,
+          "rationale": "Sell half on listing day at ~40% gain"
+        },
+        "phase_3_correction": {
+          "action": "BUY_BACK_DIP",
+          "target_price": 0.0001344,
+          "rationale": "Expected 20% dip days 2-4 post-listing"
+        },
+        "phase_4_recovery": {
+          "action": "HOLD_TO_RECOVERY",
+          "target_price": 0.000138,
+          "rationale": "Partial recovery target week 2"
+        },
+        "stop_loss": 0.00009839999999999999,
+        "max_loss_pct": -18
+      },
+      "generated_at": "2026-06-01T19:08:08.407Z"
+    }
+  ]
+}

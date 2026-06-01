@@ -1,0 +1,196 @@
+{
+  "generated_at": "2026-06-01T19:08:04.635Z",
+  "dry_run": true,
+  "summary": {
+    "pass": 2,
+    "warn": 2,
+    "fail": 3
+  },
+  "results": [
+    {
+      "symbol": "PUNCH",
+      "chain": "Solana",
+      "contract_address": "PLACEHOLDER_PUNCH_SOL",
+      "verdict": "FAIL",
+      "score": 0,
+      "flags": [
+        "Mint authority still active",
+        "Top 10 wallets > 30% supply",
+        "Liquidity not locked",
+        "Contract not verified on-chain",
+        "Dev wallet sold > 10% within 48h",
+        "Deployer wallet < 7 days old (0d old)"
+      ],
+      "checked_at": "2026-06-01T19:08:04.634Z",
+      "raw_checks": {
+        "mintAuthorityEnabled": true,
+        "topWalletsConcentrated": true,
+        "liquidityLocked": false,
+        "liquidityLockDays": 0,
+        "contractVerified": false,
+        "devDumped": true,
+        "honeypot": false,
+        "buyTax": 0,
+        "sellTax": 0,
+        "deployerAgeDays": 0,
+        "liquidityUsd": 1200000
+      }
+    },
+    {
+      "symbol": "FRENS",
+      "chain": "Solana",
+      "contract_address": "PLACEHOLDER_FRENS_SOL",
+      "verdict": "PASS",
+      "score": 100,
+      "flags": [],
+      "checked_at": "2026-06-01T19:08:04.634Z",
+      "raw_checks": {
+        "mintAuthorityEnabled": false,
+        "topWalletsConcentrated": false,
+        "liquidityLocked": true,
+        "liquidityLockDays": 60,
+        "contractVerified": true,
+        "devDumped": false,
+        "honeypot": false,
+        "buyTax": 3,
+        "sellTax": 4,
+        "deployerAgeDays": 20,
+        "liquidityUsd": 340000
+      }
+    },
+    {
+      "symbol": "COINCOIN",
+      "chain": "Base",
+      "contract_address": "PLACEHOLDER_COINCOIN_BASE",
+      "verdict": "WARN",
+      "score": 65,
+      "flags": [
+        "Buy/sell tax > 5% (buy:4.5% sell:6%)"
+      ],
+      "checked_at": "2026-06-01T19:08:04.634Z",
+      "raw_checks": {
+        "mintAuthorityEnabled": false,
+        "topWalletsConcentrated": false,
+        "liquidityLocked": true,
+        "liquidityLockDays": 90,
+        "contractVerified": true,
+        "devDumped": false,
+        "honeypot": false,
+        "buyTax": 4.5,
+        "sellTax": 6,
+        "deployerAgeDays": 30,
+        "liquidityUsd": 180000
+      }
+    },
+    {
+      "symbol": "DEGENINME",
+      "chain": "Base",
+      "contract_address": "PLACEHOLDER_DEGENINME_BASE",
+      "verdict": "FAIL",
+      "score": 0,
+      "flags": [
+        "Mint authority still active",
+        "Top 10 wallets > 30% supply",
+        "Liquidity not locked",
+        "Contract not verified on-chain",
+        "Dev wallet sold > 10% within 48h",
+        "Deployer wallet < 7 days old (0d old)"
+      ],
+      "checked_at": "2026-06-01T19:08:04.634Z",
+      "raw_checks": {
+        "mintAuthorityEnabled": true,
+        "topWalletsConcentrated": true,
+        "liquidityLocked": false,
+        "liquidityLockDays": 0,
+        "contractVerified": false,
+        "devDumped": true,
+        "honeypot": false,
+        "buyTax": 0,
+        "sellTax": 0,
+        "deployerAgeDays": 0,
+        "liquidityUsd": 95000
+      }
+    },
+    {
+      "symbol": "GOATSEUS",
+      "chain": "Solana",
+      "contract_address": "PLACEHOLDER_GOATSEUS_SOL",
+      "verdict": "WARN",
+      "score": 65,
+      "flags": [
+        "Buy/sell tax > 5% (buy:4.5% sell:6%)"
+      ],
+      "checked_at": "2026-06-01T19:08:04.634Z",
+      "raw_checks": {
+        "mintAuthorityEnabled": false,
+        "topWalletsConcentrated": false,
+        "liquidityLocked": true,
+        "liquidityLockDays": 90,
+        "contractVerified": true,
+        "devDumped": false,
+        "honeypot": false,
+        "buyTax": 4.5,
+        "sellTax": 6,
+        "deployerAgeDays": 30,
+        "liquidityUsd": 820000
+      }
+    },
+    {
+      "symbol": "BONK",
+      "chain": "Solana",
+      "contract_address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "verdict": "PASS",
+      "score": 100,
+      "flags": [],
+      "checked_at": "2026-06-01T19:08:04.634Z",
+      "raw_checks": {
+        "mintAuthorityEnabled": false,
+        "topWalletsConcentrated": false,
+        "liquidityLocked": true,
+        "liquidityLockDays": 60,
+        "contractVerified": true,
+        "devDumped": false,
+        "honeypot": false,
+        "buyTax": 3,
+        "sellTax": 4,
+        "deployerAgeDays": 20,
+        "liquidityUsd": 45000000
+      }
+    },
+    {
+      "symbol": "TRUMP",
+      "chain": "Solana",
+      "contract_address": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "verdict": "FAIL",
+      "score": 0,
+      "flags": [
+        "Mint authority still active",
+        "Top 10 wallets > 30% supply",
+        "Liquidity not locked",
+        "Contract not verified on-chain",
+        "Dev wallet sold > 10% within 48h",
+        "Deployer wallet < 7 days old (0d old)"
+      ],
+      "checked_at": "2026-06-01T19:08:04.634Z",
+      "raw_checks": {
+        "mintAuthorityEnabled": true,
+        "topWalletsConcentrated": true,
+        "liquidityLocked": false,
+        "liquidityLockDays": 0,
+        "contractVerified": false,
+        "devDumped": true,
+        "honeypot": false,
+        "buyTax": 0,
+        "sellTax": 0,
+        "deployerAgeDays": 0,
+        "liquidityUsd": 38000000
+      }
+    }
+  ],
+  "qualified": [
+    "FRENS",
+    "BONK",
+    "COINCOIN",
+    "GOATSEUS"
+  ]
+}
