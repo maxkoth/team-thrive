@@ -1,0 +1,11 @@
+[
+  {"node": "35027-28767", "screen": "01.png", "out": "slide_01.png", "headline": "Centralized Communication", "desc": "Keep every coach, parent, and player in one shared conversation"},
+  {"node": "35095-15024", "screen": "02.png", "out": "slide_02.png", "headline": "Roster Management", "desc": "Build and manage your full team roster in seconds"},
+  {"node": "35101-15900", "screen": "03.png", "out": "slide_03.png", "headline": "Scheduling & Events", "desc": "Plan practices and games with automatic reminders"},
+  {"node": "35101-16328", "screen": "04.png", "out": "slide_04.png", "headline": "Payments & Invoicing", "desc": "Collect dues and track every payment effortlessly"},
+  {"node": "28954-17126", "screen": "05.png", "out": "slide_05.png", "headline": "Athlete Profiles", "desc": "Track stats, progress, and development over time"},
+  {"node": "29179-26003", "screen": "06.png", "out": "slide_06.png", "headline": "Parent Portal", "desc": "Give parents full visibility into their athlete's journey"},
+  {"node": "28765-15685", "screen": "07.png", "out": "slide_07.png", "headline": "Team Dashboard", "desc": "See everything that matters at a single glance"},
+  {"node": "28706-11081", "screen": "08.png", "out": "slide_08.png", "headline": "Coach Tools", "desc": "Everything coaches need to run a winning team"},
+  {"node": "28706-11177", "screen": "09.png", "out": "slide_09.png", "headline": "Club Management", "desc": "Run your entire club from one powerful platform"}
+]
