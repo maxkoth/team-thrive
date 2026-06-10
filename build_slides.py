@@ -76,19 +76,17 @@ def prep_screen(frame, target_w, target_h):
     # crop top portion to phone aspect (handles tall scroll views)
     return im.crop((0, 0, target_w, min(im.height, target_h)))
 
+LOGO = Image.open("figma-assets/logo_teamthrive_mark.png").convert("RGBA")
+
 def draw_logo(canvas, d):
-    """Green rounded-square mark with white upward growth arrow + 'Team Thrive' wordmark."""
-    x, y, s = MARGIN, 60, 60
-    mark = Image.new("RGBA", (s, s), (0, 0, 0, 0))
-    md = ImageDraw.Draw(mark)
-    md.rounded_rectangle([0, 0, s-1, s-1], 16, fill=GREEN)
-    # upward arrow / growth chevron in navy
-    md.line([(15, 40), (28, 24), (38, 33), (47, 19)], fill=NAVY, width=5, joint="curve")
-    md.line([(47, 19), (47, 31)], fill=NAVY, width=5)
-    md.line([(47, 19), (36, 19)], fill=NAVY, width=5)
+    """Real Team Thrive shield mark + 'Team Thrive' wordmark, top-left lockup."""
+    x, y = MARGIN, 52
+    h = 66
+    w = round(LOGO.width * h / LOGO.height)
+    mark = LOGO.resize((w, h))
     canvas.alpha_composite(mark, (x, y))
     wf = font(BOLD, 36)
-    d.text((x + s + 18, y + (s - 36)//2 - 2), "Team Thrive", font=wf, fill=WHITE)
+    d.text((x + w + 20, y + (h - 36)//2 - 2), "Team Thrive", font=wf, fill=WHITE)
 
 def build(frame, headline, desc, idx):
     canvas = Image.new("RGBA", (W, H), NAVY + (255,))
