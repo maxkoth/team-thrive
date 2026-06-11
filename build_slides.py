@@ -131,6 +131,62 @@ def build(frame, headline, desc, idx):
     canvas.convert("RGB").save(out, "PNG")
     return out
 
-for i, (frame, head, desc) in enumerate(SLIDES, 1):
+def build_cover(idx):
+    canvas = Image.new("RGBA", (W, H), NAVY + (255,))
+    d = ImageDraw.Draw(canvas)
+
+    # green glow (centered, larger)
+    glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(glow).ellipse([W//2-340, 120, W//2+340, 760], fill=GREEN+(46,))
+    canvas.alpha_composite(glow.filter(ImageFilter.GaussianBlur(110)))
+
+    # big centered shield logo
+    lh = 188
+    lw = round(LOGO.width * lh / LOGO.height)
+    canvas.alpha_composite(LOGO.resize((lw, lh)), ((W - lw)//2, 150))
+    # wordmark
+    wf = font(BOLD, 50)
+    wb = d.textbbox((0, 0), "TEAM THRIVE", font=wf)
+    d.text(((W - (wb[2]-wb[0]))//2, 150 + lh + 18), "TEAM THRIVE", font=wf, fill=WHITE)
+
+    # hook headline (two lines, centered)
+    lines = ["Everything your club", "needs in one app"]
+    hf = font(BOLD, 82)
+    y = 560
+    for ln in lines:
+        b = d.textbbox((0, 0), ln, font=hf)
+        d.text(((W - (b[2]-b[0]))//2, y), ln, font=hf, fill=WHITE)
+        y += 92
+
+    # subtitle (green)
+    sub = "Youth sports management, simplified."
+    sf = font(REG, 36)
+    sb = d.textbbox((0, 0), sub, font=sf)
+    d.text(((W - (sb[2]-sb[0]))//2, y + 20), sub, font=sf, fill=GREEN)
+
+    # "Swipe" pill cue
+    cue = "Swipe to explore  →"
+    cf = font(BOLD, 34)
+    cb = d.textbbox((0, 0), cue, font=cf)
+    cw = cb[2]-cb[0]
+    pad = 36
+    px0 = (W - (cw + pad*2))//2
+    py0 = 880
+    pill = Image.new("RGBA", (cw + pad*2, 76), (0, 0, 0, 0))
+    ImageDraw.Draw(pill).rounded_rectangle([0, 0, cw + pad*2 - 1, 75], 38, fill=GREEN)
+    canvas.alpha_composite(pill, (px0, py0))
+    d.text((px0 + pad, py0 + 38 - (cb[3]-cb[1])//2 - cb[1]), cue, font=cf, fill=NAVY)
+
+    # footer url
+    ff = font(REG, 26)
+    fb = d.textbbox((0, 0), "teamthrive.com", font=ff)
+    d.text(((W - (fb[2]-fb[0]))//2, 1018), "teamthrive.com", font=ff, fill=GREEN)
+
+    out = f"{OUT}/slide_{idx:02d}.png"
+    canvas.convert("RGB").save(out, "PNG")
+    return out
+
+print("built", build_cover(1))                       # cover = slide_01
+for i, (frame, head, desc) in enumerate(SLIDES, 2):   # features = slide_02..10
     print("built", build(frame, head, desc, i))
 print("done")
