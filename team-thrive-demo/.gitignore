@@ -1,0 +1,9 @@
+# never commit packaged archives into the repo
+*.zip
+# os / editor noise
+.DS_Store
+Thumbs.db
+# node (only if you later add a build step)
+node_modules/
+dist/
+.vite/
