@@ -63,10 +63,10 @@
   .hero p{color:var(--muted);font-size:17px;line-height:1.55;margin:0}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:16px;margin-top:26px}
   .card{position:relative;text-align:left;border:1px solid var(--line);background:linear-gradient(180deg,var(--panel),#101f48);
-    border-radius:16px;padding:18px 18px 16px;cursor:pointer;transition:.18s;overflow:hidden}
+    border-radius:16px;padding:18px 18px 16px;cursor:pointer;transition:.18s;overflow:hidden;color:var(--ink)}
   .card:hover{transform:translateY(-3px);border-color:var(--green);box-shadow:0 14px 34px rgba(0,0,0,.35)}
   .card .num{font-size:12px;color:var(--green);font-weight:800;letter-spacing:1.5px}
-  .card h3{margin:10px 0 6px;font-size:19px}
+  .card h3{margin:10px 0 6px;font-size:20px;color:#f4f8ff;font-weight:800;letter-spacing:-.2px;line-height:1.15}
   .card .role{display:inline-block;font-size:11px;color:#cfe;background:rgba(61,220,132,.12);
     border:1px solid rgba(61,220,132,.3);padding:3px 9px;border-radius:999px;margin-bottom:8px}
   .card p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.5}
@@ -83,18 +83,26 @@
     padding:4px 10px;border-radius:999px;font-weight:600}
   .count{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
   .stage{display:grid;grid-template-columns:1fr;justify-items:center;gap:18px}
-  .device{position:relative;width:min(330px,86vw);border-radius:42px;background:var(--bezel);
+  .device{position:relative;width:min(330px,86vw,40vh);border-radius:42px;background:var(--bezel);
     padding:12px;box-shadow:0 30px 70px rgba(0,0,0,.5),inset 0 0 0 2px #1d2540;cursor:pointer}
   /* Dynamic-island-style pill: sits in the empty centre of the screenshot's own
      status bar (between the clock and the battery), so it never covers content. */
   .device::after{content:"";position:absolute;left:50%;top:24px;transform:translateX(-50%);
     width:clamp(64px,22%,84px);height:17px;background:#000;border-radius:999px;
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);z-index:5;pointer-events:none}
-  .screen{position:relative;width:100%;aspect-ratio:750/1624;max-height:74vh;overflow-y:auto;overflow-x:hidden;
+  .screen{position:relative;width:100%;aspect-ratio:750/1624;overflow-y:auto;overflow-x:hidden;
     border-radius:32px;background:#000;-webkit-overflow-scrolling:touch}
-  .screen img{display:block;width:100%;height:auto}
+  .screen img{display:block;width:100%;height:auto;transition:opacity .28s ease}
   .tapcue{position:absolute;right:14px;bottom:14px;background:rgba(5,9,26,.72);color:#dfe;border:1px solid var(--line);
     font-size:11px;padding:5px 10px;border-radius:999px;z-index:4;pointer-events:none}
+  /* pulsing tap affordance on the real action button (set per step) */
+  .hot{position:absolute;width:22px;height:22px;border-radius:50%;background:rgba(61,220,132,.95);
+    transform:translate(-50%,-50%);z-index:5;pointer-events:none;display:none;box-shadow:0 0 0 0 rgba(61,220,132,.5)}
+  .hot.on{display:block;animation:tappulse 1.5s infinite}
+  @keyframes tappulse{0%{box-shadow:0 0 0 0 rgba(61,220,132,.5)}70%{box-shadow:0 0 0 17px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+  .herocta{margin-top:18px}
+  .foot{margin-top:42px;border-top:1px solid var(--line);padding:18px 0 10px;color:var(--muted);font-size:12.5px;text-align:center;letter-spacing:.2px}
+  .foot b{color:var(--ink)}
   .caption{max-width:560px;text-align:center;color:var(--ink);font-size:16px;line-height:1.5;min-height:48px}
   .caption b{color:var(--green)}
   .dots{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
@@ -178,6 +186,7 @@
       <div class="eyebrow">Click-through demo</div>
       <h1>The next version of the app, before it ships.</h1>
       <p>Each new Phase&nbsp;2 feature is a <b>short guided tour &mdash; just a few taps</b> from start to finish. Pick a card below; no need to click through everything. Great on a call, on screen-share, or recorded as a video. These are the real Phase&nbsp;2 designs &mdash; sample names and data are for illustration.</p>
+      <div class="herocta"><button class="btn primary" id="reelBtn">&#9654;&nbsp; Watch the 60-second overview</button></div>
     </div>
     <div class="grid" id="tourGrid"></div>
     <div class="explore-row">
@@ -196,13 +205,14 @@
     </div>
     <div class="stage">
       <div class="device" id="device" role="button" tabindex="0" aria-label="Advance to next screen">
-        <div class="screen" id="screen"><img id="pImg" alt=""/></div>
-        <div class="tapcue">Tap to advance &rarr;</div>
+        <div class="screen" id="screen"><img id="pImg" alt=""/><div class="hot" id="hot"></div></div>
+        <div class="tapcue" id="tapcue">Tap to advance &rarr;</div>
       </div>
       <p class="caption" id="pCap"></p>
       <div class="dots" id="pDots"></div>
       <div class="controls">
         <button class="btn" id="prevBtn">&larr; Back</button>
+        <button class="btn" id="playBtn">&#9654; Play</button>
         <button class="btn primary" id="nextBtn">Next &rarr;</button>
       </div>
     </div>
@@ -218,6 +228,8 @@
     <div class="searchbar"><input id="search" placeholder="Search screens &mdash; e.g. invite, calendar, club, payment"/></div>
     <div class="thumbs" id="thumbs"></div>
   </section>
+
+  <footer class="foot"><b>Team Thrive</b> &middot; Phase&nbsp;2 product preview &middot; &copy; 2026</footer>
 </div>
 
 <!-- LIGHTBOX -->
@@ -231,7 +243,44 @@
 
 <script>
 const MANIFEST = ["1-on-1 chat - message bar.png", "1-on-1 chat.png", "Add New Coach - default.png", "Add New Coach - filled.png", "Add New Coach-1.png", "Add New Coach.png", "Add another athlete.png", "Add athlete.png", "Add team player - Filled.png", "Calendar - Applied filters-1.png", "Calendar - Applied filters.png", "Calendar - responsible parent.png", "Calendar-1.png", "Calendar-2.png", "Calendar-Empty-1.png", "Calendar-Empty.png", "Calendar.png", "Change email - Verify code.png", "Change password-1.png", "Change password.png", "Chats Empty.png", "Chats.png", "Club info for coach, parent or athlete.png", "Club info.png", "Coach - pending.png", "Coach-1.png", "Coach.png", "Confirm deletion- filled-1.png", "Confirm deletion- filled.png", "Confirm deletion-default-1.png", "Confirm deletion-default.png", "Connect athlete.png", "Create account.png", "Create event - default.png", "Create event - filled.png", "Edit Coach Details.png", "Edit athlete.png", "Edit event.png", "Edit my profile-1.png", "Edit my profile-2.png", "Edit my profile.png", "Edit team member.png", "Event screen - not answered-1.png", "Event screen - not answered.png", "Event screen-1.png", "Event screen.png", "Filters-1.png", "Filters-2.png", "Filters-3.png", "Filters-Athletes-1.png", "Filters-Athletes.png", "Filters-Team-1.png", "Filters-Team-2.png", "Filters-Team.png", "Filters.png", "Import confirmation toast.png", "Import from oanother team.png", "Invitation link.png", "Invite Athletes.png", "Member profile.png", "Merge profiles.png", "My Profile.png", "My profile - connected athletes.png", "My profile - invitation.png", "My profile - no connected athletes, no invitations.png", "My profile-1.png", "My profile.png", "New payment - filled.png", "New payment.png", "Payment Account - Account connected.png", "Payment Account - Empty.png", "Payment Account - Pending.png", "Payment.png", "Payments - by member.png", "Payments - empty.png", "Payments - no teams-1.png", "Payments - no teams.png", "Payments-1.png", "Payments.png", "Select teams.png", "Sign up as athlete - added to multiple teams-1.png", "Sign up as athlete - added to multiple teams.png", "Sign up as athlete - invited.png", "Sign up as club - filled.png", "Sign up as club.png", "Sign up as parent - by invitation link-1.png", "Sign up as parent - by invitation link.png", "Sign up as parent - invited.png", "Sign up as parent.png", "Team chat profile.png", "Team chat.png", "Team details (club).png", "Team details (coach).png", "Team details-1.png", "Team details-2.png", "Team details.png", "Team member - payments.png", "Team member profile.png", "Team roster.png", "Team screen - empty.png", "View athlete.png", "Welcome screen.png", "connected teams.png", "merged message.png", "Onboarding - Confirm email - Verify code.png", "Onboarding - Confirm email - Verify code_ error.png", "Onboarding - Create account - no invitation.png", "Onboarding - Create account.png", "Onboarding - Forgot password - code default.png", "Onboarding - Forgot password - code error.png", "Onboarding - Forgot password - default.png", "Onboarding - Forgot password - filled.png", "Onboarding - Login.png", "Onboarding - Reset password - default.png", "Onboarding - Sign up as coach - filled.png", "Onboarding - Sign up as coach - invited.png", "Onboarding - Sign up as coach - not invited.png", "Onboarding - Splash.png", "Onboarding - Welcome screen.png"];
-const TOURS = [{"id": "invite", "title": "Deep-Link Invitation", "role": "Coach &rarr; Parent", "blurb": "A coach invites a family with one link. The parent opens it already attached to the right team and signs up \u2014 the flow that used to break, working end to end.", "steps": [["Team details (coach).png", "Coach", "A coach opens their team and chooses to invite players."], ["Invitation link.png", "Coach", "The app generates a unique link and QR code for this team. The coach shares it with parents."], ["Sign up as parent - by invitation link.png", "Parent", "The parent opens the link \u2014 already attached to the right team \u2014 and starts their account."], ["Sign up as parent - by invitation link-1.png", "Parent", "They fill in their details and agree to the terms."], ["Add athlete.png", "Parent", "Next, the parent registers their athlete."], ["Add another athlete.png", "Parent", "More than one child? They add another athlete in the same flow."], ["Sign up as athlete - added to multiple teams.png", "Parent", "An athlete can belong to more than one team \u2014 handled automatically."], ["My profile - connected athletes.png", "Parent", "Done. Parent and athlete land connected to the correct team."], ["connected teams.png", "Parent", "Every connected team shows up in the profile."]]}, {"id": "events", "title": "Multi-Team Event Invites", "role": "Coach", "blurb": "Create one event and invite several teams at once \u2014 useful for scrimmages, meets, and shared facilities.", "steps": [["Calendar.png", "Coach", "The coach's calendar \u2014 every practice and game in one place."], ["Create event - default.png", "Coach", "Creating a new event."], ["Create event - filled.png", "Coach", "Event details: type, date, time, and location."], ["Select teams.png", "Coach", "Invite more than one team to the same event in a single step."], ["Event screen.png", "Coach", "The event shows every invited team and who has responded."], ["Calendar - Applied filters.png", "Coach", "Filter the calendar by team or event type."]]}, {"id": "respparent", "title": "Responsible Parent", "role": "Coach", "blurb": "Every athlete gets a designated responsible parent, surfaced where coaches need it.", "steps": [["View athlete.png", "Coach", "Each athlete profile now names a responsible parent."], ["Calendar - responsible parent.png", "Coach", "That responsible parent is shown on the calendar, so it's clear who's accountable for each athlete."], ["Team roster.png", "Coach", "And across the full team roster."]]}, {"id": "club", "title": "Club Account", "role": "Club Admin", "blurb": "Clubs get their own account type that oversees many teams and coaches \u2014 not just a single coach login.", "steps": [["Sign up as club.png", "Club", "Clubs get their own account type \u2014 new in Phase 2."], ["Sign up as club - filled.png", "Club", "Club registration details."], ["Club info.png", "Club", "The club profile."], ["Team details (club).png", "Club", "A club oversees multiple teams and coaches from one place."]]}, {"id": "import", "title": "Import Players", "role": "Coach", "blurb": "Move athletes between teams without re-entering them \u2014 with clean handling of duplicates.", "steps": [["Team roster.png", "Coach", "A coach viewing their roster."], ["Import from oanother team.png", "Coach", "Import players from another team \u2014 choose a team and select athletes."], ["Import confirmation toast.png", "Coach", "The selected players are imported."], ["Merge profiles.png", "Coach", "If an athlete already exists, their profiles can be merged cleanly."]]}, {"id": "welcome", "title": "Welcome & Onboarding", "role": "New user", "blurb": "The refreshed welcome screen and brand, plus the first run a new user sees.", "steps": [["Welcome screen.png", "", "The refreshed welcome screen and brand."], ["Create account.png", "", "A new user creates an account."], ["Chats.png", "", "Team chat keeps everyone in one thread."], ["Calendar.png", "", "And the calendar brings every event together."]]}];
+const TOURS = [
+{"id":"invite","title":"Deep-Link Invitation","role":"Coach &rarr; Parent","blurb":"Invite a whole family with a single link. They open it already attached to the right team and sign up in a couple of taps \u2014 no codes, no mismatched rosters.","steps":[
+  ["Team details (coach).png","Coach","A coach opens their team and taps Invite \u2014 no spreadsheets, no manual setup."],
+  ["Invitation link.png","Coach","Team Thrive creates one link and QR code. Share it in a group chat and you're done.",[72,85]],
+  ["Sign up as parent - by invitation link.png","Parent","The parent taps the link and lands already attached to the right team."],
+  ["Add athlete.png","Parent","They add their child in the same flow \u2014 and a second one if needed."],
+  ["My profile - connected athletes.png","Parent","Minutes later, parent and athlete are connected to the correct team."]]},
+{"id":"events","title":"Multi-Team Event Invites","role":"Coach","blurb":"Spin up one event and invite several teams at once \u2014 perfect for scrimmages, meets, and shared facilities.","steps":[
+  ["Calendar.png","Coach","Every practice and game in one shared calendar.",[88,11]],
+  ["Create event - filled.png","Coach","Add the details \u2014 type, date, time, and place."],
+  ["Select teams.png","Coach","Invite more than one team to the same event in a single step.",[50,92]],
+  ["Event screen.png","Coach","See every invited team and who's responded, at a glance."],
+  ["Calendar - Applied filters.png","Coach","Filter the calendar by team or event type."]]},
+{"id":"respparent","title":"Responsible Parent","role":"Coach","blurb":"Give every athlete a designated responsible parent, shown right where coaches need it \u2014 on the calendar and the roster.","steps":[
+  ["View athlete.png","Coach","Every athlete profile names a responsible parent."],
+  ["Calendar - responsible parent.png","Coach","That parent shows on the calendar, so accountability is always clear."],
+  ["Team roster.png","Coach","And across the full team roster."]]},
+{"id":"club","title":"Club Account","role":"Club","blurb":"Clubs get their own account that oversees every team and coach from one place \u2014 not just a single coach login.","steps":[
+  ["Sign up as club.png","Club","Clubs get a dedicated account type of their own."],
+  ["Club info.png","Club","One profile for the whole organization."],
+  ["Team details (club).png","Club","From there, a club oversees every team and coach in one place."]]},
+{"id":"import","title":"Import Players","role":"Coach","blurb":"Move athletes between teams in seconds, with duplicates merged cleanly instead of doubled up.","steps":[
+  ["Team roster.png","Coach","A coach looking at their roster."],
+  ["Import from oanother team.png","Coach","Pull players in from another team \u2014 pick the team, select athletes.",[50,91]],
+  ["Import confirmation toast.png","Coach","Imported in one tap."],
+  ["Merge profiles.png","Coach","Already on the app? Duplicate profiles merge cleanly."]]},
+{"id":"welcome","title":"Welcome & Onboarding","role":"New user","blurb":"A refreshed welcome and onboarding \u2014 the first thing a new coach, parent, or athlete sees.","steps":[
+  ["Welcome screen.png","","A refreshed welcome screen and brand.",[50,80]],
+  ["Create account.png","","Signing up takes just a few fields."],
+  ["Chats.png","","Team chat keeps everyone in one thread."],
+  ["Calendar.png","","And the calendar brings every event together."]]}];
+const REEL = {"id":"reel","title":"60-second overview","role":"","blurb":"","steps":[
+  ["Welcome screen.png","","Meet the new Team Thrive.",[50,80]],
+  ["Invitation link.png","","Invite a whole family with one link.",[72,85]],
+  ["Select teams.png","","Invite several teams to one event.",[50,92]],
+  ["Calendar - responsible parent.png","","Always know who's responsible for each athlete."],
+  ["Team details (club).png","","Run an entire club from one account."],
+  ["Import confirmation toast.png","","Move players between teams in seconds."]]};
 const src = n => "screens/" + encodeURIComponent(n);
 
 const $ = id => document.getElementById(id);
@@ -248,7 +297,11 @@ TOURS.forEach((t,i)=>{
 });
 $("screenCount").textContent = "Optional — every screen, for reference";
 
+let cur=TOURS[0]; // current tour object (a TOURS entry or REEL)
+let playing=false, timer=null;
+
 function show(view){
+  if(view!=="player") stopPlay();
   landing.style.display = view==="landing"?"block":"none";
   player.classList.toggle("active", view==="player");
   explore.classList.toggle("active", view==="explore");
@@ -259,34 +312,58 @@ homeBtn.onclick=()=>show("landing");
 $("backMenu").onclick=()=>show("landing");
 $("exploreBtn").onclick=openExplore;
 
-function openTour(i){ tIdx=i; sIdx=0; renderStep(); show("player"); }
+function openTour(i){ tIdx=i; cur=TOURS[i]; sIdx=0; renderStep(); show("player"); }
+function openReel(){ tIdx=-1; cur=REEL; sIdx=0; renderStep(); show("player"); startPlay(); }
+
+function preload(n){ if(n){ const im=new Image(); im.src=src(n); } }
+
 function renderStep(){
-  const t=TOURS[tIdx], step=t.steps[sIdx];
-  $("pTitle").textContent=t.title;
-  const role=$("pRole"); role.textContent=step[1]||t.role.replace("&rarr;","→"); role.style.display=step[1]||t.role?"inline-block":"none";
-  $("pCount").textContent=`${sIdx+1} / ${t.steps.length}`;
-  const img=$("pImg"); img.src=src(step[0]); img.alt=step[0].replace(".png","");
+  const step=cur.steps[sIdx];
+  $("pTitle").textContent=cur.title;
+  const role=$("pRole"); const rtxt=(step[1]||cur.role||"").replace("&rarr;","→");
+  role.textContent=rtxt; role.style.display=rtxt?"inline-block":"none";
+  $("pCount").textContent=`${sIdx+1} / ${cur.steps.length}`;
+  const img=$("pImg");
+  img.style.opacity=0; img.onload=()=>{img.style.opacity=1;};
+  img.src=src(step[0]); img.alt=step[2]||step[0].replace(".png","");
   $("screen").scrollTop=0;
   $("pCap").textContent=step[2];
+  const hp=step[3], hot=$("hot");
+  if(hp){ hot.style.left=hp[0]+"%"; hot.style.top=hp[1]+"%"; hot.classList.add("on"); $("tapcue").style.display="none"; }
+  else { hot.classList.remove("on"); $("tapcue").style.display=""; }
   const dots=$("pDots"); dots.innerHTML="";
-  t.steps.forEach((_,k)=>{const d=document.createElement("button");d.className="dot"+(k===sIdx?" on":"");
-    d.onclick=()=>{sIdx=k;renderStep();};dots.appendChild(d);});
+  cur.steps.forEach((_,k)=>{const d=document.createElement("button");d.className="dot"+(k===sIdx?" on":"");
+    d.onclick=()=>{stopPlay();sIdx=k;renderStep();};dots.appendChild(d);});
   $("prevBtn").disabled=sIdx===0;
+  const nx=cur.steps[sIdx+1]; preload(nx&&nx[0]);
 }
-function nextStep(){ const t=TOURS[tIdx]; if(sIdx<t.steps.length-1){sIdx++;renderStep();} }
+function nextStep(){ if(sIdx<cur.steps.length-1){sIdx++;renderStep();} else { stopPlay(); } }
 function prevStep(){ if(sIdx>0){sIdx--;renderStep();} }
-$("nextBtn").onclick=nextStep;
-$("prevBtn").onclick=prevStep;
-$("device").onclick=nextStep;
-$("device").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();nextStep();}};
-$("nextTour").onclick=()=>{ tIdx=(tIdx+1)%TOURS.length; sIdx=0; renderStep(); window.scrollTo({top:0,behavior:"instant"}); };
+
+function startPlay(){ playing=true; $("playBtn").innerHTML="&#10074;&#10074; Pause"; clearInterval(timer);
+  timer=setInterval(()=>{ if(sIdx<cur.steps.length-1){sIdx++;renderStep();} else {stopPlay();} },2800); }
+function stopPlay(){ playing=false; const pb=$("playBtn"); if(pb) pb.innerHTML="&#9654; Play"; clearInterval(timer); }
+
+$("nextBtn").onclick=()=>{stopPlay();nextStep();};
+$("prevBtn").onclick=()=>{stopPlay();prevStep();};
+$("playBtn").onclick=()=>{ playing?stopPlay():startPlay(); };
+$("device").onclick=()=>{stopPlay();nextStep();};
+$("device").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();stopPlay();nextStep();}};
+$("reelBtn").onclick=openReel;
+$("nextTour").onclick=()=>{ stopPlay(); tIdx=(Math.max(tIdx,0)+1)%TOURS.length; cur=TOURS[tIdx]; sIdx=0; renderStep(); window.scrollTo({top:0,behavior:"instant"}); };
+
+// swipe to advance on touch devices
+let _tsx=null;
+$("device").addEventListener("touchstart",e=>{_tsx=e.changedTouches[0].clientX;},{passive:true});
+$("device").addEventListener("touchend",e=>{ if(_tsx==null)return; const dx=e.changedTouches[0].clientX-_tsx;
+  if(Math.abs(dx)>40){ stopPlay(); dx<0?nextStep():prevStep(); } _tsx=null; },{passive:true});
 
 // Explore
 function openExplore(){
   const th=$("thumbs"); th.innerHTML="";
   MANIFEST.forEach((n,i)=>{
     const d=document.createElement("div"); d.className="thumb"; d.dataset.name=n.toLowerCase();
-    d.innerHTML=`<div class="imgwrap"><img loading="lazy" src="${src(n)}" alt=""></div><div class="lbl">${n.replace(".png","")}</div>`;
+    d.innerHTML=`<div class="imgwrap"><img loading="lazy" src="${src(n)}" alt="${n.replace(".png","")} screen"></div><div class="lbl">${n.replace(".png","")}</div>`;
     d.onclick=()=>openLb(i); th.appendChild(d);
   });
   $("exCount").textContent=MANIFEST.length+" screens";
@@ -318,7 +395,7 @@ document.addEventListener("keydown",e=>{
     return;
   }
   if(player.classList.contains("active")){
-    if(e.key==="ArrowRight")nextStep(); else if(e.key==="ArrowLeft")prevStep(); else if(e.key==="Escape")show("landing");
+    if(e.key==="ArrowRight"){stopPlay();nextStep();} else if(e.key==="ArrowLeft"){stopPlay();prevStep();} else if(e.key==="Escape")show("landing");
   } else if(explore.classList.contains("active") && e.key==="Escape"){ show("landing"); }
 });
 
