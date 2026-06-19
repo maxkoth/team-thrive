@@ -177,11 +177,11 @@
     <div class="hero">
       <div class="eyebrow">Click-through demo</div>
       <h1>The next version of the app, before it ships.</h1>
-      <p>Walk through each new Phase&nbsp;2 feature as a guided story, or browse every screen. Use it on a call, screen-share it, or record it as a video. These are the real Phase&nbsp;2 designs &mdash; sample names and data are for illustration.</p>
+      <p>Each new Phase&nbsp;2 feature is a <b>short guided tour &mdash; just a few taps</b> from start to finish. Pick a card below; no need to click through everything. Great on a call, on screen-share, or recorded as a video. These are the real Phase&nbsp;2 designs &mdash; sample names and data are for illustration.</p>
     </div>
     <div class="grid" id="tourGrid"></div>
     <div class="explore-row">
-      <button class="btn" id="exploreBtn">Browse all 119 screens &rarr;</button>
+      <button class="btn ghost" id="exploreBtn">Browse the full screen library</button>
       <span class="count" id="screenCount"></span>
     </div>
     <p class="note"><b>How to present:</b> open a feature, then click the phone (or press &rarr;) to advance. <b>Share a link:</b> drag the <code>team-thrive-demo</code> folder onto <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">app.netlify.com/drop</a> for an instant public URL. <b>Record:</b> use your screen recorder and step through a tour. Full instructions are in <code>README.md</code>.</p>
@@ -243,10 +243,10 @@ const grid=$("tourGrid");
 TOURS.forEach((t,i)=>{
   const c=document.createElement("button"); c.className="card";
   c.innerHTML=`<div class="num">FEATURE 0${i+1}</div><span class="role">${t.role}</span>
-    <h3>${t.title}</h3><p>${t.blurb}</p><div class="go">Start tour &rarr;</div>`;
+    <h3>${t.title}</h3><p>${t.blurb}</p><div class="go">Start tour &middot; ${t.steps.length} taps &rarr;</div>`;
   c.onclick=()=>openTour(i); grid.appendChild(c);
 });
-$("screenCount").textContent = MANIFEST.length + " screens included";
+$("screenCount").textContent = "Optional — every screen, for reference";
 
 function show(view){
   landing.style.display = view==="landing"?"block":"none";
