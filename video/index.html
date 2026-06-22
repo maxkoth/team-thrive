@@ -18,6 +18,7 @@ html,body { width:1280px; height:720px; overflow:hidden; background:#000; }
 .dots { position:absolute; background-image:radial-gradient(#2BB5A0 2.2px, transparent 2.6px);
         background-size:30px 30px; }
 
+.scrim { background:linear-gradient(180deg,rgba(6,9,16,.55),rgba(6,9,16,.68)); opacity:0; }
 .kw { font-family:'Anton'; letter-spacing:2px; line-height:.92; text-transform:uppercase; will-change:transform,opacity,filter; }
 
 .badge-corner { position:absolute; top:34px; right:46px; width:74px; }
@@ -42,7 +43,8 @@ html,body { width:1280px; height:720px; overflow:hidden; background:#000; }
 
   <!-- SCENE 1 : EVERY TEAM -->
   <div class="scene" id="s1">
-    <div class="fill" style="background:#ffffff;"></div>
+    <div class="fill solidbg" style="background:#ffffff;"></div>
+    <div class="fill scrim" id="s1scrim"></div>
     <div class="dots" id="s1dots" style="left:60px; top:120px; width:300px; height:240px;"></div>
     <div class="dots" id="s1dots2" style="right:60px; bottom:90px; width:240px; height:180px;"></div>
     <img class="badge-corner" id="s1badge" src="assets/badge.png">
@@ -54,7 +56,8 @@ html,body { width:1280px; height:720px; overflow:hidden; background:#000; }
 
   <!-- SCENE 2 : EVERY ATHLETE -->
   <div class="scene" id="s2">
-    <div class="fill" style="background:#06080d;"></div>
+    <div class="fill solidbg" style="background:#06080d;"></div>
+    <div class="fill scrim" id="s2scrim"></div>
     <div class="dots" style="left:40px; top:40px; width:160px; height:340px; opacity:.7;"></div>
     <div class="dots" style="right:40px; bottom:40px; width:160px; height:340px; opacity:.7;"></div>
     <img class="badge-corner" id="s2badge" src="assets/badge.png">
@@ -66,7 +69,8 @@ html,body { width:1280px; height:720px; overflow:hidden; background:#000; }
 
   <!-- SCENE 3 : ONE PLATFORM -->
   <div class="scene" id="s3">
-    <div class="fill" id="s3bg" style="background:radial-gradient(120% 120% at 50% 0%,#13314a 0%,#0a1830 55%,#06101f 100%);"></div>
+    <div class="fill solidbg" id="s3bg" style="background:radial-gradient(120% 120% at 50% 0%,#13314a 0%,#0a1830 55%,#06101f 100%);"></div>
+    <div class="fill scrim" id="s3scrim"></div>
     <div class="dots" style="left:0; top:0; width:1280px; height:720px; opacity:.10; background-size:46px 46px;"></div>
     <div class="fill center">
       <div class="kw" id="s3sub" style="font-family:'BarlowS'; font-size:30px; letter-spacing:9px; color:#3DDC84; margin-bottom:14px;">ONE APP FOR YOUR WHOLE SEASON</div>
@@ -100,7 +104,8 @@ html,body { width:1280px; height:720px; overflow:hidden; background:#000; }
 
   <!-- SCENE 5 : FEATURE LINES -->
   <div class="scene" id="s5">
-    <div class="fill" style="background:radial-gradient(120% 120% at 0% 0%,#10283d 0%,#081628 60%,#050e1c 100%);"></div>
+    <div class="fill solidbg" style="background:radial-gradient(120% 120% at 0% 0%,#10283d 0%,#081628 60%,#050e1c 100%);"></div>
+    <div class="fill scrim" id="s5scrim"></div>
     <div class="dots" style="right:0; top:0; width:520px; height:720px; opacity:.10; background-size:40px 40px;"></div>
     <div class="line5" id="s5l1" style="top:210px;"><div class="bar"></div><div class="t">PLAN <em>PRACTICES</em></div></div>
     <div class="line5" id="s5l2" style="top:318px;"><div class="bar"></div><div class="t">TRACK EVERY <em>GAME</em></div></div>
@@ -127,6 +132,22 @@ const eob=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x
 const lerp=(a,b,t)=>a+(b-a)*t;
 const px=v=>v.toFixed(2)+'px';
 const S=id=>document.getElementById(id);
+
+// OVERLAY mode: footage shows behind kinetic-type scenes (1,2,3,5).
+// Their solid backgrounds become transparent; a dark scrim keeps text legible.
+const OVERLAY=new URLSearchParams(location.search).has('overlay');
+if(OVERLAY){
+  document.documentElement.style.background='transparent';
+  document.body.style.background='transparent';
+  // hide the solid backgrounds of the footage scenes only
+  ['s1','s2','s3','s5'].forEach(id=>{
+    S(id).querySelector('.solidbg').style.opacity='0';
+    S(id).querySelector('.scrim').style.opacity='1';   // scene-layer opacity handles the fade
+  });
+  // scene 1 type is dark-on-white by default; flip light for dark footage
+  S('s1w1').style.color='#ffffff';
+  S('s1dots').style.filter='brightness(2)';
+}
 
 // scene opacity with crossfade
 function sceneOp(t,start,end,cf=0.45){

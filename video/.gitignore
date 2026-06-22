@@ -1,2 +1,6 @@
-video/out/
-video/node_modules/
+out/
+out_overlay/
+node_modules/
+gfx_overlay.mov
+clips/
+team-thrive-promo-footage.mp4
