@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family:'Anton'; src:url('assets/anton.ttf'); }
+@font-face { font-family:'Barlow'; src:url('assets/barlow.ttf'); font-weight:700; }
+@font-face { font-family:'BarlowS'; src:url('assets/barlow-semi.ttf'); font-weight:600; }
+@font-face { font-family:'Inter'; src:url('assets/inter.ttf'); }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { width:1280px; height:720px; overflow:hidden; background:#000; }
+#stage { position:relative; width:1280px; height:720px; }
+.scene { position:absolute; inset:0; overflow:hidden; opacity:0; }
+.fill { position:absolute; inset:0; }
+.center { display:flex; align-items:center; justify-content:center; flex-direction:column; }
+
+/* dot grid */
+.dots { position:absolute; background-image:radial-gradient(#2BB5A0 2.2px, transparent 2.6px);
+        background-size:30px 30px; }
+
+.kw { font-family:'Anton'; letter-spacing:2px; line-height:.92; text-transform:uppercase; will-change:transform,opacity,filter; }
+
+.badge-corner { position:absolute; top:34px; right:46px; width:74px; }
+.chip { position:absolute; display:flex; align-items:center; gap:14px;
+        background:rgba(255,255,255,.92); border-radius:16px; padding:16px 22px;
+        box-shadow:0 18px 50px rgba(13,27,62,.18); border:1px solid rgba(13,27,62,.06);
+        font-family:'BarlowS'; }
+.chip .ic { width:42px; height:42px; border-radius:11px; display:flex; align-items:center; justify-content:center;
+        background:linear-gradient(135deg,#3DDC84,#2BB5A0); flex:0 0 auto; }
+.chip .ic svg { width:24px; height:24px; stroke:#0D1B3E; stroke-width:2.2; fill:none; }
+.chip .tx b { display:block; font-family:'Barlow'; font-size:24px; color:#0D1B3E; letter-spacing:.5px; }
+.chip .tx span { font-family:'Inter'; font-size:13px; color:#5b6b86; font-weight:500; }
+
+.line5 { position:absolute; left:120px; display:flex; align-items:center; gap:26px; }
+.line5 .bar { width:12px; height:58px; border-radius:6px; background:linear-gradient(180deg,#3DDC84,#2BB5A0); }
+.line5 .t { font-family:'Anton'; font-size:74px; color:#fff; text-transform:uppercase; letter-spacing:1px; }
+.line5 .t em { color:#3DDC84; font-style:normal; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- SCENE 1 : EVERY TEAM -->
+  <div class="scene" id="s1">
+    <div class="fill" style="background:#ffffff;"></div>
+    <div class="dots" id="s1dots" style="left:60px; top:120px; width:300px; height:240px;"></div>
+    <div class="dots" id="s1dots2" style="right:60px; bottom:90px; width:240px; height:180px;"></div>
+    <img class="badge-corner" id="s1badge" src="assets/badge.png">
+    <div style="position:absolute; left:90px; top:235px;">
+      <div class="kw" id="s1w1" style="font-size:165px; color:#0D1B3E;">EVERY</div>
+      <div class="kw" id="s1w2" style="font-size:165px; color:#3DDC84;">TEAM.</div>
+    </div>
+  </div>
+
+  <!-- SCENE 2 : EVERY ATHLETE -->
+  <div class="scene" id="s2">
+    <div class="fill" style="background:#06080d;"></div>
+    <div class="dots" style="left:40px; top:40px; width:160px; height:340px; opacity:.7;"></div>
+    <div class="dots" style="right:40px; bottom:40px; width:160px; height:340px; opacity:.7;"></div>
+    <img class="badge-corner" id="s2badge" src="assets/badge.png">
+    <div class="fill center">
+      <div class="kw" id="s2w1" style="font-size:150px; color:#3DEFC0; text-align:center;">EVERY</div>
+      <div class="kw" id="s2w2" style="font-size:150px; color:#fff; text-align:center;">ATHLETE.</div>
+    </div>
+  </div>
+
+  <!-- SCENE 3 : ONE PLATFORM -->
+  <div class="scene" id="s3">
+    <div class="fill" id="s3bg" style="background:radial-gradient(120% 120% at 50% 0%,#13314a 0%,#0a1830 55%,#06101f 100%);"></div>
+    <div class="dots" style="left:0; top:0; width:1280px; height:720px; opacity:.10; background-size:46px 46px;"></div>
+    <div class="fill center">
+      <div class="kw" id="s3sub" style="font-family:'BarlowS'; font-size:30px; letter-spacing:9px; color:#3DDC84; margin-bottom:14px;">ONE APP FOR YOUR WHOLE SEASON</div>
+      <div class="kw" id="s3w1" style="font-size:130px; color:#fff; text-align:center;">SCHEDULE.<span style="color:#3DDC84;"> CONNECT.</span></div>
+      <div class="kw" id="s3w2" style="font-size:130px; color:#2BB5A0; text-align:center;">THRIVE.</div>
+    </div>
+  </div>
+
+  <!-- SCENE 4 : APP SHOWCASE -->
+  <div class="scene" id="s4">
+    <div class="fill" id="s4img" style="background:#f4f7fb url('assets/app.png') center/cover no-repeat;"></div>
+    <div class="fill" style="background:linear-gradient(90deg,rgba(244,247,251,.97) 0%,rgba(244,247,251,.82) 30%,rgba(244,247,251,0) 56%);"></div>
+    <img class="badge-corner" id="s4badge" src="assets/badge.png" style="filter:none;">
+    <div style="position:absolute; left:90px; top:96px; width:560px;">
+      <div class="kw" id="s4h1" style="font-family:'BarlowS'; font-size:26px; letter-spacing:6px; color:#2BB5A0;">YOUR TEAM, ORGANISED</div>
+      <div class="kw" id="s4h2" style="font-size:88px; color:#0D1B3E; line-height:.9; margin-top:8px;">EVERYTHING<br>IN ONE PLACE</div>
+    </div>
+    <div class="chip" id="s4c1" style="left:96px; top:330px; width:330px;">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div>
+      <div class="tx"><b>SMART CALENDAR</b><span>Games &amp; practices, synced</span></div>
+    </div>
+    <div class="chip" id="s4c2" style="left:96px; top:418px; width:330px;">
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M16 6a3 3 0 0 1 0 5M17 20a5 5 0 0 0-3-4.6"/></svg></div>
+      <div class="tx"><b>ROSTER &amp; RSVPS</b><span>Know who&rsquo;s showing up</span></div>
+    </div>
+    <div class="chip" id="s4c3" style="left:96px; top:506px; width:330px;">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8M10.5 21a1.8 1.8 0 0 0 3 0"/></svg></div>
+      <div class="tx"><b>INSTANT UPDATES</b><span>Push alerts to everyone</span></div>
+    </div>
+  </div>
+
+  <!-- SCENE 5 : FEATURE LINES -->
+  <div class="scene" id="s5">
+    <div class="fill" style="background:radial-gradient(120% 120% at 0% 0%,#10283d 0%,#081628 60%,#050e1c 100%);"></div>
+    <div class="dots" style="right:0; top:0; width:520px; height:720px; opacity:.10; background-size:40px 40px;"></div>
+    <div class="line5" id="s5l1" style="top:210px;"><div class="bar"></div><div class="t">PLAN <em>PRACTICES</em></div></div>
+    <div class="line5" id="s5l2" style="top:318px;"><div class="bar"></div><div class="t">TRACK EVERY <em>GAME</em></div></div>
+    <div class="line5" id="s5l3" style="top:426px;"><div class="bar"></div><div class="t">RALLY YOUR <em>TEAM</em></div></div>
+  </div>
+
+  <!-- SCENE 6 : LOGO REVEAL -->
+  <div class="scene" id="s6">
+    <div class="fill" style="background:#ffffff;"></div>
+    <div class="fill center">
+      <img id="s6logo" src="assets/logo_lockup.png" style="width:300px; will-change:transform,opacity;">
+      <div class="kw" id="s6cta" style="font-family:'BarlowS'; font-size:30px; letter-spacing:3px; color:#0D1B3E; margin-top:18px;">GET YOUR WHOLE TEAM ON THE SAME PAGE</div>
+      <div id="s6url" style="font-family:'Inter'; font-weight:600; font-size:18px; letter-spacing:1px; color:#2BB5A0; margin-top:14px;">teamthrive.app</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const smooth=(a,b,t)=>{t=clamp((t-a)/(b-a),0,1);return t*t*(3-2*t);};
+const eoc=x=>1-Math.pow(1-x,3);            // easeOutCubic
+const eob=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);}; // back
+const lerp=(a,b,t)=>a+(b-a)*t;
+const px=v=>v.toFixed(2)+'px';
+const S=id=>document.getElementById(id);
+
+// scene opacity with crossfade
+function sceneOp(t,start,end,cf=0.45){
+  if(t<start-cf||t>end+cf) return 0;
+  return clamp(Math.min((t-(start-cf))/cf,(end+cf-t)/cf),0,1);
+}
+// word slide-in helper -> sets transform/opacity/filter on element
+function slideIn(el,lt,d0,d1,dx,dy,blur=18){
+  const p=smooth(d0,d1,lt), e=eoc(clamp((lt-d0)/(d1-d0),0,1));
+  el.style.opacity=p;
+  el.style.transform=`translate(${px(lerp(dx,0,e))},${px(lerp(dy,0,e))})`;
+  el.style.filter=`blur(${(1-p)*blur}px)`;
+}
+
+function render(t){
+  // ---- scene visibility ----
+  S('s1').style.opacity=sceneOp(t,0.0,4.0);
+  S('s2').style.opacity=sceneOp(t,4.0,7.6);
+  S('s3').style.opacity=sceneOp(t,7.6,11.4);
+  S('s4').style.opacity=sceneOp(t,11.4,20.2);
+  S('s5').style.opacity=sceneOp(t,20.2,25.2);
+  S('s6').style.opacity=sceneOp(t,25.2,30.0);
+
+  // ---- SCENE 1 (0-4) ----
+  {const lt=t-0.0;
+   slideIn(S('s1w1'),lt,0.15,0.95,-260,0,22);
+   slideIn(S('s1w2'),lt,0.45,1.25, 280,0,22);
+   const dp=smooth(0.2,0.9,lt);
+   S('s1dots').style.opacity=dp*0.9; S('s1dots').style.transform=`scale(${lerp(.8,1,eoc(dp))})`;
+   S('s1dots2').style.opacity=smooth(0.6,1.3,lt)*0.7;
+   S('s1badge').style.opacity=smooth(0.3,1.0,lt);
+   // exit drift
+   const ex=smooth(3.5,4.0,lt)* -40;
+   S('s1w1').style.transform+=` translateY(${ex}px)`;
+  }
+
+  // ---- SCENE 2 (4-7.6) ----
+  {const lt=t-4.0;
+   const p1=smooth(0.1,0.7,lt), e1=eob(clamp(lt/0.7,0,1));
+   S('s2w1').style.opacity=p1; S('s2w1').style.transform=`scale(${lerp(.55,1,e1)})`; S('s2w1').style.filter=`blur(${(1-p1)*14}px)`;
+   const p2=smooth(0.35,0.95,lt), e2=eob(clamp((lt-0.35)/0.6,0,1));
+   S('s2w2').style.opacity=p2; S('s2w2').style.transform=`scale(${lerp(.55,1,e2)})`; S('s2w2').style.filter=`blur(${(1-p2)*14}px)`;
+   S('s2badge').style.opacity=smooth(0.3,1.0,lt);
+  }
+
+  // ---- SCENE 3 (7.6-11.4) ----
+  {const lt=t-7.6;
+   S('s3sub').style.opacity=smooth(0.1,0.7,lt);
+   S('s3sub').style.letterSpacing=px(lerp(22,9,eoc(smooth(0.1,0.9,lt))));
+   slideIn(S('s3w1'),lt,0.3,1.1,0,60,16);
+   slideIn(S('s3w2'),lt,0.6,1.5,0,60,16);
+  }
+
+  // ---- SCENE 4 (11.4-20.2) ----
+  {const lt=t-11.4;
+   // ken burns on app image
+   const z=lerp(1.08,1.0,smooth(0,3,lt));
+   S('s4img').style.transform=`scale(${z})`;
+   slideIn(S('s4h1'),lt,0.2,0.9,-60,0,8);
+   slideIn(S('s4h2'),lt,0.4,1.3,-70,0,12);
+   S('s4badge').style.opacity=smooth(0.3,1.0,lt);
+   const chips=['s4c1','s4c2','s4c3'];
+   chips.forEach((id,i)=>{
+     const d=1.1+i*0.45;
+     const p=smooth(d,d+0.6,lt), e=eob(clamp((lt-d)/0.6,0,1));
+     const el=S(id); el.style.opacity=p;
+     el.style.transform=`translateX(${px(lerp(-50,0,e))})`;
+   });
+  }
+
+  // ---- SCENE 5 (20.2-25.2) ----
+  {const lt=t-20.2;
+   ['s5l1','s5l2','s5l3'].forEach((id,i)=>{
+     const d=0.2+i*0.5;
+     const p=smooth(d,d+0.6,lt), e=eoc(clamp((lt-d)/0.6,0,1));
+     const el=S(id); el.style.opacity=p;
+     el.style.transform=`translateX(${px(lerp(-80,0,e))})`;
+     el.style.filter=`blur(${(1-p)*10}px)`;
+   });
+  }
+
+  // ---- SCENE 6 (25.2-30) ----
+  {const lt=t-25.2;
+   const p=smooth(0.1,0.9,lt), e=eob(clamp(lt/0.9,0,1));
+   S('s6logo').style.opacity=p;
+   S('s6logo').style.transform=`scale(${lerp(.6,1,e)}) rotate(${lerp(-8,0,e)}deg)`;
+   slideIn(S('s6cta'),lt,0.9,1.6,0,28,8);
+   S('s6url').style.opacity=smooth(1.5,2.2,lt);
+  }
+}
+window.__render=render;
+render(0);
+</script>
+</body>
+</html>
