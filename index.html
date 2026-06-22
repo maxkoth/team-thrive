@@ -145,6 +145,148 @@
     }
     #logo-mark-wordmark span { color: #00e5a0; }
 
+    /* ── Dropdown Nav ───────────────────────────────────────────── */
+    #main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 8999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding-top: 18px;
+      pointer-events: none;
+    }
+    .nav-item {
+      position: relative;
+      pointer-events: all;
+    }
+    .nav-item > button {
+      background: none;
+      border: none;
+      color: rgba(238,240,251,0.7);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 14px;
+      cursor: pointer;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-item > button:hover { color: #fff; background: rgba(255,255,255,0.07); }
+    .nav-item > button svg { transition: transform 0.2s; }
+    .nav-item.open > button svg { transform: rotate(180deg); }
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10,12,28,0.97);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 8px;
+      min-width: 200px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(-6px);
+      transition: opacity 0.18s, transform 0.18s;
+    }
+    .nav-item.open .nav-dropdown {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown a {
+      display: block;
+      padding: 10px 14px;
+      color: rgba(238,240,251,0.75);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-dropdown a:hover { background: rgba(0,229,160,0.08); color: #00e5a0; }
+    @media (max-width: 640px) { #main-nav { display: none; } }
+
+    /* ── App Screens Section ─────────────────────────────────────── */
+    #app-screens {
+      padding: 100px 0 80px;
+      background: #060810;
+      overflow: hidden;
+    }
+    .screens-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      text-align: center;
+    }
+    .screens-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #00e5a0;
+      margin-bottom: 12px;
+    }
+    .screens-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .screens-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 56px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .screens-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 20px 40px 32px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .screens-scroll::-webkit-scrollbar { display: none; }
+    .screen-card {
+      flex: 0 0 220px;
+      scroll-snap-align: center;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+      background: #0d1021;
+    }
+    .screen-card:hover { transform: translateY(-8px) scale(1.02); }
+    .screen-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .screen-card-label {
+      padding: 12px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+    }
+
     #top-cta {
       position: fixed;
       top: 20px;
@@ -1435,7 +1577,6 @@
       .svid-section { height: 60vw; min-height: 280px; }
     }
   </style>
-  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -1448,6 +1589,43 @@
 </a>
 
 <a href="#" id="top-cta" onclick="downloadApp(event)">Download Now</a>
+
+<!-- ── Dropdown Nav ─────────────────────────────────────────────── -->
+<nav id="main-nav">
+  <div class="nav-item" id="nav-orgs">
+    <button aria-haspopup="true">For Organizations <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="nav-dropdown">
+      <a href="#features">Club Management</a>
+      <a href="#features">League Tools</a>
+      <a href="#features">Multi-Team Admin</a>
+    </div>
+  </div>
+  <div class="nav-item" id="nav-coaches">
+    <button aria-haspopup="true">For Coaches <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="nav-dropdown">
+      <a href="#features">Roster Management</a>
+      <a href="#features">Scheduling & Events</a>
+      <a href="#features">Playbook Sharing</a>
+      <a href="#features">Attendance Tracking</a>
+    </div>
+  </div>
+  <div class="nav-item" id="nav-parents">
+    <button aria-haspopup="true">For Parents <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="nav-dropdown">
+      <a href="#features">Stay in the Loop</a>
+      <a href="#features">Payment Tracking</a>
+      <a href="#features">Team Communication</a>
+    </div>
+  </div>
+  <div class="nav-item" id="nav-athletes">
+    <button aria-haspopup="true">For Athletes <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="nav-dropdown">
+      <a href="#features">Get Discovered</a>
+      <a href="#features">Team Calendar</a>
+      <a href="#features">Direct Messaging</a>
+    </div>
+  </div>
+</nav>
 
 
 
@@ -1481,7 +1659,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 814 1000" fill="currentColor" aria-hidden="true"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.3-150.2-87.4C46 790 0 663 0 541.8c0-207.8 134.4-317.9 266.9-317.9 100.9 0 184.5 67 244.6 67 57.5 0 153.8-70.8 265-70.8zm-51.3-208.1c60.3-73.1 100.2-174.7 100.2-276.3 0-14.4-1.3-28.9-3.9-41.5-96.1 3.2-209.4 65.5-278 146.4-50.5 56.8-98.1 149.7-98.1 263.3 0 16.4 2.6 32.7 3.9 38.3 5.2 1 13.7 2.6 22.2 2.6 83.7 0 189.2-58.7 253.7-132.8z"/></svg>
         <span><small>Download on the</small>App Store</span>
       </a>
-      <a href="https://play.google.com/store/apps/details?id=com.trainerize.teamthrive" class="h-store-btn" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+      <a href="https://play.google.com/store/apps/details?id=com.teamthrive.app" class="h-store-btn" target="_blank" rel="noopener" aria-label="Get it on Google Play">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l2.7 1.5 246.7-246.7v-5.8L47 0zm425.2 225.6l-58.6-33.8-65.7 65.7 65.7 65.7 59.1-34.1c16.7-9.5 16.7-24.9-.5-63.5zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
         <span><small>Get it on</small>Google Play</span>
       </a>
@@ -1861,7 +2039,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 814 1000" fill="currentColor" aria-hidden="true"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.3-150.2-87.4C46 790 0 663 0 541.8c0-207.8 134.4-317.9 266.9-317.9 100.9 0 184.5 67 244.6 67 57.5 0 153.8-70.8 265-70.8zm-51.3-208.1c60.3-73.1 100.2-174.7 100.2-276.3 0-14.4-1.3-28.9-3.9-41.5-96.1 3.2-209.4 65.5-278 146.4-50.5 56.8-98.1 149.7-98.1 263.3 0 16.4 2.6 32.7 3.9 38.3 5.2 1 13.7 2.6 22.2 2.6 83.7 0 189.2-58.7 253.7-132.8z"/></svg>
         <span><small>Download on the</small>App Store</span>
       </a>
-      <a href="https://play.google.com/store/apps/details?id=com.trainerize.teamthrive" class="store-badge-btn" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+      <a href="https://play.google.com/store/apps/details?id=com.teamthrive.app" class="store-badge-btn" target="_blank" rel="noopener" aria-label="Get it on Google Play">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l2.7 1.5 246.7-246.7v-5.8L47 0zm425.2 225.6l-58.6-33.8-65.7 65.7 65.7 65.7 59.1-34.1c16.7-9.5 16.7-24.9-.5-63.5zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
         <span><small>Get it on</small>Google Play</span>
       </a>
@@ -1876,16 +2054,33 @@
 <!-- ╔════════════════════════════════════════════════════════════
      FOOTER
      ╚════════════════════════════════════════════════════════════ -->
+<!-- ── App Screens ──────────────────────────────────────────────── -->
+<section id="app-screens">
+  <div class="screens-inner">
+    <p class="screens-label">See What's Inside</p>
+    <h2 class="screens-title">The App, Live & Ready</h2>
+    <p class="screens-sub">Every screen built for athletes, coaches, parents, and organizations — all in one place.</p>
+  </div>
+  <div class="screens-scroll">
+    <div class="screen-card"><img src="screens/Onboarding - Welcome screen.png" alt="Welcome"/><div class="screen-card-label">Welcome</div></div>
+    <div class="screen-card"><img src="screens/Team chat.png" alt="Team Chat"/><div class="screen-card-label">Team Chat</div></div>
+    <div class="screen-card"><img src="screens/Calendar.png" alt="Calendar"/><div class="screen-card-label">Calendar</div></div>
+    <div class="screen-card"><img src="screens/Event screen.png" alt="Events"/><div class="screen-card-label">Events</div></div>
+    <div class="screen-card"><img src="screens/Team roster.png" alt="Team Roster"/><div class="screen-card-label">Team Roster</div></div>
+    <div class="screen-card"><img src="screens/Coach.png" alt="Coach View"/><div class="screen-card-label">Coach View</div></div>
+    <div class="screen-card"><img src="screens/Payments.png" alt="Payments"/><div class="screen-card-label">Payments</div></div>
+    <div class="screen-card"><img src="screens/Chats.png" alt="Messages"/><div class="screen-card-label">Messages</div></div>
+    <div class="screen-card"><img src="screens/My Profile.png" alt="My Profile"/><div class="screen-card-label">My Profile</div></div>
+  </div>
+</section>
+
 <footer id="footer">
   <div class="footer-bar">
     <span class="footer-copy">© 2026 Team Thrive LLC. All rights reserved.</span>
     <div class="footer-links">
-      <a href="Acceptable_Use_Policy.pdf" target="_blank">Acceptable Use Policy</a>
-      <a href="Privacy_Policy.pdf" target="_blank">Privacy Policy</a>
-      <a href="Cookie_Policy.pdf" target="_blank">Cookie Policy</a>
-      <a href="Disclaimer_of_use.pdf" target="_blank">Disclaimer</a>
-      <a href="Parental_Consent.pdf" target="_blank">Parental Consent</a>
-      <a href="contact.html">Contact Us</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-service.html">Terms of Service</a>
+      <a href="#">Contact Us</a>
     </div>
   </div>
 </footer>
@@ -2082,7 +2277,7 @@ function downloadApp(e) {
   e.preventDefault();
   var ua = navigator.userAgent || navigator.vendor || window.opera;
   if (/android/i.test(ua)) {
-    window.location.href = 'https://play.google.com/store/apps/details?id=com.trainerize.teamthrive';
+    window.location.href = 'https://play.google.com/store/apps/details?id=com.teamthrive.app';
   } else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
     window.location.href = 'https://apps.apple.com/us/app/team-thrive/id6762251288';
   } else {
@@ -2093,6 +2288,20 @@ function downloadApp(e) {
 
 
 
+</script>
+<script>
+  // Dropdown nav
+  document.querySelectorAll('.nav-item').forEach(function(item) {
+    item.querySelector('button').addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('open'); });
+  });
 </script>
 </body>
 </html>
