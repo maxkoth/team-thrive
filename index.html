@@ -262,7 +262,8 @@
     }
     .screens-scroll::-webkit-scrollbar { display: none; }
     .screen-card {
-      flex: 0 0 220px;
+      flex: 0 0 200px;
+      height: 420px;
       scroll-snap-align: center;
       border-radius: 28px;
       overflow: hidden;
@@ -270,12 +271,16 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.5);
       transition: transform 0.3s;
       background: #0d1021;
+      display: flex;
+      flex-direction: column;
     }
     .screen-card:hover { transform: translateY(-8px) scale(1.02); }
     .screen-card img {
       width: 100%;
-      display: block;
+      flex: 1;
       object-fit: cover;
+      object-position: top;
+      display: block;
     }
     .screen-card-label {
       padding: 12px 14px;
