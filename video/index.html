@@ -149,10 +149,12 @@ if(OVERLAY){
   S('s1dots').style.filter='brightness(2)';
 }
 
-// scene opacity with crossfade
-function sceneOp(t,start,end,cf=0.45){
+// quintic smootherstep for silky dissolves
+const smoother=x=>{x=clamp(x,0,1);return x*x*x*(x*(6*x-15)+10);};
+// scene opacity with smooth crossfade
+function sceneOp(t,start,end,cf=0.5){
   if(t<start-cf||t>end+cf) return 0;
-  return clamp(Math.min((t-(start-cf))/cf,(end+cf-t)/cf),0,1);
+  return smoother(clamp(Math.min((t-(start-cf))/cf,(end+cf-t)/cf),0,1));
 }
 // word slide-in helper -> sets transform/opacity/filter on element
 function slideIn(el,lt,d0,d1,dx,dy,blur=18){
@@ -162,80 +164,79 @@ function slideIn(el,lt,d0,d1,dx,dy,blur=18){
   el.style.filter=`blur(${(1-p)*blur}px)`;
 }
 
+// Scene windows (start,end). Tightened to 26s; app scene trimmed; even pacing.
+const SCENES=[['s1',0.0,3.2],['s2',3.2,6.2],['s3',6.2,9.8],
+              ['s4',9.8,16.2],['s5',16.2,21.0],['s6',21.0,26.0]];
+const CF=0.5;
+
 function render(t){
-  // ---- scene visibility ----
-  S('s1').style.opacity=sceneOp(t,0.0,4.0);
-  S('s2').style.opacity=sceneOp(t,4.0,7.6);
-  S('s3').style.opacity=sceneOp(t,7.6,11.4);
-  S('s4').style.opacity=sceneOp(t,11.4,20.2);
-  S('s5').style.opacity=sceneOp(t,20.2,25.2);
-  S('s6').style.opacity=sceneOp(t,25.2,30.0);
+  // ---- scene visibility + subtle "settle" scale for smooth transitions ----
+  SCENES.forEach(([id,a,b])=>{
+    const el=S(id);
+    el.style.opacity=sceneOp(t,a,b,CF);
+    const ent=smoother(clamp((t-(a-CF))/0.8,0,1));   // 1.035 -> 1.0 on entry
+    el.style.transform=`scale(${lerp(1.035,1.0,ent)})`;
+  });
 
-  // ---- SCENE 1 (0-4) ----
+  // ---- SCENE 1 : EVERY TEAM (0-3.2) ----
   {const lt=t-0.0;
-   slideIn(S('s1w1'),lt,0.15,0.95,-260,0,22);
-   slideIn(S('s1w2'),lt,0.45,1.25, 280,0,22);
-   const dp=smooth(0.2,0.9,lt);
+   slideIn(S('s1w1'),lt,0.1,0.8,-260,0,22);
+   slideIn(S('s1w2'),lt,0.35,1.05, 280,0,22);
+   const dp=smooth(0.15,0.8,lt);
    S('s1dots').style.opacity=dp*0.9; S('s1dots').style.transform=`scale(${lerp(.8,1,eoc(dp))})`;
-   S('s1dots2').style.opacity=smooth(0.6,1.3,lt)*0.7;
-   S('s1badge').style.opacity=smooth(0.3,1.0,lt);
-   // exit drift
-   const ex=smooth(3.5,4.0,lt)* -40;
-   S('s1w1').style.transform+=` translateY(${ex}px)`;
+   S('s1dots2').style.opacity=smooth(0.5,1.1,lt)*0.7;
+   S('s1badge').style.opacity=smooth(0.25,0.9,lt);
+   S('s1w1').style.transform+=` translateY(${smooth(2.7,3.2,lt)*-40}px)`;  // exit drift
   }
 
-  // ---- SCENE 2 (4-7.6) ----
-  {const lt=t-4.0;
-   const p1=smooth(0.1,0.7,lt), e1=eob(clamp(lt/0.7,0,1));
+  // ---- SCENE 2 : EVERY ATHLETE (3.2-6.2) ----
+  {const lt=t-3.2;
+   const p1=smooth(0.1,0.65,lt), e1=eob(clamp(lt/0.65,0,1));
    S('s2w1').style.opacity=p1; S('s2w1').style.transform=`scale(${lerp(.55,1,e1)})`; S('s2w1').style.filter=`blur(${(1-p1)*14}px)`;
-   const p2=smooth(0.35,0.95,lt), e2=eob(clamp((lt-0.35)/0.6,0,1));
+   const p2=smooth(0.3,0.85,lt), e2=eob(clamp((lt-0.3)/0.55,0,1));
    S('s2w2').style.opacity=p2; S('s2w2').style.transform=`scale(${lerp(.55,1,e2)})`; S('s2w2').style.filter=`blur(${(1-p2)*14}px)`;
-   S('s2badge').style.opacity=smooth(0.3,1.0,lt);
+   S('s2badge').style.opacity=smooth(0.25,0.9,lt);
   }
 
-  // ---- SCENE 3 (7.6-11.4) ----
-  {const lt=t-7.6;
-   S('s3sub').style.opacity=smooth(0.1,0.7,lt);
-   S('s3sub').style.letterSpacing=px(lerp(22,9,eoc(smooth(0.1,0.9,lt))));
-   slideIn(S('s3w1'),lt,0.3,1.1,0,60,16);
-   slideIn(S('s3w2'),lt,0.6,1.5,0,60,16);
+  // ---- SCENE 3 : SCHEDULE.CONNECT.THRIVE (6.2-9.8) ----
+  {const lt=t-6.2;
+   S('s3sub').style.opacity=smooth(0.1,0.6,lt);
+   S('s3sub').style.letterSpacing=px(lerp(22,9,eoc(smooth(0.1,0.8,lt))));
+   slideIn(S('s3w1'),lt,0.25,0.95,0,60,16);
+   slideIn(S('s3w2'),lt,0.5,1.25,0,60,16);
   }
 
-  // ---- SCENE 4 (11.4-20.2) ----
-  {const lt=t-11.4;
-   // ken burns on app image
-   const z=lerp(1.08,1.0,smooth(0,3,lt));
-   S('s4img').style.transform=`scale(${z})`;
-   slideIn(S('s4h1'),lt,0.2,0.9,-60,0,8);
-   slideIn(S('s4h2'),lt,0.4,1.3,-70,0,12);
-   S('s4badge').style.opacity=smooth(0.3,1.0,lt);
-   const chips=['s4c1','s4c2','s4c3'];
-   chips.forEach((id,i)=>{
-     const d=1.1+i*0.45;
-     const p=smooth(d,d+0.6,lt), e=eob(clamp((lt-d)/0.6,0,1));
-     const el=S(id); el.style.opacity=p;
-     el.style.transform=`translateX(${px(lerp(-50,0,e))})`;
+  // ---- SCENE 4 : APP SHOWCASE (9.8-16.2) ----
+  {const lt=t-9.8;
+   S('s4img').style.transform=`scale(${lerp(1.07,1.0,smooth(0,4,lt))})`;  // slow ken burns
+   slideIn(S('s4h1'),lt,0.15,0.8,-60,0,8);
+   slideIn(S('s4h2'),lt,0.3,1.0,-70,0,12);
+   S('s4badge').style.opacity=smooth(0.25,0.9,lt);
+   ['s4c1','s4c2','s4c3'].forEach((id,i)=>{
+     const d=0.7+i*0.32;
+     const p=smooth(d,d+0.5,lt), e=eob(clamp((lt-d)/0.5,0,1));
+     const el=S(id); el.style.opacity=p; el.style.transform=`translateX(${px(lerp(-50,0,e))})`;
    });
   }
 
-  // ---- SCENE 5 (20.2-25.2) ----
-  {const lt=t-20.2;
+  // ---- SCENE 5 : FEATURE LINES (16.2-21.0) ----
+  {const lt=t-16.2;
    ['s5l1','s5l2','s5l3'].forEach((id,i)=>{
-     const d=0.2+i*0.5;
-     const p=smooth(d,d+0.6,lt), e=eoc(clamp((lt-d)/0.6,0,1));
+     const d=0.15+i*0.38;
+     const p=smooth(d,d+0.55,lt), e=eoc(clamp((lt-d)/0.55,0,1));
      const el=S(id); el.style.opacity=p;
      el.style.transform=`translateX(${px(lerp(-80,0,e))})`;
      el.style.filter=`blur(${(1-p)*10}px)`;
    });
   }
 
-  // ---- SCENE 6 (25.2-30) ----
-  {const lt=t-25.2;
-   const p=smooth(0.1,0.9,lt), e=eob(clamp(lt/0.9,0,1));
+  // ---- SCENE 6 : LOGO + CTA (21.0-26.0) ----
+  {const lt=t-21.0;
+   const p=smooth(0.1,0.8,lt), e=eob(clamp(lt/0.8,0,1));
    S('s6logo').style.opacity=p;
    S('s6logo').style.transform=`scale(${lerp(.6,1,e)}) rotate(${lerp(-8,0,e)}deg)`;
-   slideIn(S('s6cta'),lt,0.9,1.6,0,28,8);
-   S('s6url').style.opacity=smooth(1.5,2.2,lt);
+   slideIn(S('s6cta'),lt,0.8,1.4,0,28,8);
+   S('s6url').style.opacity=smooth(1.3,1.9,lt);
   }
 }
 window.__render=render;

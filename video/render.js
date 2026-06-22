@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 
 (async () => {
-  const FPS = 30, DUR = 30, total = FPS * DUR;
+  const FPS = 30, DUR = 26, total = FPS * DUR;
   const onlyPreview = process.argv.includes('--preview');
   // --overlay : footage-ready pass. Footage-scene backgrounds are transparent
   // and frames are exported as RGBA PNGs (to be composited over clips with ffmpeg).
@@ -20,7 +20,7 @@ const path = require('path');
   const shot = (p) => page.screenshot({ path: p, omitBackground: overlay });
 
   if (onlyPreview) {
-    const previews = [1.0, 5.5, 9.2, 14.0, 22.0, 27.5];
+    const previews = [1.5, 4.7, 8.0, 13.0, 18.5, 23.5];
     for (let i = 0; i < previews.length; i++) {
       await page.evaluate((tt) => window.__render(tt), previews[i]);
       await shot(path.join(outDir, `preview_${i}.png`));
