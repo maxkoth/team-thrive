@@ -214,16 +214,55 @@
       transition: background 0.15s, color 0.15s;
     }
     .nav-dropdown a:hover { background: rgba(0,229,160,0.08); color: #00e5a0; }
+    /* ── Hamburger (mobile only) ─────────────────────────────────── */
+    #hamburger {
+      display: none;
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9001;
+      background: rgba(15,14,42,0.82);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      padding: 9px 18px;
+      color: #eef0fb;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      backdrop-filter: blur(20px);
+      gap: 8px;
+      align-items: center;
+    }
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 8998;
+      background: rgba(6,8,16,0.97);
+      backdrop-filter: blur(20px);
+      padding: 80px 24px 32px;
+      flex-direction: column;
+      gap: 4px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    #mobile-menu.open { display: flex; }
+    .mob-link {
+      display: block;
+      padding: 16px 20px;
+      color: rgba(238,240,251,0.8);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 12px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .mob-link:hover { background: rgba(0,229,160,0.08); color: #00e5a0; }
     @media (max-width: 640px) {
-      #main-nav {
-        gap: 0;
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding: 14px 16px 0;
-        scrollbar-width: none;
-      }
-      #main-nav::-webkit-scrollbar { display: none; }
-      .nav-item > button { font-size: 12px; padding: 7px 10px; white-space: nowrap; }
+      #main-nav { display: none; }
+      #hamburger { display: flex; }
     }
 
     /* ── App Screens Section ─────────────────────────────────────── */
@@ -1605,6 +1644,18 @@
 
 <a href="#" id="top-cta" onclick="downloadApp(event)">Download Now</a>
 
+<!-- ── Mobile Hamburger ───────────────────────────────────────────── -->
+<button id="hamburger" onclick="toggleMobileMenu()">
+  <svg id="ham-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  Menu
+</button>
+<div id="mobile-menu">
+  <a href="for-organizations.html" class="mob-link">Clubs</a>
+  <a href="for-coaches.html" class="mob-link">Coaches</a>
+  <a href="for-parents.html" class="mob-link">Parents</a>
+  <a href="for-athletes.html" class="mob-link">Athlete (13+)</a>
+</div>
+
 <!-- ── Dropdown Nav ─────────────────────────────────────────────── -->
 <nav id="main-nav">
   <div class="nav-item" id="nav-orgs">
@@ -2306,6 +2357,16 @@ function downloadApp(e) {
 
 </script>
 <script>
+  // Mobile menu
+  function toggleMobileMenu() {
+    var menu = document.getElementById('mobile-menu');
+    var btn = document.getElementById('hamburger');
+    var isOpen = menu.classList.toggle('open');
+    btn.innerHTML = isOpen
+      ? '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Close'
+      : '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Menu';
+  }
+
   // Dropdown nav
   document.querySelectorAll('.nav-item').forEach(function(item) {
     item.querySelector('button').addEventListener('click', function(e) {
