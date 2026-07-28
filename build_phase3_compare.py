@@ -47,23 +47,36 @@ def footer(d):
     ff=font(REG,25); d.text(((W-tw(d,"teamthrive.com",ff))//2,1024),"teamthrive.com",font=ff,fill=GREEN)
 
 def badge(kind, size=30):
-    b=Image.new("RGBA",(size,size),(0,0,0,0)); dd=ImageDraw.Draw(b); s=size
-    dd.rounded_rectangle([0,0,s-1,s-1],s//3,fill=GREEN)
-    if kind=="check":
-        dd.line([(s*0.26,s*0.52),(s*0.43,s*0.69)],fill=NAVY,width=4,joint="curve")
-        dd.line([(s*0.43,s*0.69),(s*0.76,s*0.31)],fill=NAVY,width=4,joint="curve")
-    elif kind=="arrow":
-        dd.line([(s*0.26,s*0.5),(s*0.70,s*0.5)],fill=NAVY,width=4,joint="curve")
-        dd.line([(s*0.55,s*0.33),(s*0.72,s*0.5)],fill=NAVY,width=4,joint="curve")
-        dd.line([(s*0.55,s*0.67),(s*0.72,s*0.5)],fill=NAVY,width=4,joint="curve")
-    else:  # star / sparkle
-        import math
-        cx,cy,ro,ri=s/2,s/2,s*0.30,s*0.13; pts=[]
+    """Supersampled icon badge for clean, anti-aliased edges."""
+    import math
+    SS = 5
+    s = size * SS
+    b = Image.new("RGBA", (s, s), (0,0,0,0))
+    dd = ImageDraw.Draw(b)
+    dd.rounded_rectangle([0,0,s-1,s-1], s*0.34, fill=GREEN)
+    lw = int(s*0.085)
+    def dot(x, y, r):
+        dd.ellipse([x-r, y-r, x+r, y+r], fill=NAVY)
+    if kind == "check":
+        p1=(s*0.27,s*0.52); p2=(s*0.44,s*0.68); p3=(s*0.75,s*0.33)
+        dd.line([p1,p2], fill=NAVY, width=lw)
+        dd.line([p2,p3], fill=NAVY, width=lw)
+        for p in (p1,p2,p3): dot(*p, lw/2)
+    elif kind == "arrow":
+        a=(s*0.26,s*0.5); b2=(s*0.68,s*0.5)
+        t=(s*0.53,s*0.34); bt=(s*0.53,s*0.66)
+        dd.line([a,b2], fill=NAVY, width=lw)
+        dd.line([t,b2], fill=NAVY, width=lw)
+        dd.line([bt,b2], fill=NAVY, width=lw)
+        for p in (a,b2,t,bt): dot(*p, lw/2)
+    else:  # clean 5-point star
+        cx=cy=s/2; ro=s*0.32; ri=s*0.135; pts=[]
         for i in range(10):
-            ang=-math.pi/2+i*math.pi/5; r=ro if i%2==0 else ri
-            pts.append((cx+r*math.cos(ang),cy+r*math.sin(ang)))
-        dd.polygon(pts,fill=NAVY)
-    return b
+            ang=-math.pi/2 + i*math.pi/5
+            r=ro if i%2==0 else ri
+            pts.append((cx+r*math.cos(ang), cy+r*math.sin(ang)))
+        dd.polygon(pts, fill=NAVY)
+    return b.resize((size,size), Image.LANCZOS)
 
 def panel(canvas, x0, x1, y0, y1, accent):
     p=Image.new("RGBA",(x1-x0,y1-y0),(0,0,0,0)); dp=ImageDraw.Draw(p)
