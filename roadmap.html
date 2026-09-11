@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 <script defer src="/_vercel/insights/script.js"></script>
 <style>
-  :root{ --navy:#0D1B3E; --bg:#17181B; --green:#6BE7DB; --mute:rgba(255,255,255,.55); }
+  :root{ --navy:#0D1B3E; --bg:#0D1B3E; --green:#3DDC84; --aqua:#6BE7DB; --mute:rgba(255,255,255,.55); }
   *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
   html,body{ height:100%; }
   body{
@@ -38,14 +38,14 @@
     content:''; position:absolute; z-index:-1;
     width:min(760px,90vw); height:min(760px,90vw);
     left:50%; top:46%; transform:translate(-50%,-50%);
-    background:radial-gradient(circle, rgba(107,231,219,.16), transparent 66%);
+    background:radial-gradient(circle, rgba(107,231,219,.13), rgba(61,220,132,.06) 45%, transparent 68%);
     pointer-events:none;
   }
 
   .eyebrow{
     display:inline-block; font-size:clamp(10px,1.1vw,12px); font-weight:600;
     letter-spacing:.2em; text-transform:uppercase; color:var(--green);
-    border:1.5px solid rgba(107,231,219,.4); border-radius:100px;
+    border:1.5px solid rgba(61,220,132,.4); border-radius:100px;
     padding:6px 15px; margin-bottom:clamp(14px,2.2vh,22px);
   }
   h1{
@@ -73,10 +73,10 @@
   .g2{ grid-template-columns:repeat(2,1fr); }
   .g3{ grid-template-columns:repeat(3,1fr); }
   .card{
-    background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.11);
     border-radius:16px; padding:clamp(13px,1.7vw,22px);
   }
-  .card.accent{ border-color:rgba(107,231,219,.35); background:rgba(107,231,219,.06); }
+  .card.accent{ border-color:rgba(61,220,132,.35); background:rgba(61,220,132,.06); }
   .card h3{
     font-family:'Clash Display',sans-serif; font-size:clamp(15px,1.75vw,21px);
     font-weight:600; margin-bottom:7px;
@@ -85,7 +85,7 @@
   .card p{ font-size:clamp(12px,1.25vw,15px); line-height:1.62; color:rgba(255,255,255,.72); }
   .card .role{
     font-size:clamp(9px,1vw,11px); font-weight:600; letter-spacing:.16em;
-    text-transform:uppercase; color:var(--green); margin-bottom:6px; display:block;
+    text-transform:uppercase; color:var(--aqua); margin-bottom:6px; display:block;
   }
 
   /* checklist */
@@ -99,20 +99,20 @@
 
   /* phase strip */
   .phases{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(10px,1.5vw,16px); margin-top:clamp(18px,3vh,30px); }
-  .phase{ border-radius:16px; padding:clamp(14px,1.8vw,22px); border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.04); }
-  .phase.now{ border-color:rgba(107,231,219,.5); background:rgba(107,231,219,.08); }
+  .phase{ border-radius:16px; padding:clamp(14px,1.8vw,22px); border:1px solid rgba(255,255,255,.11); background:rgba(255,255,255,.05); }
+  .phase.now{ border-color:rgba(61,220,132,.5); background:rgba(61,220,132,.08); }
   .phase .pill{
     display:inline-block; font-size:clamp(9px,1vw,11px); font-weight:700; letter-spacing:.14em;
     text-transform:uppercase; padding:4px 11px; border-radius:100px; margin-bottom:9px;
   }
-  .phase.now .pill{ background:var(--green); color:#0B2321; }
+  .phase.now .pill{ background:var(--green); color:#07203C; }
   .phase .pill.out{ border:1.5px solid var(--green); color:var(--green); }
   .phase h4{ font-family:'Clash Display',sans-serif; font-size:clamp(14px,1.6vw,19px); font-weight:600; margin-bottom:7px; }
   .phase p{ font-size:clamp(11px,1.2vw,14px); line-height:1.6; color:rgba(255,255,255,.7); }
 
   .note{
     margin-top:clamp(14px,2.2vh,22px); font-size:clamp(11.5px,1.2vw,14px);
-    color:rgba(255,255,255,.5); border-left:2px solid rgba(107,231,219,.5);
+    color:rgba(255,255,255,.5); border-left:2px solid rgba(61,220,132,.5);
     padding-left:13px; line-height:1.6; max-width:760px;
   }
 
@@ -131,7 +131,7 @@
     display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);
     transition:background .2s, color .2s;
   }
-  .nav > button:hover{ background:var(--green); color:#0B2321; }
+  .nav > button:hover{ background:var(--green); color:#07203C; }
   .dots{ display:flex; gap:7px; }
   .dot{ width:7px; height:7px; border-radius:50%; border:none; padding:0; background:rgba(255,255,255,.25); cursor:pointer; transition:background .2s, transform .2s; }
   .dot.active{ background:var(--green); transform:scale(1.4); }
@@ -151,7 +151,14 @@
       break-after:page; page-break-after:always;
     }
     .slide:last-child{ break-after:auto; page-break-after:auto; }
-    .slide::before{ display:none; }
+    .slide::before{ width:1000px; height:1000px; top:50%; }
+    .cover::before{ width:1150px; height:1150px; }
+    /* the sign-off the carousel and the video title cards both carry */
+    .slide::after{
+      content:'teamthrive.com'; position:absolute; bottom:38px; left:84px;
+      font-size:15px; font-weight:500; color:var(--green);
+    }
+    .cover::after{ left:0; right:0; text-align:center; }
     .nav,.hint,.counter,.brandbar{ display:none !important; }
     .inner{ max-width:1040px; }
     .g2{ grid-template-columns:repeat(2,1fr) !important; }
@@ -250,14 +257,14 @@
       <span class="eyebrow">Phase 1 · Live today</span>
       <h2>Everything your club<br />runs on, <span>in one app</span></h2>
       <ul class="ticks two">
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#6BE7DB"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#0B2321" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Teams, rosters and athlete profiles</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#6BE7DB"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#0B2321" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Practices, meets and team events</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#6BE7DB"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#0B2321" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Team messaging with read receipts</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#6BE7DB"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#0B2321" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Payments and dues, collected in-app</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#6BE7DB"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#0B2321" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Import athletes from another team</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#6BE7DB"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#0B2321" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> One invite link for parents to join</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#6BE7DB"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#0B2321" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Assistant coaches, with their own access</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#6BE7DB"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#0B2321" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Free to download, on iPhone and Android</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#3DDC84"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#07203C" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Teams, rosters and athlete profiles</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#3DDC84"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#07203C" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Practices, meets and team events</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#3DDC84"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#07203C" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Team messaging with read receipts</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#3DDC84"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#07203C" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Payments and dues, collected in-app</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#3DDC84"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#07203C" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Import athletes from another team</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#3DDC84"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#07203C" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> One invite link for parents to join</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#3DDC84"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#07203C" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Assistant coaches, with their own access</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="#3DDC84"/><path d="M4.6 8.8l2.6 2.6 5.2-5.6" stroke="#07203C" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Free to download, on iPhone and Android</li>
       </ul>
       <p class="note">Payments run through Stripe — you connect your club's account once, and money goes straight to you.</p>
     </div>
@@ -269,14 +276,14 @@
       <span class="eyebrow">Phase 2 · Coming next</span>
       <h2>Built for clubs,<br />not just <span>single teams</span></h2>
       <ul class="ticks two">
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#6BE7DB" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#6BE7DB" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> A club layer above your teams</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#6BE7DB" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#6BE7DB" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Move athletes between your teams</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#6BE7DB" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#6BE7DB" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Invite several teams to one event</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#6BE7DB" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#6BE7DB" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> One-tap invite links — no adding parents by hand</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#6BE7DB" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#6BE7DB" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Parents can sign up before you invite them</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#6BE7DB" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#6BE7DB" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Athletes 13 and over get their own access</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#6BE7DB" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#6BE7DB" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> A responsible-parent role to help the coach</li>
-        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#6BE7DB" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#6BE7DB" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Multi-sport athlete profiles and a new design</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#3DDC84" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#3DDC84" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> A club layer above your teams</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#3DDC84" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#3DDC84" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Move athletes between your teams</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#3DDC84" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#3DDC84" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Invite several teams to one event</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#3DDC84" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#3DDC84" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> One-tap invites, no adding parents by hand</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#3DDC84" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#3DDC84" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Parents can sign up before you invite them</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#3DDC84" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#3DDC84" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Athletes 13 and over get their own access</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#3DDC84" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#3DDC84" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> A responsible-parent role to help the coach</li>
+        <li><svg width="17" height="17" viewBox="0 0 17 17"><circle cx="8.5" cy="8.5" r="8.5" fill="none" stroke="#3DDC84" stroke-width="1.6"/><path d="M5 8.5h7M9.5 6l2.5 2.5L9.5 11" stroke="#3DDC84" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Multi-sport profiles and a refreshed design</li>
       </ul>
     </div>
   </section>
