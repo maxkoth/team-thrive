@@ -199,6 +199,12 @@
       transform: translateX(-50%) translateY(-6px);
       transition: opacity 0.18s, transform 0.18s;
     }
+    /* bridges the 8px gap so moving button -> panel doesn't leave the item */
+    .nav-dropdown::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; top: -10px; height: 10px;
+    }
     .nav-item.open .nav-dropdown {
       opacity: 1;
       pointer-events: all;
@@ -2379,18 +2385,47 @@ function downloadApp(e) {
       : '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Menu';
   }
 
-  // Dropdown nav
-  document.querySelectorAll('.nav-item').forEach(function(item) {
-    item.querySelector('button').addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('open'); });
-      if (!isOpen) item.classList.add('open');
+  // Dropdown nav — opens on hover and closes as soon as the cursor leaves.
+  // Click still works, so touch devices and keyboards are unaffected.
+  (function () {
+    var items = document.querySelectorAll('.nav-item');
+    var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var closeTimer;
+
+    function closeAll() {
+      items.forEach(function (i) { i.classList.remove('open'); });
+    }
+    function open(item) {
+      clearTimeout(closeTimer);
+      closeAll();
+      if (item.querySelector('.nav-dropdown')) item.classList.add('open');
+    }
+
+    items.forEach(function (item) {
+      var btn = item.querySelector('button');
+      if (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var wasOpen = item.classList.contains('open');
+          closeAll();
+          if (!wasOpen) item.classList.add('open');
+        });
+      }
+      if (!canHover) return;
+      item.addEventListener('mouseenter', function () { open(item); });
+      item.addEventListener('mouseleave', function () {
+        // brief grace period so a diagonal flick across a neighbour
+        // doesn't make the menu flicker
+        clearTimeout(closeTimer);
+        closeTimer = setTimeout(closeAll, 90);
+      });
     });
-  });
-  document.addEventListener('click', function() {
-    document.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('open'); });
-  });
+
+    document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll();
+    });
+  })();
 </script>
 </body>
 </html>
