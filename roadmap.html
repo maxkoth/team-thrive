@@ -466,6 +466,15 @@
 <div class="hint">← → to move</div>
 
 <script>
+  // ?pdf=1 strips the interactive chrome, so exported pages don't show
+  // dots, arrows and a keyboard hint that nobody can click in a PDF
+  if (/[?&]pdf=/.test(location.search)) {
+    document.documentElement.classList.add('for-pdf');
+    var kill = document.createElement('style');
+    kill.textContent = '.for-pdf .nav,.for-pdf .hint{display:none!important}';
+    document.head.appendChild(kill);
+  }
+
   const slides = [...document.querySelectorAll('.slide')];
   const dotsEl = document.getElementById('dots');
   const curEl  = document.getElementById('cur');
