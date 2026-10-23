@@ -116,6 +116,22 @@
     padding-left:13px; line-height:1.6; max-width:760px;
   }
 
+
+  /* the school -> athlete chain */
+  .flow{ display:flex; align-items:stretch; gap:0; margin-top:clamp(22px,3.2vh,36px); flex-wrap:nowrap; }
+  .node{ flex:1; background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.12);
+         border-radius:16px; padding:clamp(14px,1.8vw,22px); text-align:center; min-width:0; }
+  .node.hl{ border-color:rgba(61,220,132,.5); background:rgba(61,220,132,.08); }
+  .node h4{ font-family:'Clash Display',sans-serif; font-size:clamp(13px,1.5vw,18px);
+            font-weight:600; margin-bottom:6px; }
+  .node p{ font-size:clamp(10.5px,1.1vw,13px); line-height:1.5; color:rgba(255,255,255,.68); }
+  .arrow{ flex:none; width:clamp(18px,2.4vw,34px); display:flex; align-items:center;
+          justify-content:center; color:var(--green); font-size:clamp(14px,1.8vw,22px); }
+  @media (max-width:760px){
+    .flow{ flex-direction:column; gap:8px; }
+    .arrow{ width:auto; height:20px; transform:rotate(90deg); }
+  }
+
   /* chrome */
   .brandbar{ position:fixed; top:clamp(14px,2.4vh,26px); left:clamp(18px,3vw,44px); display:flex; align-items:center; gap:9px; z-index:20; }
   .brandbar img{ width:clamp(20px,2.3vw,27px); }
@@ -211,7 +227,28 @@
     </div>
   </section>
 
-  <!-- 2 three pillars -->
+  <!-- 2 the problem -->
+  <section class="slide">
+    <div class="inner">
+      <span class="eyebrow">The problem</span>
+      <h2>Five apps.<br />One <span>season.</span></h2>
+      <p class="sub">A scheduling app, a messaging app, a payment app, a spreadsheet, and somebody's
+        memory. Nobody chose that — it's just what a club ends up with.</p>
+      <div class="grid g3">
+        <div class="card"><h3><em>The club drowns in admin</em></h3><p>Rosters, schedule changes,
+          meet fees, waivers, the parent who didn't get the message. None of it makes anyone better
+          at the sport. All of it has to get done.</p></div>
+        <div class="card"><h3><em>Families chase information</em></h3><p>Three group chats, a
+          forwarded email and a text from another parent — just to find out what time to be there
+          on Saturday.</p></div>
+        <div class="card"><h3><em>The athlete's record vanishes</em></h3><p>Ten years of levels,
+          seasons and progress live in one coach's head. When that coach leaves, it goes with them.</p></div>
+      </div>
+      <p class="note">The first two cost a club time. The third costs the athlete their history.</p>
+    </div>
+  </section>
+
+  <!-- 3 the solution -->
   <section class="slide">
     <div class="inner">
       <span class="eyebrow">What Team Thrive is</span>
@@ -371,6 +408,28 @@
         </div>
       </div>
       <p class="note">We're building a working prototype first, so you can try it on real clips from your own gym and judge the quality before it goes into the product.</p>
+    </div>
+  </section>
+
+  <!-- schools -->
+  <section class="slide">
+    <div class="inner">
+      <span class="eyebrow">Where this goes</span>
+      <h2>One line, from the school<br />to the <span>athlete.</span></h2>
+      <p class="sub">A competitive athlete's life is split in half — the school team on one side,
+        the club on the other, and neither can see the other's calendar. The family is the only
+        thing connecting them, by hand.</p>
+      <div class="flow">
+        <div class="node hl"><h4>School</h4><p>Sees which of its students compete, and where.</p></div>
+        <div class="arrow">&rsaquo;</div>
+        <div class="node"><h4>Organization<br />&amp; clubs</h4><p>Teams, levels, coaches and rosters under one roof.</p></div>
+        <div class="arrow">&rsaquo;</div>
+        <div class="node"><h4>Families</h4><p>One schedule, one place to pay, one set of messages.</p></div>
+        <div class="arrow">&rsaquo;</div>
+        <div class="node"><h4>Athletes</h4><p>One record that follows them through all of it.</p></div>
+      </div>
+      <p class="note">Connect the school and the club and the relaying stops — and the athlete's
+        record finally spans everywhere they actually compete, not just one of them.</p>
     </div>
   </section>
 
