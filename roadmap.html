@@ -154,6 +154,44 @@
 
   .hint{ position:fixed; bottom:clamp(16px,2.6vh,30px); right:clamp(18px,3vw,44px); font-size:11px; color:rgba(255,255,255,.25); z-index:20; }
 
+  /* Exported PDFs: the on-screen sizes read far too small on paper and on a
+     phone, so everything steps up and the padding comes in to pay for it. */
+  .for-pdf .slide{ padding:46px 68px; }
+  .for-pdf .eyebrow{ font-size:15px; padding:8px 18px; margin-bottom:20px; letter-spacing:.18em; }
+  .for-pdf h1{ font-size:80px; }
+  .for-pdf h2{ font-size:62px; margin-bottom:16px; }
+  .for-pdf .sub{ font-size:26px; line-height:1.5; max-width:900px; margin-top:18px; }
+  .for-pdf .grid{ gap:18px; margin-top:28px; }
+  .for-pdf .card{ padding:22px 24px; border-radius:18px; }
+  .for-pdf .card h3{ font-size:26px; margin-bottom:9px; }
+  .for-pdf .card p{ font-size:19px; line-height:1.5; }
+  .for-pdf .card .role{ font-size:13px; margin-bottom:7px; }
+  .for-pdf ul.ticks{ margin-top:26px; gap:14px; }
+  .for-pdf ul.ticks li{ font-size:22px; gap:13px; line-height:1.4; }
+  .for-pdf ul.ticks li svg{ width:21px; height:21px; margin-top:3px; }
+  .for-pdf .phases{ gap:18px; margin-top:28px; }
+  .for-pdf .phase{ padding:22px 24px; border-radius:18px; }
+  .for-pdf .phase .pill{ font-size:13px; padding:5px 13px; margin-bottom:10px; }
+  .for-pdf .phase h4{ font-size:24px; margin-bottom:8px; }
+  .for-pdf .phase p{ font-size:18px; line-height:1.5; }
+  .for-pdf .note{ font-size:18px; margin-top:24px; padding-left:16px; max-width:920px; line-height:1.5; }
+  .for-pdf .cover .mark{ width:110px; margin-bottom:24px; }
+  .for-pdf .cover .tag{ font-size:24px; margin-top:26px; }
+  .for-pdf .flow{ margin-top:28px; }
+  .for-pdf .node{ padding:20px 16px; }
+  .for-pdf .node h4{ font-size:21px; margin-bottom:7px; }
+  .for-pdf .node p{ font-size:16px; line-height:1.45; }
+  .for-pdf .arrow{ font-size:26px; width:30px; }
+  .for-pdf .counter{ font-size:16px; }
+  /* the top-left lockup collides with the eyebrow at this padding, so inner
+     pages carry a footer instead; the cover and closing slide already brand themselves */
+  .for-pdf .brandbar{ display:none; }
+  .for-pdf .slide::after{
+    content:'teamthrive.com'; position:absolute; right:68px; bottom:20px;
+    font-size:15px; font-weight:500; color:var(--green); letter-spacing:.01em;
+  }
+  .for-pdf .cover::after{ display:none; }
+
   /* printing / PDF export: every slide becomes one landscape page */
   @media print{
     @page{ size:1280px 720px; margin:0; }
@@ -232,17 +270,11 @@
     <div class="inner">
       <span class="eyebrow">The problem</span>
       <h2>Five apps.<br />One <span>season.</span></h2>
-      <p class="sub">A scheduling app, a messaging app, a payment app, a spreadsheet, and somebody's
-        memory. Nobody chose that — it's just what a club ends up with.</p>
+      <p class="sub">A scheduling app, a messaging app, a payment app, a spreadsheet, and somebody's memory. Nobody chose that.</p>
       <div class="grid g3">
-        <div class="card"><h3><em>The club drowns in admin</em></h3><p>Rosters, schedule changes,
-          meet fees, waivers, the parent who didn't get the message. None of it makes anyone better
-          at the sport. All of it has to get done.</p></div>
-        <div class="card"><h3><em>Families chase information</em></h3><p>Three group chats, a
-          forwarded email and a text from another parent — just to find out what time to be there
-          on Saturday.</p></div>
-        <div class="card"><h3><em>The athlete's record vanishes</em></h3><p>Ten years of levels,
-          seasons and progress live in one coach's head. When that coach leaves, it goes with them.</p></div>
+        <div class="card"><h3><em>The club drowns in admin</em></h3><p>Rosters, schedule changes, meet fees, waivers, the parent who didn't get the message. None of it makes anyone better at the sport.</p></div>
+        <div class="card"><h3><em>Families chase information</em></h3><p>Three group chats and a text from another parent, just to learn what time to be there on Saturday.</p></div>
+        <div class="card"><h3><em>The athlete's record vanishes</em></h3><p>Ten years of levels and seasons live in one coach's head. When that coach leaves, it goes too.</p></div>
       </div>
       <p class="note">The first two cost a club time. The third costs the athlete their history.</p>
     </div>
@@ -330,9 +362,9 @@
     <div class="inner">
       <span class="eyebrow">Phase 3 · In design</span>
       <h2>The part nobody else<br />is <span>building</span></h2>
-      <p class="sub">Every club has admin software. What no one has is a record of the athlete — the ten years between starting at seven and leaving at seventeen. Phase 3 builds that layer.</p>
+      <p class="sub">Every club has admin software. Nobody has a record of the athlete — the ten years between starting at seven and leaving at seventeen.</p>
       <div class="grid g3">
-        <div class="card accent"><h3>Athlete Journey</h3><p>Every team, position, season and milestone — one continuous record that belongs to the athlete, not the club.</p></div>
+        <div class="card accent"><h3>Athlete Journey</h3><p>Every team, position, season and milestone in one continuous record that belongs to the athlete.</p></div>
         <div class="card accent"><h3>Notes &amp; Journal</h3><p>Coach, parent and athlete notes on a profile, each with its own sharing rules.</p></div>
         <div class="card accent"><h3>AI Video</h3><p>Upload a short clip, get coaching feedback back, and keep it on the athlete's profile.</p></div>
       </div>
@@ -416,9 +448,7 @@
     <div class="inner">
       <span class="eyebrow">What's coming · the next add-on</span>
       <h2>You can't see half<br />your athletes' <span>calendar.</span></h2>
-      <p class="sub">Plenty of your athletes also compete for their school. You can't see that
-        schedule, so you find out about the conflict when they don't turn up — and the family
-        ends up relaying between two programmes that never speak to each other.</p>
+      <p class="sub">Plenty of your athletes also compete for their school. You can't see that schedule, so you learn about the clash when they don't turn up.</p>
       <div class="flow">
         <div class="node"><h4>School</h4><p>Shares its season calendar and sees which students compete elsewhere.</p></div>
         <div class="arrow">&rsaquo;</div>
@@ -428,8 +458,7 @@
         <div class="arrow">&rsaquo;</div>
         <div class="node"><h4>Athletes</h4><p>One record spanning everywhere they actually compete.</p></div>
       </div>
-      <p class="note">This one is still an idea, not a build date — but it's where we think the
-        platform goes once clubs are running on it, and it's the piece no one else is attempting.</p>
+      <p class="note">Still an idea rather than a build date — but it's where we think this goes, and nobody else is attempting it.</p>
     </div>
   </section>
 
